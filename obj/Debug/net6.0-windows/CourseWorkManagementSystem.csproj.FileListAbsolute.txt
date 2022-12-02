@@ -1,0 +1,121 @@
+C:\Users\hp pc\source\repos\CourseWorkManagementSystem\bin\Debug\net6.0-windows\CourseWorkManagementSystem.exe
+C:\Users\hp pc\source\repos\CourseWorkManagementSystem\bin\Debug\net6.0-windows\CourseWorkManagementSystem.deps.json
+C:\Users\hp pc\source\repos\CourseWorkManagementSystem\bin\Debug\net6.0-windows\CourseWorkManagementSystem.runtimeconfig.json
+C:\Users\hp pc\source\repos\CourseWorkManagementSystem\bin\Debug\net6.0-windows\CourseWorkManagementSystem.dll
+C:\Users\hp pc\source\repos\CourseWorkManagementSystem\bin\Debug\net6.0-windows\CourseWorkManagementSystem.pdb
+C:\Users\hp pc\source\repos\CourseWorkManagementSystem\obj\Debug\net6.0-windows\CourseWorkManagementSystem.csproj.AssemblyReference.cache
+C:\Users\hp pc\source\repos\CourseWorkManagementSystem\obj\Debug\net6.0-windows\CourseWorkManagementSystem.Form1.resources
+C:\Users\hp pc\source\repos\CourseWorkManagementSystem\obj\Debug\net6.0-windows\CourseWorkManagementSystem.ManageGroupMark.resources
+C:\Users\hp pc\source\repos\CourseWorkManagementSystem\obj\Debug\net6.0-windows\CourseWorkManagementSystem.ManageGroups.resources
+C:\Users\hp pc\source\repos\CourseWorkManagementSystem\obj\Debug\net6.0-windows\CourseWorkManagementSystem.ManageStudents.resources
+C:\Users\hp pc\source\repos\CourseWorkManagementSystem\obj\Debug\net6.0-windows\CourseWorkManagementSystem.SavedData.resources
+C:\Users\hp pc\source\repos\CourseWorkManagementSystem\obj\Debug\net6.0-windows\CourseWorkManagementSystem.ViewGroups.resources
+C:\Users\hp pc\source\repos\CourseWorkManagementSystem\obj\Debug\net6.0-windows\CourseWorkManagementSystem.csproj.GenerateResource.cache
+C:\Users\hp pc\source\repos\CourseWorkManagementSystem\obj\Debug\net6.0-windows\CourseWorkManagementSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hp pc\source\repos\CourseWorkManagementSystem\obj\Debug\net6.0-windows\CourseWorkManagementSystem.AssemblyInfoInputs.cache
+C:\Users\hp pc\source\repos\CourseWorkManagementSystem\obj\Debug\net6.0-windows\CourseWorkManagementSystem.AssemblyInfo.cs
+C:\Users\hp pc\source\repos\CourseWorkManagementSystem\obj\Debug\net6.0-windows\CourseWorkManagementSystem.csproj.CoreCompileInputs.cache
+C:\Users\hp pc\source\repos\CourseWorkManagementSystem\obj\Debug\net6.0-windows\CourseWorkManagementSystem.dll
+C:\Users\hp pc\source\repos\CourseWorkManagementSystem\obj\Debug\net6.0-windows\refint\CourseWorkManagementSystem.dll
+C:\Users\hp pc\source\repos\CourseWorkManagementSystem\obj\Debug\net6.0-windows\CourseWorkManagementSystem.pdb
+C:\Users\hp pc\source\repos\CourseWorkManagementSystem\obj\Debug\net6.0-windows\CourseWorkManagementSystem.genruntimeconfig.cache
+C:\Users\hp pc\source\repos\CourseWorkManagementSystem\obj\Debug\net6.0-windows\ref\CourseWorkManagementSystem.dll
+C:\Users\hp pc\source\repos\CW v2\bin\Debug\net6.0-windows\CourseWorkManagementSystem.exe
+C:\Users\hp pc\source\repos\CW v2\bin\Debug\net6.0-windows\CourseWorkManagementSystem.deps.json
+C:\Users\hp pc\source\repos\CW v2\bin\Debug\net6.0-windows\CourseWorkManagementSystem.runtimeconfig.json
+C:\Users\hp pc\source\repos\CW v2\bin\Debug\net6.0-windows\CourseWorkManagementSystem.dll
+C:\Users\hp pc\source\repos\CW v2\bin\Debug\net6.0-windows\CourseWorkManagementSystem.pdb
+C:\Users\hp pc\source\repos\CW v2\bin\Debug\net6.0-windows\LINQtoCSV.dll
+C:\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.csproj.AssemblyReference.cache
+C:\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.Form1.resources
+C:\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.ManageGroupMark.resources
+C:\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.ManageGroups.resources
+C:\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.ManageStudents.resources
+C:\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.SavedData.resources
+C:\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.ViewGroups.resources
+C:\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.csproj.GenerateResource.cache
+C:\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.AssemblyInfoInputs.cache
+C:\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.AssemblyInfo.cs
+C:\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.csproj.CoreCompileInputs.cache
+C:\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.csproj.CopyComplete
+C:\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.dll
+C:\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\refint\CourseWorkManagementSystem.dll
+C:\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.pdb
+C:\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.genruntimeconfig.cache
+C:\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\ref\CourseWorkManagementSystem.dll
+C:\Users\hp pc\source\repos\CW v2\bin\Debug\net6.0-windows\country.csv
+C:\Users\hp pc\source\repos\CW v2\bin\Debug\net6.0-windows\ClosedXML.dll
+C:\Users\hp pc\source\repos\CW v2\bin\Debug\net6.0-windows\DocumentFormat.OpenXml.dll
+C:\Users\hp pc\source\repos\CW v2\bin\Debug\net6.0-windows\ExcelNumberFormat.dll
+C:\Users\hp pc\source\repos\CW v2\bin\Debug\net6.0-windows\Irony.dll
+C:\Users\hp pc\source\repos\CW v2\bin\Debug\net6.0-windows\SixLabors.Fonts.dll
+C:\Users\hp pc\source\repos\CW v2\bin\Debug\net6.0-windows\XLParser.dll
+C:\Users\hp pc\source\repos\CW v2\bin\Debug\net6.0-windows\CsvHelper.dll
+C:\Windows.old\Users\hp pc\source\repos\CW v2\bin\Debug\net6.0-windows\CourseWorkManagementSystem.exe
+C:\Windows.old\Users\hp pc\source\repos\CW v2\bin\Debug\net6.0-windows\country.csv
+C:\Windows.old\Users\hp pc\source\repos\CW v2\bin\Debug\net6.0-windows\CourseWorkManagementSystem.deps.json
+C:\Windows.old\Users\hp pc\source\repos\CW v2\bin\Debug\net6.0-windows\CourseWorkManagementSystem.runtimeconfig.json
+C:\Windows.old\Users\hp pc\source\repos\CW v2\bin\Debug\net6.0-windows\CourseWorkManagementSystem.dll
+C:\Windows.old\Users\hp pc\source\repos\CW v2\bin\Debug\net6.0-windows\CourseWorkManagementSystem.pdb
+C:\Windows.old\Users\hp pc\source\repos\CW v2\bin\Debug\net6.0-windows\ClosedXML.dll
+C:\Windows.old\Users\hp pc\source\repos\CW v2\bin\Debug\net6.0-windows\CsvHelper.dll
+C:\Windows.old\Users\hp pc\source\repos\CW v2\bin\Debug\net6.0-windows\DocumentFormat.OpenXml.dll
+C:\Windows.old\Users\hp pc\source\repos\CW v2\bin\Debug\net6.0-windows\ExcelNumberFormat.dll
+C:\Windows.old\Users\hp pc\source\repos\CW v2\bin\Debug\net6.0-windows\Irony.dll
+C:\Windows.old\Users\hp pc\source\repos\CW v2\bin\Debug\net6.0-windows\LINQtoCSV.dll
+C:\Windows.old\Users\hp pc\source\repos\CW v2\bin\Debug\net6.0-windows\SixLabors.Fonts.dll
+C:\Windows.old\Users\hp pc\source\repos\CW v2\bin\Debug\net6.0-windows\XLParser.dll
+C:\Windows.old\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.csproj.AssemblyReference.cache
+C:\Windows.old\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.Form1.resources
+C:\Windows.old\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.ManageGroupMark.resources
+C:\Windows.old\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.ManageGroups.resources
+C:\Windows.old\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.ManageStudents.resources
+C:\Windows.old\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.SavedData.resources
+C:\Windows.old\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.ViewGroups.resources
+C:\Windows.old\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.csproj.GenerateResource.cache
+C:\Windows.old\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Windows.old\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.AssemblyInfoInputs.cache
+C:\Windows.old\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.AssemblyInfo.cs
+C:\Windows.old\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.csproj.CoreCompileInputs.cache
+C:\Windows.old\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.csproj.CopyComplete
+C:\Windows.old\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.dll
+C:\Windows.old\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\refint\CourseWorkManagementSystem.dll
+C:\Windows.old\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.pdb
+C:\Windows.old\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.genruntimeconfig.cache
+C:\Windows.old\Users\hp pc\source\repos\CW v2\obj\Debug\net6.0-windows\ref\CourseWorkManagementSystem.dll
+C:\Users\chiem\source\repos\CW v2\bin\Debug\net6.0-windows\CourseWorkManagementSystem.exe
+C:\Users\chiem\source\repos\CW v2\bin\Debug\net6.0-windows\country.csv
+C:\Users\chiem\source\repos\CW v2\bin\Debug\net6.0-windows\CourseWorkManagementSystem.deps.json
+C:\Users\chiem\source\repos\CW v2\bin\Debug\net6.0-windows\CourseWorkManagementSystem.runtimeconfig.json
+C:\Users\chiem\source\repos\CW v2\bin\Debug\net6.0-windows\CourseWorkManagementSystem.dll
+C:\Users\chiem\source\repos\CW v2\bin\Debug\net6.0-windows\CourseWorkManagementSystem.pdb
+C:\Users\chiem\source\repos\CW v2\bin\Debug\net6.0-windows\ClosedXML.dll
+C:\Users\chiem\source\repos\CW v2\bin\Debug\net6.0-windows\CsvHelper.dll
+C:\Users\chiem\source\repos\CW v2\bin\Debug\net6.0-windows\DocumentFormat.OpenXml.dll
+C:\Users\chiem\source\repos\CW v2\bin\Debug\net6.0-windows\ExcelNumberFormat.dll
+C:\Users\chiem\source\repos\CW v2\bin\Debug\net6.0-windows\Irony.dll
+C:\Users\chiem\source\repos\CW v2\bin\Debug\net6.0-windows\LINQtoCSV.dll
+C:\Users\chiem\source\repos\CW v2\bin\Debug\net6.0-windows\SixLabors.Fonts.dll
+C:\Users\chiem\source\repos\CW v2\bin\Debug\net6.0-windows\XLParser.dll
+C:\Users\chiem\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.csproj.AssemblyReference.cache
+C:\Users\chiem\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.Form1.resources
+C:\Users\chiem\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.ManageGroupMark.resources
+C:\Users\chiem\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.ManageGroups.resources
+C:\Users\chiem\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.ManageStudents.resources
+C:\Users\chiem\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.SavedData.resources
+C:\Users\chiem\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.ViewGroups.resources
+C:\Users\chiem\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.csproj.GenerateResource.cache
+C:\Users\chiem\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\chiem\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.AssemblyInfoInputs.cache
+C:\Users\chiem\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.AssemblyInfo.cs
+C:\Users\chiem\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.csproj.CoreCompileInputs.cache
+C:\Users\chiem\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.csproj.CopyComplete
+C:\Users\chiem\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.dll
+C:\Users\chiem\source\repos\CW v2\obj\Debug\net6.0-windows\refint\CourseWorkManagementSystem.dll
+C:\Users\chiem\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.pdb
+C:\Users\chiem\source\repos\CW v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.genruntimeconfig.cache
+C:\Users\chiem\source\repos\CW v2\obj\Debug\net6.0-windows\ref\CourseWorkManagementSystem.dll
+C:\Users\chiem\source\repos\CW v2\bin\Debug\net6.0-windows\ClosedXML.Report.dll
+C:\Users\chiem\source\repos\CW v2\bin\Debug\net6.0-windows\MoreLinq.dll
+C:\Users\chiem\source\repos\CW v2\bin\Debug\net6.0-windows\System.Linq.Dynamic.Core.dll
