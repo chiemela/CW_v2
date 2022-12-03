@@ -18,7 +18,6 @@ namespace CourseWorkManagementSystem
 
         public List<string> GetStudentList()
         {
-            ManageGroups ManageGroups = new ManageGroups(UpToDateStudentsList);
             return UpToDateStudentsList;
         }
 

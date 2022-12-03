@@ -138,11 +138,6 @@ C:\Users\chiem\source\repos\CW_v2\bin\Debug\net6.0-windows\System.Linq.Dynamic.C
 C:\Users\chiem\source\repos\CW_v2\bin\Debug\net6.0-windows\XLParser.dll
 C:\Users\chiem\source\repos\CW_v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.csproj.AssemblyReference.cache
 C:\Users\chiem\source\repos\CW_v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.Form1.resources
-C:\Users\chiem\source\repos\CW_v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.ManageGroupMark.resources
-C:\Users\chiem\source\repos\CW_v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.ManageGroups.resources
-C:\Users\chiem\source\repos\CW_v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.ManageStudents.resources
-C:\Users\chiem\source\repos\CW_v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.SavedData.resources
-C:\Users\chiem\source\repos\CW_v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.ViewGroups.resources
 C:\Users\chiem\source\repos\CW_v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.csproj.GenerateResource.cache
 C:\Users\chiem\source\repos\CW_v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\chiem\source\repos\CW_v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.AssemblyInfoInputs.cache

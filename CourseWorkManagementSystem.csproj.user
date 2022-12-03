@@ -4,20 +4,5 @@
     <Compile Update="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="ManageGroupMark.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="ManageGroups.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="ManageStudents.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="SavedData.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="ViewGroups.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
   </ItemGroup>
 </Project>
