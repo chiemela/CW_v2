@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1opidufUaQx7rhefpxK+i+/SX7hEOGQ4wvSgKYtHo+Ef/o9Km52v4InC3+Y742mEKoJGO28jJBN9CEMYG4TpKg==",
+  "dgSpecHash": "jGo3TZGYSiFPNiuGpXCugH94MLytJE92oVTlNT7xTT2tqLizgkZk+RtM9f5bb7CeLH4jec9NrX81afkKloQY9g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\chiem\\source\\repos\\CW v2\\CourseWorkManagementSystem.csproj",
+  "projectFilePath": "C:\\Users\\chiem\\source\\repos\\CW_v2\\CourseWorkManagementSystem.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\chiem\\.nuget\\packages\\closedxml\\0.97.0\\closedxml.0.97.0.nupkg.sha512",
     "C:\\Users\\chiem\\.nuget\\packages\\closedxml.report\\0.2.4\\closedxml.report.0.2.4.nupkg.sha512",

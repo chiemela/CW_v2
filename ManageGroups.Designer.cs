@@ -30,7 +30,10 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnAutoAssignStudents = new System.Windows.Forms.Button();
+            this.lstBxAutoAssignStudents1 = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -45,6 +48,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnAutoAssignStudents);
+            this.groupBox1.Controls.Add(this.lstBxAutoAssignStudents1);
             this.groupBox1.Location = new System.Drawing.Point(59, 109);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(920, 1035);
@@ -52,6 +57,25 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Auto Assign Students";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // btnAutoAssignStudents
+            // 
+            this.btnAutoAssignStudents.Location = new System.Drawing.Point(33, 876);
+            this.btnAutoAssignStudents.Name = "btnAutoAssignStudents";
+            this.btnAutoAssignStudents.Size = new System.Drawing.Size(862, 105);
+            this.btnAutoAssignStudents.TabIndex = 19;
+            this.btnAutoAssignStudents.Text = "Auto Assign Students";
+            this.btnAutoAssignStudents.UseVisualStyleBackColor = true;
+            this.btnAutoAssignStudents.Click += new System.EventHandler(this.btnAutoAssignStudents_Click);
+            // 
+            // lstBxAutoAssignStudents1
+            // 
+            this.lstBxAutoAssignStudents1.FormattingEnabled = true;
+            this.lstBxAutoAssignStudents1.ItemHeight = 41;
+            this.lstBxAutoAssignStudents1.Location = new System.Drawing.Point(33, 87);
+            this.lstBxAutoAssignStudents1.Name = "lstBxAutoAssignStudents1";
+            this.lstBxAutoAssignStudents1.Size = new System.Drawing.Size(862, 783);
+            this.lstBxAutoAssignStudents1.TabIndex = 0;
             // 
             // groupBox2
             // 
@@ -71,6 +95,7 @@
             this.Controls.Add(this.label1);
             this.Name = "ManageGroups";
             this.Size = new System.Drawing.Size(2014, 1204);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -81,5 +106,7 @@
         private Label label1;
         private GroupBox groupBox1;
         private GroupBox groupBox2;
+        private ListBox lstBxAutoAssignStudents1;
+        private Button btnAutoAssignStudents;
     }
 }

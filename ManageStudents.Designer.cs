@@ -50,6 +50,7 @@
             this.btnDeleteStudent = new System.Windows.Forms.Button();
             this.lblNumberOfStudent = new System.Windows.Forms.Label();
             this.btnSaveExcel = new System.Windows.Forms.Button();
+            this.lstBxAutoAssignStudents = new System.Windows.Forms.ListBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCsvImport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentBindingSource)).BeginInit();
@@ -264,10 +265,20 @@
             this.btnSaveExcel.UseVisualStyleBackColor = true;
             this.btnSaveExcel.Click += new System.EventHandler(this.btnSaveExcel_Click);
             // 
+            // lstBxAutoAssignStudents
+            // 
+            this.lstBxAutoAssignStudents.FormattingEnabled = true;
+            this.lstBxAutoAssignStudents.ItemHeight = 41;
+            this.lstBxAutoAssignStudents.Location = new System.Drawing.Point(223, 113);
+            this.lstBxAutoAssignStudents.Name = "lstBxAutoAssignStudents";
+            this.lstBxAutoAssignStudents.Size = new System.Drawing.Size(528, 414);
+            this.lstBxAutoAssignStudents.TabIndex = 21;
+            // 
             // ManageStudents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 41F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lstBxAutoAssignStudents);
             this.Controls.Add(this.btnSaveExcel);
             this.Controls.Add(this.lblNumberOfStudent);
             this.Controls.Add(this.btnDeleteStudent);
@@ -311,5 +322,6 @@
         private Button btnDeleteStudent;
         private Label lblNumberOfStudent;
         private Button btnSaveExcel;
+        private ListBox lstBxAutoAssignStudents;
     }
 }

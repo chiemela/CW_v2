@@ -27,7 +27,27 @@ namespace CourseWorkManagementSystem
 
         // global variables
         int count = 0;
-        List<string> listNewlyAddedStudents = new List<string>();   // create a new list with variable name "listNewlyAddedStudents"
+        public List<string> listNewlyAddedStudents = new List<string>();   // create a new list with variable name "listNewlyAddedStudents"
+
+        public List<string> name = new List<string>();
+        string StudentIDnumber1 = "21034871";
+        string FirstName1 = "chiemela";
+        string LastName1 = "ndukwe";
+        string EmailAddress1 = "sdfsd@ssd.sd";
+
+        // add item to list
+        name.Add(StudentIDnumber1);
+        name.Add(FirstName1);
+        name.Add(LastName1);
+        name.Add(EmailAddress1);
+
+
+        // store the students list in a class variable
+        public void StoreStudentList()
+        {
+            Storage UpdateImportedStudentsList = new Storage(listNewlyAddedStudents);
+            lstBxAutoAssignStudents.DataSource = UpdateImportedStudentsList.GetStudentList();
+        }
 
         // this method updates the "dataGridViewListItems"
         public void DataGridUpdate()
@@ -139,6 +159,9 @@ namespace CourseWorkManagementSystem
             // update the DataGridView
             DataGridUpdate();
 
+            // update list to the global list variable
+            StoreStudentList();
+
             // display the number of students
             lblNumberOfStudent.Text = (listNewlyAddedStudents.Count / 4).ToString();
         }
@@ -210,6 +233,10 @@ namespace CourseWorkManagementSystem
                             }
                         }
                     }
+
+                    // update list to the global list variable
+                    StoreStudentList();
+
                 }
                 else
                 {
@@ -229,6 +256,9 @@ namespace CourseWorkManagementSystem
 
             // update the DataGridView
             DataGridUpdate();
+
+            // update list to the global list variable
+            StoreStudentList();
         }
 
         private void btnSaveExcel_Click(object sender, EventArgs e)
@@ -256,6 +286,9 @@ namespace CourseWorkManagementSystem
                 listNewlyAddedStudents.RemoveAt(0);
                 count = 1;
             }
+
+            // update list to the global list variable
+            StoreStudentList();
 
             // loop through each "listNewlyAddedStudents" and add them to DataTable row
             for (var i = 0; i <= listNewlyAddedStudents.Count; i++)

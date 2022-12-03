@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CourseWorkManagementSystem
+{
+    public class StorageClassCopy
+    {
+        private List<string> UpToDateStudentsList = new List<string>();
+
+
+        public StorageClassCopy(List<string> i)
+        {
+            UpToDateStudentsList = i.ToList();
+        }
+
+        public List<string> GetStudentList()
+        {
+            return UpToDateStudentsList;
+        }
+
+    }
+}
