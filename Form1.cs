@@ -12,8 +12,22 @@ namespace CourseWorkManagementSystem
 
         // global variables
         int count = 0;
+        bool TrimedListHeader = false;
         public List<string> listNewlyAddedStudents = new List<string>();   // create a new list with variable name "listNewlyAddedStudents"
 
+        // check if the "listNewlyAddedStudents" header is trimmed or not
+        public void CheckTrimedListHeader(bool t)
+        {
+            // remove the first row of the list
+            if (t == false)
+            {
+                listNewlyAddedStudents.RemoveAt(0);
+                listNewlyAddedStudents.RemoveAt(0);
+                listNewlyAddedStudents.RemoveAt(0);
+                listNewlyAddedStudents.RemoveAt(0);
+                TrimedListHeader = true;
+            }
+        }
 
         // this method updates the "dataGridViewListItems"
         public void DataGridUpdate()
@@ -32,15 +46,8 @@ namespace CourseWorkManagementSystem
             var Index3 = 2;
             var Index4 = 3;
 
-            // remove the first row of the list
-            if (count == 0)
-            {
-                listNewlyAddedStudents.RemoveAt(0);
-                listNewlyAddedStudents.RemoveAt(0);
-                listNewlyAddedStudents.RemoveAt(0);
-                listNewlyAddedStudents.RemoveAt(0);
-                count = 1;
-            }
+            // check if "listNewlyAddedStudents" header has been removed else remove the first row of the list
+            CheckTrimedListHeader(TrimedListHeader);
 
             // loop through each "listNewlyAddedStudents" and add them to DataTable row
             for (var i = 0; i <= listNewlyAddedStudents.Count; i++)
@@ -61,6 +68,63 @@ namespace CourseWorkManagementSystem
             }
             // display the list item in "dataGridViewListItems"
             dataGridViewListItems.DataSource = dt;
+        }
+
+        // this method creates the DataTable columns automatically assigns student to a group
+        public void AutoAssignStudentToGrouping()
+        {
+            // prepare "DataTable StudentGroupTable" which will be used as DataSource for "dgvStudentGroupingTable"
+            System.Data.DataTable StudentGroupTable = new System.Data.DataTable();
+            StudentGroupTable.Columns.Add("S/N", typeof(string));
+            StudentGroupTable.Columns.Add("Student ID", typeof(string));
+            StudentGroupTable.Columns.Add("FirstName", typeof(string));
+            StudentGroupTable.Columns.Add("LastName", typeof(string));
+            StudentGroupTable.Columns.Add("Email Address", typeof(string));
+            StudentGroupTable.Columns.Add("Group ID", typeof(string));
+
+            // variable diclarations
+            var lap = 1;
+            var Index1 = 0;
+            var Index2 = 1;
+            var Index3 = 2;
+            var Index4 = 3;
+            int StudentGroupTable_SerialNumber = 0;
+            int StudentGroupTable_GroupID = 1;
+            int StudentGroupTable_RowCount = 0;
+
+            // create a new list to hold the student details with their new groups
+            List<string[]> StudentGroupTable_ListCollection = new List<string[]>();
+
+            // loop through each "listNewlyAddedStudents" and add them to DataTable row
+            for (var i = 0; i <= listNewlyAddedStudents.Count; i++)
+            {
+
+                // this ensures that four items are added to a row at once. it adds items by batch
+                if (lap > 4)
+                {
+                    lap = 1;
+                    StudentGroupTable_SerialNumber++;
+                    // assign each list index to a cell in the row
+                    StudentGroupTable_ListCollection.Add(new string[] { StudentGroupTable_SerialNumber.ToString(), listNewlyAddedStudents[Index1], listNewlyAddedStudents[Index2], listNewlyAddedStudents[Index3], listNewlyAddedStudents[Index4], StudentGroupTable_GroupID.ToString() });
+                    StudentGroupTable.Rows.Add(StudentGroupTable_SerialNumber.ToString(), listNewlyAddedStudents[Index1], listNewlyAddedStudents[Index2], listNewlyAddedStudents[Index3], listNewlyAddedStudents[Index4], StudentGroupTable_GroupID.ToString());
+                    // go to the next items on the list that needs to be added to Datatable row
+                    Index1 += 4;
+                    Index2 += 4;
+                    Index3 += 4;
+                    Index4 += 4;
+
+                    // this handles the assigning Students with Group IDs
+                    StudentGroupTable_RowCount++;
+                    if (StudentGroupTable_RowCount == 4)
+                    {
+                        StudentGroupTable_RowCount = 0;
+                        StudentGroupTable_GroupID++;
+                    }
+                }
+                lap++;
+            }
+            // display the list item in "dataGridViewListItems"
+            dgvStudentGroupingTable.DataSource = StudentGroupTable;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -93,14 +157,7 @@ namespace CourseWorkManagementSystem
             // switch the to the relevant DataGridView
             dataGridViewListItems.Visible = false;
             dgvCsvImport.Visible = true;
-            if (dgvCsvImport != null || dgvCsvImport.Rows.Count == 0)
-            {
-                MessageBox.Show("Table is not empty. Do you want to overight table?", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
 
-            }
             // open the file dialog and choose the .csv file
             using (OpenFileDialog openFileDialog = new OpenFileDialog() { Filter = "CSV|*csv", ValidateNames = true })
             {
@@ -133,6 +190,8 @@ namespace CourseWorkManagementSystem
                             }
                         }
                     }
+                    // check if "listNewlyAddedStudents" header has been removed else remove the first row of the list
+                    CheckTrimedListHeader(TrimedListHeader);
                 }
                 else
                 {
@@ -141,6 +200,9 @@ namespace CourseWorkManagementSystem
             }
             // display the number of students
             lblNumberOfStudent.Text = ((listNewlyAddedStudents.Count / 4) - 1).ToString();
+
+            // group students automatically
+            AutoAssignStudentToGrouping();
         }
 
         private void btnResetForm_Click(object sender, EventArgs e)
@@ -171,6 +233,9 @@ namespace CourseWorkManagementSystem
 
             // update the DataGridView
             DataGridUpdate();
+
+            // group students automatically
+            AutoAssignStudentToGrouping();
 
             // display the number of students
             lblNumberOfStudent.Text = (listNewlyAddedStudents.Count / 4).ToString();
@@ -203,15 +268,8 @@ namespace CourseWorkManagementSystem
             var Index3 = 2;
             var Index4 = 3;
 
-            // remove the first row of the list
-            if (count == 0)
-            {
-                listNewlyAddedStudents.RemoveAt(0);
-                listNewlyAddedStudents.RemoveAt(0);
-                listNewlyAddedStudents.RemoveAt(0);
-                listNewlyAddedStudents.RemoveAt(0);
-                count = 1;
-            }
+            // check if "listNewlyAddedStudents" header has been removed else remove the first row of the list
+            CheckTrimedListHeader(TrimedListHeader);
 
             // update list to the global list variable
             // StoreStudentList();
@@ -254,9 +312,8 @@ namespace CourseWorkManagementSystem
             }
         }
 
-        private void btnAddStudentManually_Click(object sender, EventArgs e)
+        private void tabPageManageGroups_Click(object sender, EventArgs e)
         {
-            lstBxAddStudentAutomatically.DataSource = listNewlyAddedStudents;
         }
     }
 }
