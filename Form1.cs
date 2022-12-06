@@ -3,6 +3,7 @@ using CsvHelper;
 using DocumentFormat.OpenXml.Spreadsheet;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Microsoft.Office.Interop.Excel;
+using System.Data;
 using System.Linq.Dynamic.Core;
 using System.Text;
 using System.Windows.Forms;
@@ -21,7 +22,7 @@ namespace CourseWorkManagementSystem
         bool TrimedListHeader = false;
         public List<string> listNewlyAddedStudents = new List<string>();   // create a new list with variable name "listNewlyAddedStudents"
         public List<string> ListStudentsGrouping = new List<string>();   // create a new list with variable name "ListStudentsGrouping"
-
+        public System.Data.DataTable StudentGroupTable = new System.Data.DataTable();
         // create a new list to hold the student details with their new groups
         public List<string> StudentGroupTable_ListCollection = new List<string>();
 
@@ -43,39 +44,20 @@ namespace CourseWorkManagementSystem
         public void ImportStudentGroupingTableMethod()
         {
             // variable diclarations
-            var lap = 1;
-            var Index1 = 0;
-            var Index2 = 1;
-            var Index3 = 2;
-            var Index4 = 3;
             string ListDetails = "";
 
             // check if "listNewlyAddedStudents" header has been removed else remove the first row of the list
             CheckTrimedListHeader(TrimedListHeader);
 
-            // loop through each "listNewlyAddedStudents" and add them to DataTable row
-            for (var i = 0; i <= listNewlyAddedStudents.Count; i++)
+            // add the "StudentGroupTable" data to list
+            foreach (DataRow dr in StudentGroupTable.Rows)
             {
-                // this ensures that four items are added to a row at once. it adds items by batch
-                if (lap > 4)
+                foreach (DataColumn col in StudentGroupTable.Columns)
                 {
-                    lap = 1;
-                    // append "listNewlyAddedStudents" to string
-                    ListDetails += listNewlyAddedStudents[Index1] + " ";
-                    ListDetails += listNewlyAddedStudents[Index2] + " ";
-                    ListDetails += listNewlyAddedStudents[Index3] + " ";
-                    ListDetails += listNewlyAddedStudents[Index4];
-                    // assign each list index to a cell in the row
-                    ListStudentsGrouping.Add(ListDetails);
-                    // go to the next items on the list that needs to be added to Datatable row
-                    Index1 += 4;
-                    Index2 += 4;
-                    Index3 += 4;
-                    Index4 += 4;
-
-                    ListDetails = "";
+                    ListDetails += dr[col] + " ";
                 }
-                lap++;
+                ListStudentsGrouping.Add(ListDetails);
+                ListDetails = "";
             }
             // display the list item in "listBoxViewStudentGrouping"
             listBoxViewStudentGrouping.DataSource = ListStudentsGrouping;
@@ -126,7 +108,7 @@ namespace CourseWorkManagementSystem
         public void AutoAssignStudentToGrouping()
         {
             // prepare "DataTable StudentGroupTable" which will be used as DataSource for "dgvStudentGroupingTable"
-            System.Data.DataTable StudentGroupTable = new System.Data.DataTable();
+            
             StudentGroupTable.Columns.Add("S/N", typeof(string));
             StudentGroupTable.Columns.Add("Student ID", typeof(string));
             StudentGroupTable.Columns.Add("FirstName", typeof(string));
@@ -141,8 +123,8 @@ namespace CourseWorkManagementSystem
             var Index3 = 2;
             var Index4 = 3;
             int StudentGroupTable_SerialNumber = 0;
-            int StudentGroupTable_GroupID = 1;
-            int StudentGroupTable_RowCount = 0;
+            var StudentGroupTable_GroupID = 1;
+            int StudentGroupTable_RowCount = 1;
 
             // loop through each "listNewlyAddedStudents" and add them to DataTable row
             for (var i = 0; i <= listNewlyAddedStudents.Count; i++)
@@ -153,6 +135,12 @@ namespace CourseWorkManagementSystem
                 {
                     lap = 1;
                     StudentGroupTable_SerialNumber++;
+                    // this handles the assigning Students with Group IDs
+                    if (StudentGroupTable_RowCount > 4)
+                    {
+                        StudentGroupTable_RowCount = 1;
+                        StudentGroupTable_GroupID++;
+                    }
                     // assign each list index to a cell in the row
                     StudentGroupTable_ListCollection.Add(StudentGroupTable_SerialNumber.ToString());
                     StudentGroupTable_ListCollection.Add(listNewlyAddedStudents[Index1]);
@@ -160,20 +148,21 @@ namespace CourseWorkManagementSystem
                     StudentGroupTable_ListCollection.Add(listNewlyAddedStudents[Index3]);
                     StudentGroupTable_ListCollection.Add(listNewlyAddedStudents[Index4]);
                     StudentGroupTable_ListCollection.Add(StudentGroupTable_GroupID.ToString());
-                    StudentGroupTable.Rows.Add(StudentGroupTable_SerialNumber.ToString(), listNewlyAddedStudents[Index1], listNewlyAddedStudents[Index2], listNewlyAddedStudents[Index3], listNewlyAddedStudents[Index4], StudentGroupTable_GroupID.ToString());
+                    StudentGroupTable.Rows.Add(
+                        StudentGroupTable_SerialNumber.ToString(), 
+                        listNewlyAddedStudents[Index1], 
+                        listNewlyAddedStudents[Index2], 
+                        listNewlyAddedStudents[Index3], 
+                        listNewlyAddedStudents[Index4], 
+                        StudentGroupTable_GroupID.ToString()
+                        );
                     // go to the next items on the list that needs to be added to Datatable row
                     Index1 += 4;
                     Index2 += 4;
                     Index3 += 4;
                     Index4 += 4;
 
-                    // this handles the assigning Students with Group IDs
                     StudentGroupTable_RowCount++;
-                    if (StudentGroupTable_RowCount == 4)
-                    {
-                        StudentGroupTable_RowCount = 0;
-                        StudentGroupTable_GroupID++;
-                    }
                 }
                 lap++;
             }
@@ -452,8 +441,9 @@ namespace CourseWorkManagementSystem
 
         private void btnChooseStudent_Click(object sender, EventArgs e)
         {
+            // lblCurrentGroupID
             lblSelectedStudent.Text = listBoxViewStudentGrouping.GetItemText(listBoxViewStudentGrouping.SelectedItem);
-            lblSelectedValue.Text = listBoxViewStudentGrouping.GetItemText(listBoxViewStudentGrouping.SelectedIndex);
+            // lblSelectedValue.Text = listBoxViewStudentGrouping.GetItemText(listBoxViewStudentGrouping.SelectedIndex);
         }
     }
 }
