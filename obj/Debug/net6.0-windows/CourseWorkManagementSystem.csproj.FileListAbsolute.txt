@@ -149,3 +149,5 @@ C:\Users\chiem\source\repos\CW_v2\obj\Debug\net6.0-windows\refint\CourseWorkMana
 C:\Users\chiem\source\repos\CW_v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.pdb
 C:\Users\chiem\source\repos\CW_v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.genruntimeconfig.cache
 C:\Users\chiem\source\repos\CW_v2\obj\Debug\net6.0-windows\ref\CourseWorkManagementSystem.dll
+C:\Users\chiem\source\repos\CW_v2\obj\Debug\net6.0-windows\Interop.Microsoft.Office.Interop.Excel.dll
+C:\Users\chiem\source\repos\CW_v2\obj\Debug\net6.0-windows\CourseWorkManagementSystem.csproj.ResolveComReference.cache

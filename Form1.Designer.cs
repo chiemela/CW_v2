@@ -54,14 +54,22 @@
             this.txtStudentIDnumber = new System.Windows.Forms.TextBox();
             this.btnAddStudent = new System.Windows.Forms.Button();
             this.tabPageManageGroups = new System.Windows.Forms.TabPage();
+            this.btnSaveGroupingTable = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBoxManualSettings = new System.Windows.Forms.GroupBox();
+            this.btnImportStudentGroupingTable = new System.Windows.Forms.Button();
+            this.listBoxViewStudentGrouping = new System.Windows.Forms.ListBox();
             this.btnGroupStudentManually = new System.Windows.Forms.Button();
             this.groupBoxStudentGroupingTable = new System.Windows.Forms.GroupBox();
             this.dgvStudentGroupingTable = new System.Windows.Forms.DataGridView();
             this.tabPageViewGroups = new System.Windows.Forms.TabPage();
             this.tabPageManageGroupScore = new System.Windows.Forms.TabPage();
             this.tabPageSavedData = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblSelectedStudent = new System.Windows.Forms.Label();
+            this.labelSelectedValue = new System.Windows.Forms.Label();
+            this.lblSelectedValue = new System.Windows.Forms.Label();
+            this.btnChooseStudent = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPageManageStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListItems)).BeginInit();
@@ -314,7 +322,9 @@
             // 
             // tabPageManageGroups
             // 
+            this.tabPageManageGroups.Controls.Add(this.btnSaveGroupingTable);
             this.tabPageManageGroups.Controls.Add(this.label1);
+            this.tabPageManageGroups.Controls.Add(this.btnGroupStudentManually);
             this.tabPageManageGroups.Controls.Add(this.groupBoxManualSettings);
             this.tabPageManageGroups.Controls.Add(this.groupBoxStudentGroupingTable);
             this.tabPageManageGroups.Location = new System.Drawing.Point(10, 88);
@@ -325,6 +335,16 @@
             this.tabPageManageGroups.Text = "Manage Groups";
             this.tabPageManageGroups.UseVisualStyleBackColor = true;
             this.tabPageManageGroups.Click += new System.EventHandler(this.tabPageManageGroups_Click);
+            // 
+            // btnSaveGroupingTable
+            // 
+            this.btnSaveGroupingTable.Location = new System.Drawing.Point(22, 945);
+            this.btnSaveGroupingTable.Name = "btnSaveGroupingTable";
+            this.btnSaveGroupingTable.Size = new System.Drawing.Size(514, 105);
+            this.btnSaveGroupingTable.TabIndex = 19;
+            this.btnSaveGroupingTable.Text = "Save Grouping Table";
+            this.btnSaveGroupingTable.UseVisualStyleBackColor = true;
+            this.btnSaveGroupingTable.Click += new System.EventHandler(this.btnSaveGroupingTable_Click);
             // 
             // label1
             // 
@@ -338,17 +358,42 @@
             // 
             // groupBoxManualSettings
             // 
-            this.groupBoxManualSettings.Controls.Add(this.btnGroupStudentManually);
-            this.groupBoxManualSettings.Location = new System.Drawing.Point(1720, 6);
+            this.groupBoxManualSettings.Controls.Add(this.btnChooseStudent);
+            this.groupBoxManualSettings.Controls.Add(this.lblSelectedValue);
+            this.groupBoxManualSettings.Controls.Add(this.labelSelectedValue);
+            this.groupBoxManualSettings.Controls.Add(this.lblSelectedStudent);
+            this.groupBoxManualSettings.Controls.Add(this.label4);
+            this.groupBoxManualSettings.Controls.Add(this.btnImportStudentGroupingTable);
+            this.groupBoxManualSettings.Controls.Add(this.listBoxViewStudentGrouping);
+            this.groupBoxManualSettings.Location = new System.Drawing.Point(1079, 6);
             this.groupBoxManualSettings.Name = "groupBoxManualSettings";
-            this.groupBoxManualSettings.Size = new System.Drawing.Size(769, 1114);
+            this.groupBoxManualSettings.Size = new System.Drawing.Size(1410, 1114);
             this.groupBoxManualSettings.TabIndex = 16;
             this.groupBoxManualSettings.TabStop = false;
             this.groupBoxManualSettings.Text = "Manual Settings";
             // 
+            // btnImportStudentGroupingTable
+            // 
+            this.btnImportStudentGroupingTable.Location = new System.Drawing.Point(20, 939);
+            this.btnImportStudentGroupingTable.Name = "btnImportStudentGroupingTable";
+            this.btnImportStudentGroupingTable.Size = new System.Drawing.Size(514, 105);
+            this.btnImportStudentGroupingTable.TabIndex = 19;
+            this.btnImportStudentGroupingTable.Text = "Import Student Grouping Table";
+            this.btnImportStudentGroupingTable.UseVisualStyleBackColor = true;
+            this.btnImportStudentGroupingTable.Click += new System.EventHandler(this.btnImportStudentGroupingTable_Click);
+            // 
+            // listBoxViewStudentGrouping
+            // 
+            this.listBoxViewStudentGrouping.FormattingEnabled = true;
+            this.listBoxViewStudentGrouping.ItemHeight = 41;
+            this.listBoxViewStudentGrouping.Location = new System.Drawing.Point(20, 61);
+            this.listBoxViewStudentGrouping.Name = "listBoxViewStudentGrouping";
+            this.listBoxViewStudentGrouping.Size = new System.Drawing.Size(1370, 537);
+            this.listBoxViewStudentGrouping.TabIndex = 0;
+            // 
             // btnGroupStudentManually
             // 
-            this.btnGroupStudentManually.Location = new System.Drawing.Point(81, 717);
+            this.btnGroupStudentManually.Location = new System.Drawing.Point(542, 945);
             this.btnGroupStudentManually.Name = "btnGroupStudentManually";
             this.btnGroupStudentManually.Size = new System.Drawing.Size(514, 105);
             this.btnGroupStudentManually.TabIndex = 18;
@@ -360,7 +405,7 @@
             this.groupBoxStudentGroupingTable.Controls.Add(this.dgvStudentGroupingTable);
             this.groupBoxStudentGroupingTable.Location = new System.Drawing.Point(22, 93);
             this.groupBoxStudentGroupingTable.Name = "groupBoxStudentGroupingTable";
-            this.groupBoxStudentGroupingTable.Size = new System.Drawing.Size(1659, 807);
+            this.groupBoxStudentGroupingTable.Size = new System.Drawing.Size(1028, 807);
             this.groupBoxStudentGroupingTable.TabIndex = 15;
             this.groupBoxStudentGroupingTable.TabStop = false;
             this.groupBoxStudentGroupingTable.Text = "Student Grouping Table";
@@ -373,7 +418,7 @@
             this.dgvStudentGroupingTable.ReadOnly = true;
             this.dgvStudentGroupingTable.RowHeadersWidth = 102;
             this.dgvStudentGroupingTable.RowTemplate.Height = 49;
-            this.dgvStudentGroupingTable.Size = new System.Drawing.Size(1622, 722);
+            this.dgvStudentGroupingTable.Size = new System.Drawing.Size(989, 722);
             this.dgvStudentGroupingTable.TabIndex = 27;
             // 
             // tabPageViewGroups
@@ -404,6 +449,52 @@
             this.tabPageSavedData.Text = "Saved Data";
             this.tabPageSavedData.UseVisualStyleBackColor = true;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(20, 611);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(242, 41);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "Selected Student";
+            // 
+            // lblSelectedStudent
+            // 
+            this.lblSelectedStudent.AutoSize = true;
+            this.lblSelectedStudent.Location = new System.Drawing.Point(20, 652);
+            this.lblSelectedStudent.Name = "lblSelectedStudent";
+            this.lblSelectedStudent.Size = new System.Drawing.Size(39, 41);
+            this.lblSelectedStudent.TabIndex = 21;
+            this.lblSelectedStudent.Text = "...";
+            // 
+            // labelSelectedValue
+            // 
+            this.labelSelectedValue.AutoSize = true;
+            this.labelSelectedValue.Location = new System.Drawing.Point(20, 710);
+            this.labelSelectedValue.Name = "labelSelectedValue";
+            this.labelSelectedValue.Size = new System.Drawing.Size(211, 41);
+            this.labelSelectedValue.TabIndex = 22;
+            this.labelSelectedValue.Text = "Selected Value";
+            // 
+            // lblSelectedValue
+            // 
+            this.lblSelectedValue.AutoSize = true;
+            this.lblSelectedValue.Location = new System.Drawing.Point(20, 751);
+            this.lblSelectedValue.Name = "lblSelectedValue";
+            this.lblSelectedValue.Size = new System.Drawing.Size(39, 41);
+            this.lblSelectedValue.TabIndex = 23;
+            this.lblSelectedValue.Text = "...";
+            // 
+            // btnChooseStudent
+            // 
+            this.btnChooseStudent.Location = new System.Drawing.Point(540, 939);
+            this.btnChooseStudent.Name = "btnChooseStudent";
+            this.btnChooseStudent.Size = new System.Drawing.Size(338, 105);
+            this.btnChooseStudent.TabIndex = 24;
+            this.btnChooseStudent.Text = "Choose Student";
+            this.btnChooseStudent.UseVisualStyleBackColor = true;
+            this.btnChooseStudent.Click += new System.EventHandler(this.btnChooseStudent_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 41F);
@@ -427,6 +518,7 @@
             this.tabPageManageGroups.ResumeLayout(false);
             this.tabPageManageGroups.PerformLayout();
             this.groupBoxManualSettings.ResumeLayout(false);
+            this.groupBoxManualSettings.PerformLayout();
             this.groupBoxStudentGroupingTable.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudentGroupingTable)).EndInit();
             this.ResumeLayout(false);
@@ -466,5 +558,13 @@
         private Label label1;
         private GroupBox groupBoxManualSettings;
         private Button btnGroupStudentManually;
+        private Button btnSaveGroupingTable;
+        private Button btnImportStudentGroupingTable;
+        private ListBox listBoxViewStudentGrouping;
+        private Label lblSelectedValue;
+        private Label labelSelectedValue;
+        private Label lblSelectedStudent;
+        private Label label4;
+        private Button btnChooseStudent;
     }
 }

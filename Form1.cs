@@ -1,5 +1,11 @@
 using ClosedXML.Excel;
 using CsvHelper;
+using DocumentFormat.OpenXml.Spreadsheet;
+using DocumentFormat.OpenXml.Wordprocessing;
+using Microsoft.Office.Interop.Excel;
+using System.Linq.Dynamic.Core;
+using System.Text;
+using System.Windows.Forms;
 
 namespace CourseWorkManagementSystem
 {
@@ -14,6 +20,10 @@ namespace CourseWorkManagementSystem
         int count = 0;
         bool TrimedListHeader = false;
         public List<string> listNewlyAddedStudents = new List<string>();   // create a new list with variable name "listNewlyAddedStudents"
+        public List<string> ListStudentsGrouping = new List<string>();   // create a new list with variable name "ListStudentsGrouping"
+
+        // create a new list to hold the student details with their new groups
+        public List<string> StudentGroupTable_ListCollection = new List<string>();
 
         // check if the "listNewlyAddedStudents" header is trimmed or not
         public void CheckTrimedListHeader(bool t)
@@ -27,6 +37,48 @@ namespace CourseWorkManagementSystem
                 listNewlyAddedStudents.RemoveAt(0);
                 TrimedListHeader = true;
             }
+        }
+
+        // this method  the "dataGridViewListItems"
+        public void ImportStudentGroupingTableMethod()
+        {
+            // variable diclarations
+            var lap = 1;
+            var Index1 = 0;
+            var Index2 = 1;
+            var Index3 = 2;
+            var Index4 = 3;
+            string ListDetails = "";
+
+            // check if "listNewlyAddedStudents" header has been removed else remove the first row of the list
+            CheckTrimedListHeader(TrimedListHeader);
+
+            // loop through each "listNewlyAddedStudents" and add them to DataTable row
+            for (var i = 0; i <= listNewlyAddedStudents.Count; i++)
+            {
+                // this ensures that four items are added to a row at once. it adds items by batch
+                if (lap > 4)
+                {
+                    lap = 1;
+                    // append "listNewlyAddedStudents" to string
+                    ListDetails += listNewlyAddedStudents[Index1] + " ";
+                    ListDetails += listNewlyAddedStudents[Index2] + " ";
+                    ListDetails += listNewlyAddedStudents[Index3] + " ";
+                    ListDetails += listNewlyAddedStudents[Index4];
+                    // assign each list index to a cell in the row
+                    ListStudentsGrouping.Add(ListDetails);
+                    // go to the next items on the list that needs to be added to Datatable row
+                    Index1 += 4;
+                    Index2 += 4;
+                    Index3 += 4;
+                    Index4 += 4;
+
+                    ListDetails = "";
+                }
+                lap++;
+            }
+            // display the list item in "listBoxViewStudentGrouping"
+            listBoxViewStudentGrouping.DataSource = ListStudentsGrouping;
         }
 
         // this method updates the "dataGridViewListItems"
@@ -92,9 +144,6 @@ namespace CourseWorkManagementSystem
             int StudentGroupTable_GroupID = 1;
             int StudentGroupTable_RowCount = 0;
 
-            // create a new list to hold the student details with their new groups
-            List<string[]> StudentGroupTable_ListCollection = new List<string[]>();
-
             // loop through each "listNewlyAddedStudents" and add them to DataTable row
             for (var i = 0; i <= listNewlyAddedStudents.Count; i++)
             {
@@ -105,7 +154,12 @@ namespace CourseWorkManagementSystem
                     lap = 1;
                     StudentGroupTable_SerialNumber++;
                     // assign each list index to a cell in the row
-                    StudentGroupTable_ListCollection.Add(new string[] { StudentGroupTable_SerialNumber.ToString(), listNewlyAddedStudents[Index1], listNewlyAddedStudents[Index2], listNewlyAddedStudents[Index3], listNewlyAddedStudents[Index4], StudentGroupTable_GroupID.ToString() });
+                    StudentGroupTable_ListCollection.Add(StudentGroupTable_SerialNumber.ToString());
+                    StudentGroupTable_ListCollection.Add(listNewlyAddedStudents[Index1]);
+                    StudentGroupTable_ListCollection.Add(listNewlyAddedStudents[Index2]);
+                    StudentGroupTable_ListCollection.Add(listNewlyAddedStudents[Index3]);
+                    StudentGroupTable_ListCollection.Add(listNewlyAddedStudents[Index4]);
+                    StudentGroupTable_ListCollection.Add(StudentGroupTable_GroupID.ToString());
                     StudentGroupTable.Rows.Add(StudentGroupTable_SerialNumber.ToString(), listNewlyAddedStudents[Index1], listNewlyAddedStudents[Index2], listNewlyAddedStudents[Index3], listNewlyAddedStudents[Index4], StudentGroupTable_GroupID.ToString());
                     // go to the next items on the list that needs to be added to Datatable row
                     Index1 += 4;
@@ -128,26 +182,6 @@ namespace CourseWorkManagementSystem
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        {
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void btnManageGroups_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void btnViewGroups_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void btnManageGroupsMark_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void btnSavedData_Click(object sender, EventArgs e)
         {
         }
 
@@ -314,6 +348,112 @@ namespace CourseWorkManagementSystem
 
         private void tabPageManageGroups_Click(object sender, EventArgs e)
         {
+        }
+
+        private void btnSaveGroupingTable_Click(object sender, EventArgs e)
+        {
+            // creating Excel Application  
+            Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
+            // creating new WorkBook within Excel application  
+            Microsoft.Office.Interop.Excel._Workbook workbook = app.Workbooks.Add(Type.Missing);
+            // creating new Excelsheet in workbook  
+            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
+            // see the excel sheet behind the program  
+            app.Visible = false;
+            // get the reference of first sheet. By default its name is Sheet1.  
+            // store its reference to worksheet  
+            worksheet = workbook.Sheets["Sheet1"];
+            worksheet = workbook.ActiveSheet;
+            // changing the name of active sheet  
+            worksheet.Name = "Exported from gridview";
+            // storing header part in Excel  
+            for (int i = 1; i < dgvStudentGroupingTable.Columns.Count + 1; i++)
+            {
+                worksheet.Cells[1, i] = dgvStudentGroupingTable.Columns[i - 1].HeaderText;
+            }
+            // storing Each row and column value to excel sheet  
+            for (int i = 0; i < dgvStudentGroupingTable.Rows.Count - 1; i++)
+            {
+                for (int j = 0; j < dgvStudentGroupingTable.Columns.Count; j++)
+                {
+                    worksheet.Cells[i + 2, j + 1] = dgvStudentGroupingTable.Rows[i].Cells[j].Value.ToString();
+                }
+            }
+            // save as csv file
+            if (dgvStudentGroupingTable.Rows.Count > 0)
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "CSV (*.csv)|*.csv";
+                sfd.FileName = "Output.csv";
+                bool fileError = false;
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    if (File.Exists(sfd.FileName))
+                    {
+                        try
+                        {
+                            File.Delete(sfd.FileName);
+                        }
+                        catch (IOException ex)
+                        {
+                            fileError = true;
+                            MessageBox.Show("It wasn't possible to write the data to the disk." + ex.Message);
+                        }
+                    }
+                    if (!fileError)
+                    {
+                        try
+                        {
+                            int columnCount = dgvStudentGroupingTable.Columns.Count;
+                            string columnNames = "";
+                            string columnNames2 = "";
+                            string[] outputCsv = new string[dgvStudentGroupingTable.Rows.Count + 1];
+                            for (int i = 0; i < columnCount; i++)
+                            {
+                                columnNames += dgvStudentGroupingTable.Columns[i].HeaderText.ToString() + ",";
+                                columnNames2 = dgvStudentGroupingTable.Columns[i].HeaderText.ToString() + ",";
+                                StudentGroupTable_ListCollection.Add(columnNames2);
+                            }
+                            outputCsv[0] += columnNames;
+
+                            for (int i = 1; i < dgvStudentGroupingTable.Rows.Count - 1; i++)
+                            {
+                                for (int j = 0; j < columnCount; j++)
+                                {
+                                    worksheet.Cells[i, j] = dgvStudentGroupingTable.Rows[i - 1].Cells[j].Value.ToString();
+                                    //outputCsv[i] += dgvStudentGroupingTable.Rows[i - 1].Cells[j].Value.ToString() + ",";
+                                    // columnNames2 = worksheet.Cells[i].ToString();
+                                    columnNames2 = worksheet.Cells[i].Cells[j].Value.ToString();
+                                    StudentGroupTable_ListCollection.Add(columnNames2 + ",");
+                                }
+                            }
+
+                            File.WriteAllLines(sfd.FileName, StudentGroupTable_ListCollection, Encoding.UTF8);
+                            MessageBox.Show("Data Exported Successfully !!!", "Info");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error :" + ex.Message);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("No Record To Export !!!", "Info");
+            }
+        }
+
+        private void btnImportStudentGroupingTable_Click(object sender, EventArgs e)
+        {
+            // listNewlyAddedStudents, ListStudentsGrouping
+            ImportStudentGroupingTableMethod();
+        }
+
+        private void btnChooseStudent_Click(object sender, EventArgs e)
+        {
+            lblSelectedStudent.Text = listBoxViewStudentGrouping.GetItemText(listBoxViewStudentGrouping.SelectedItem);
+            lblSelectedValue.Text = listBoxViewStudentGrouping.GetItemText(listBoxViewStudentGrouping.SelectedIndex);
         }
     }
 }
