@@ -58,6 +58,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnGroupStudentManually = new System.Windows.Forms.Button();
             this.groupBoxManualSettings = new System.Windows.Forms.GroupBox();
+            this.btnMinusGroup = new System.Windows.Forms.Button();
+            this.btnAddGroup = new System.Windows.Forms.Button();
+            this.btnApplyChangeGroupID = new System.Windows.Forms.Button();
+            this.labelChangeGroupIDFeedback = new System.Windows.Forms.Label();
+            this.comboBoxChangeGroupID = new System.Windows.Forms.ComboBox();
+            this.labelChangeGroupID = new System.Windows.Forms.Label();
+            this.labelCurrentGroupID = new System.Windows.Forms.Label();
+            this.lblCurrentGroupID = new System.Windows.Forms.Label();
             this.btnChooseStudent = new System.Windows.Forms.Button();
             this.lblSelectedStudent = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -68,8 +76,7 @@
             this.tabPageViewGroups = new System.Windows.Forms.TabPage();
             this.tabPageManageGroupScore = new System.Windows.Forms.TabPage();
             this.tabPageSavedData = new System.Windows.Forms.TabPage();
-            this.lblCurrentGroupID = new System.Windows.Forms.Label();
-            this.labelCurrentGroupID = new System.Windows.Forms.Label();
+            this.labelAddOrMinusGroupFeedback = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPageManageStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListItems)).BeginInit();
@@ -367,6 +374,13 @@
             // 
             // groupBoxManualSettings
             // 
+            this.groupBoxManualSettings.Controls.Add(this.labelAddOrMinusGroupFeedback);
+            this.groupBoxManualSettings.Controls.Add(this.btnMinusGroup);
+            this.groupBoxManualSettings.Controls.Add(this.btnAddGroup);
+            this.groupBoxManualSettings.Controls.Add(this.btnApplyChangeGroupID);
+            this.groupBoxManualSettings.Controls.Add(this.labelChangeGroupIDFeedback);
+            this.groupBoxManualSettings.Controls.Add(this.comboBoxChangeGroupID);
+            this.groupBoxManualSettings.Controls.Add(this.labelChangeGroupID);
             this.groupBoxManualSettings.Controls.Add(this.labelCurrentGroupID);
             this.groupBoxManualSettings.Controls.Add(this.lblCurrentGroupID);
             this.groupBoxManualSettings.Controls.Add(this.btnChooseStudent);
@@ -381,11 +395,87 @@
             this.groupBoxManualSettings.TabStop = false;
             this.groupBoxManualSettings.Text = "Manual Settings";
             // 
+            // btnMinusGroup
+            // 
+            this.btnMinusGroup.Location = new System.Drawing.Point(20, 951);
+            this.btnMinusGroup.Name = "btnMinusGroup";
+            this.btnMinusGroup.Size = new System.Drawing.Size(224, 105);
+            this.btnMinusGroup.TabIndex = 32;
+            this.btnMinusGroup.Text = "Minus Group";
+            this.btnMinusGroup.UseVisualStyleBackColor = true;
+            this.btnMinusGroup.Click += new System.EventHandler(this.btnMinusGroup_Click);
+            // 
+            // btnAddGroup
+            // 
+            this.btnAddGroup.Location = new System.Drawing.Point(1052, 840);
+            this.btnAddGroup.Name = "btnAddGroup";
+            this.btnAddGroup.Size = new System.Drawing.Size(224, 105);
+            this.btnAddGroup.TabIndex = 31;
+            this.btnAddGroup.Text = "Add Group";
+            this.btnAddGroup.UseVisualStyleBackColor = true;
+            this.btnAddGroup.Click += new System.EventHandler(this.btnAddGroup_Click);
+            // 
+            // btnApplyChangeGroupID
+            // 
+            this.btnApplyChangeGroupID.Location = new System.Drawing.Point(802, 840);
+            this.btnApplyChangeGroupID.Name = "btnApplyChangeGroupID";
+            this.btnApplyChangeGroupID.Size = new System.Drawing.Size(246, 105);
+            this.btnApplyChangeGroupID.TabIndex = 30;
+            this.btnApplyChangeGroupID.Text = "Apply Changes";
+            this.btnApplyChangeGroupID.UseVisualStyleBackColor = true;
+            this.btnApplyChangeGroupID.Click += new System.EventHandler(this.btnApplyChangeGroupID_Click);
+            // 
+            // labelChangeGroupIDFeedback
+            // 
+            this.labelChangeGroupIDFeedback.AutoSize = true;
+            this.labelChangeGroupIDFeedback.Location = new System.Drawing.Point(698, 719);
+            this.labelChangeGroupIDFeedback.Name = "labelChangeGroupIDFeedback";
+            this.labelChangeGroupIDFeedback.Size = new System.Drawing.Size(39, 41);
+            this.labelChangeGroupIDFeedback.TabIndex = 29;
+            this.labelChangeGroupIDFeedback.Text = "...";
+            // 
+            // comboBoxChangeGroupID
+            // 
+            this.comboBoxChangeGroupID.FormattingEnabled = true;
+            this.comboBoxChangeGroupID.Location = new System.Drawing.Point(352, 763);
+            this.comboBoxChangeGroupID.Name = "comboBoxChangeGroupID";
+            this.comboBoxChangeGroupID.Size = new System.Drawing.Size(249, 49);
+            this.comboBoxChangeGroupID.TabIndex = 28;
+            this.comboBoxChangeGroupID.Text = "Select...";
+            this.comboBoxChangeGroupID.SelectedValueChanged += new System.EventHandler(this.comboBoxChangeGroupID_SelectedValueChanged);
+            // 
+            // labelChangeGroupID
+            // 
+            this.labelChangeGroupID.AutoSize = true;
+            this.labelChangeGroupID.Location = new System.Drawing.Point(352, 719);
+            this.labelChangeGroupID.Name = "labelChangeGroupID";
+            this.labelChangeGroupID.Size = new System.Drawing.Size(249, 41);
+            this.labelChangeGroupID.TabIndex = 27;
+            this.labelChangeGroupID.Text = "Change Group ID";
+            // 
+            // labelCurrentGroupID
+            // 
+            this.labelCurrentGroupID.AutoSize = true;
+            this.labelCurrentGroupID.Location = new System.Drawing.Point(20, 719);
+            this.labelCurrentGroupID.Name = "labelCurrentGroupID";
+            this.labelCurrentGroupID.Size = new System.Drawing.Size(246, 41);
+            this.labelCurrentGroupID.TabIndex = 26;
+            this.labelCurrentGroupID.Text = "Current Group ID";
+            // 
+            // lblCurrentGroupID
+            // 
+            this.lblCurrentGroupID.AutoSize = true;
+            this.lblCurrentGroupID.Location = new System.Drawing.Point(20, 751);
+            this.lblCurrentGroupID.Name = "lblCurrentGroupID";
+            this.lblCurrentGroupID.Size = new System.Drawing.Size(39, 41);
+            this.lblCurrentGroupID.TabIndex = 25;
+            this.lblCurrentGroupID.Text = "...";
+            // 
             // btnChooseStudent
             // 
-            this.btnChooseStudent.Location = new System.Drawing.Point(540, 939);
+            this.btnChooseStudent.Location = new System.Drawing.Point(540, 840);
             this.btnChooseStudent.Name = "btnChooseStudent";
-            this.btnChooseStudent.Size = new System.Drawing.Size(338, 105);
+            this.btnChooseStudent.Size = new System.Drawing.Size(256, 105);
             this.btnChooseStudent.TabIndex = 24;
             this.btnChooseStudent.Text = "Choose Student";
             this.btnChooseStudent.UseVisualStyleBackColor = true;
@@ -411,7 +501,7 @@
             // 
             // btnImportStudentGroupingTable
             // 
-            this.btnImportStudentGroupingTable.Location = new System.Drawing.Point(20, 939);
+            this.btnImportStudentGroupingTable.Location = new System.Drawing.Point(20, 840);
             this.btnImportStudentGroupingTable.Name = "btnImportStudentGroupingTable";
             this.btnImportStudentGroupingTable.Size = new System.Drawing.Size(514, 105);
             this.btnImportStudentGroupingTable.TabIndex = 19;
@@ -477,23 +567,14 @@
             this.tabPageSavedData.Text = "Saved Data";
             this.tabPageSavedData.UseVisualStyleBackColor = true;
             // 
-            // lblCurrentGroupID
+            // labelAddOrMinusGroupFeedback
             // 
-            this.lblCurrentGroupID.AutoSize = true;
-            this.lblCurrentGroupID.Location = new System.Drawing.Point(20, 751);
-            this.lblCurrentGroupID.Name = "lblCurrentGroupID";
-            this.lblCurrentGroupID.Size = new System.Drawing.Size(39, 41);
-            this.lblCurrentGroupID.TabIndex = 25;
-            this.lblCurrentGroupID.Text = "...";
-            // 
-            // labelCurrentGroupID
-            // 
-            this.labelCurrentGroupID.AutoSize = true;
-            this.labelCurrentGroupID.Location = new System.Drawing.Point(20, 719);
-            this.labelCurrentGroupID.Name = "labelCurrentGroupID";
-            this.labelCurrentGroupID.Size = new System.Drawing.Size(246, 41);
-            this.labelCurrentGroupID.TabIndex = 26;
-            this.labelCurrentGroupID.Text = "Current Group ID";
+            this.labelAddOrMinusGroupFeedback.AutoSize = true;
+            this.labelAddOrMinusGroupFeedback.Location = new System.Drawing.Point(1052, 719);
+            this.labelAddOrMinusGroupFeedback.Name = "labelAddOrMinusGroupFeedback";
+            this.labelAddOrMinusGroupFeedback.Size = new System.Drawing.Size(39, 41);
+            this.labelAddOrMinusGroupFeedback.TabIndex = 33;
+            this.labelAddOrMinusGroupFeedback.Text = "...";
             // 
             // Form1
             // 
@@ -566,5 +647,12 @@
         private Button btnChooseStudent;
         private Label labelCurrentGroupID;
         private Label lblCurrentGroupID;
+        private ComboBox comboBoxChangeGroupID;
+        private Label labelChangeGroupID;
+        private Label labelChangeGroupIDFeedback;
+        private Button btnApplyChangeGroupID;
+        private Button btnAddGroup;
+        private Button btnMinusGroup;
+        private Label labelAddOrMinusGroupFeedback;
     }
 }

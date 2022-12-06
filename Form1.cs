@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq.Dynamic.Core;
 using System.Text;
 using System.Windows.Forms;
+using static ClosedXML.Excel.XLPredefinedFormat;
 
 namespace CourseWorkManagementSystem
 {
@@ -18,13 +19,25 @@ namespace CourseWorkManagementSystem
         }
 
         // global variables
-        int count = 0;
+        int Final_StudentGroupTable_GroupID_Value;
+        int StudentGroupTable_GroupID = 1;
         bool TrimedListHeader = false;
         public List<string> listNewlyAddedStudents = new List<string>();   // create a new list with variable name "listNewlyAddedStudents"
         public List<string> ListStudentsGrouping = new List<string>();   // create a new list with variable name "ListStudentsGrouping"
         public System.Data.DataTable StudentGroupTable = new System.Data.DataTable();
         // create a new list to hold the student details with their new groups
         public List<string> StudentGroupTable_ListCollection = new List<string>();
+
+        // update "comboBoxChangeGroupID"
+        public void UpdateComboBoxChangeGroupID()
+        {
+            comboBoxChangeGroupID.Items.Clear();
+            // Adding elements in the combobox
+            for (int i = 1; i <= StudentGroupTable_GroupID; i++)
+            {
+                comboBoxChangeGroupID.Items.Add(i);
+            }
+        }
 
         // check if the "listNewlyAddedStudents" header is trimmed or not
         public void CheckTrimedListHeader(bool t)
@@ -41,7 +54,7 @@ namespace CourseWorkManagementSystem
         }
 
         // this method  the "dataGridViewListItems"
-        public void ImportStudentGroupingTableMethod()
+        public void ImportStudentGroupingTable()
         {
             // variable diclarations
             string ListDetails = "";
@@ -55,6 +68,9 @@ namespace CourseWorkManagementSystem
                 foreach (DataColumn col in StudentGroupTable.Columns)
                 {
                     ListDetails += dr[col] + " ";
+                    string? v = dr[col].ToString();
+                    string TempString = v;
+                    StudentGroupTable_ListCollection.Add(TempString);
                 }
                 ListStudentsGrouping.Add(ListDetails);
                 ListDetails = "";
@@ -123,8 +139,8 @@ namespace CourseWorkManagementSystem
             var Index3 = 2;
             var Index4 = 3;
             int StudentGroupTable_SerialNumber = 0;
-            var StudentGroupTable_GroupID = 1;
             int StudentGroupTable_RowCount = 1;
+            StudentGroupTable_GroupID = 1;
 
             // loop through each "listNewlyAddedStudents" and add them to DataTable row
             for (var i = 0; i <= listNewlyAddedStudents.Count; i++)
@@ -142,12 +158,14 @@ namespace CourseWorkManagementSystem
                         StudentGroupTable_GroupID++;
                     }
                     // assign each list index to a cell in the row
+                    /*
                     StudentGroupTable_ListCollection.Add(StudentGroupTable_SerialNumber.ToString());
                     StudentGroupTable_ListCollection.Add(listNewlyAddedStudents[Index1]);
                     StudentGroupTable_ListCollection.Add(listNewlyAddedStudents[Index2]);
                     StudentGroupTable_ListCollection.Add(listNewlyAddedStudents[Index3]);
                     StudentGroupTable_ListCollection.Add(listNewlyAddedStudents[Index4]);
                     StudentGroupTable_ListCollection.Add(StudentGroupTable_GroupID.ToString());
+                    */
                     StudentGroupTable.Rows.Add(
                         StudentGroupTable_SerialNumber.ToString(), 
                         listNewlyAddedStudents[Index1], 
@@ -166,6 +184,10 @@ namespace CourseWorkManagementSystem
                 }
                 lap++;
             }
+            // this is the base "StudentGroupTable_GroupID" value
+            Final_StudentGroupTable_GroupID_Value = StudentGroupTable_GroupID;
+            // Adding elements in the combobox
+            UpdateComboBoxChangeGroupID();
             // display the list item in "dataGridViewListItems"
             dgvStudentGroupingTable.DataSource = StudentGroupTable;
         }
@@ -436,14 +458,63 @@ namespace CourseWorkManagementSystem
         private void btnImportStudentGroupingTable_Click(object sender, EventArgs e)
         {
             // listNewlyAddedStudents, ListStudentsGrouping
-            ImportStudentGroupingTableMethod();
+            ImportStudentGroupingTable();
         }
 
         private void btnChooseStudent_Click(object sender, EventArgs e)
         {
             // lblCurrentGroupID
             lblSelectedStudent.Text = listBoxViewStudentGrouping.GetItemText(listBoxViewStudentGrouping.SelectedItem);
-            // lblSelectedValue.Text = listBoxViewStudentGrouping.GetItemText(listBoxViewStudentGrouping.SelectedIndex);
+            int GroupID_Column = 5;
+            string? d = listBoxViewStudentGrouping.GetItemText(listBoxViewStudentGrouping.SelectedIndex);
+            var number = int.Parse(d);
+            // increment "number" to jump to the appropriate column in the row
+            number++;
+            // get the appropriate column index in the "StudentGroupTable_ListCollection"
+            int s = GroupID_Column * number;
+            /* 
+             * get the appropriate column index for each column in the "StudentGroupTable_ListCollection"
+             * and without this, when you select from the second column in the list it always gets the previous
+             * value
+            */
+            s += --number;
+            lblCurrentGroupID.Text = StudentGroupTable_ListCollection[s];
+        }
+
+        private void comboBoxChangeGroupID_SelectedValueChanged(object sender, EventArgs e)
+        {
+            // start from here...
+            // make the selected group to change for the sutdent for both the Listbox and the Datatable
+            object b = comboBoxChangeGroupID.SelectedItem;
+            object be = comboBoxChangeGroupID.GetItemText(b);
+            labelChangeGroupIDFeedback.Text = "You've selected " + be;
+        }
+
+        private void btnApplyChangeGroupID_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAddGroup_Click(object sender, EventArgs e)
+        {
+            StudentGroupTable_GroupID++;
+            UpdateComboBoxChangeGroupID();
+            labelAddOrMinusGroupFeedback.Text = "You have " + StudentGroupTable_GroupID + " Group(s)";
+        }
+
+        private void btnMinusGroup_Click(object sender, EventArgs e)
+        {
+            if (StudentGroupTable_GroupID > Final_StudentGroupTable_GroupID_Value)
+            {
+                --StudentGroupTable_GroupID;
+                labelAddOrMinusGroupFeedback.Text = "You have " + StudentGroupTable_GroupID + " Group(s)";
+            }
+            else
+            {
+                MessageBox.Show("Sorry you cannot go below " + Final_StudentGroupTable_GroupID_Value + " Group(s)", "Info");
+                labelAddOrMinusGroupFeedback.Text = "You have " + StudentGroupTable_GroupID + " Group(s)";
+            }
+            UpdateComboBoxChangeGroupID();
         }
     }
 }
