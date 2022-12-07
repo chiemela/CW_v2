@@ -19,6 +19,8 @@ namespace CourseWorkManagementSystem
         }
 
         // global variables
+        bool btnIsStudentChosen = false;
+        int ApprColumnIndex;
         int Final_StudentGroupTable_GroupID_Value;
         int StudentGroupTable_GroupID = 1;
         bool TrimedListHeader = false;
@@ -124,7 +126,7 @@ namespace CourseWorkManagementSystem
         public void AutoAssignStudentToGrouping()
         {
             // prepare "DataTable StudentGroupTable" which will be used as DataSource for "dgvStudentGroupingTable"
-            
+            StudentGroupTable.Clear();  // clear the current data to make room for new data
             StudentGroupTable.Columns.Add("S/N", typeof(string));
             StudentGroupTable.Columns.Add("Student ID", typeof(string));
             StudentGroupTable.Columns.Add("FirstName", typeof(string));
@@ -158,14 +160,6 @@ namespace CourseWorkManagementSystem
                         StudentGroupTable_GroupID++;
                     }
                     // assign each list index to a cell in the row
-                    /*
-                    StudentGroupTable_ListCollection.Add(StudentGroupTable_SerialNumber.ToString());
-                    StudentGroupTable_ListCollection.Add(listNewlyAddedStudents[Index1]);
-                    StudentGroupTable_ListCollection.Add(listNewlyAddedStudents[Index2]);
-                    StudentGroupTable_ListCollection.Add(listNewlyAddedStudents[Index3]);
-                    StudentGroupTable_ListCollection.Add(listNewlyAddedStudents[Index4]);
-                    StudentGroupTable_ListCollection.Add(StudentGroupTable_GroupID.ToString());
-                    */
                     StudentGroupTable.Rows.Add(
                         StudentGroupTable_SerialNumber.ToString(), 
                         listNewlyAddedStudents[Index1], 
@@ -244,7 +238,7 @@ namespace CourseWorkManagementSystem
                 }
             }
             // display the number of students
-            lblNumberOfStudent.Text = ((listNewlyAddedStudents.Count / 4) - 1).ToString();
+            lblNumberOfStudent.Text = (listNewlyAddedStudents.Count / 4).ToString();
 
             // group students automatically
             AutoAssignStudentToGrouping();
@@ -463,31 +457,127 @@ namespace CourseWorkManagementSystem
 
         private void btnChooseStudent_Click(object sender, EventArgs e)
         {
+            btnIsStudentChosen = true;
             // lblCurrentGroupID
             lblSelectedStudent.Text = listBoxViewStudentGrouping.GetItemText(listBoxViewStudentGrouping.SelectedItem);
             int GroupID_Column = 5;
-            string? d = listBoxViewStudentGrouping.GetItemText(listBoxViewStudentGrouping.SelectedIndex);
-            var number = int.Parse(d);
-            // increment "number" to jump to the appropriate column in the row
-            number++;
+            string? SelectedStudentIndex = listBoxViewStudentGrouping.GetItemText(listBoxViewStudentGrouping.SelectedIndex);
+            var StudentIndexNumber = int.Parse(SelectedStudentIndex);
+            // increment "StudentIndexNumber" to jump to the appropriate column in the row
+            StudentIndexNumber++;
             // get the appropriate column index in the "StudentGroupTable_ListCollection"
-            int s = GroupID_Column * number;
+            ApprColumnIndex = GroupID_Column * StudentIndexNumber;
             /* 
              * get the appropriate column index for each column in the "StudentGroupTable_ListCollection"
              * and without this, when you select from the second column in the list it always gets the previous
              * value
             */
-            s += --number;
-            lblCurrentGroupID.Text = StudentGroupTable_ListCollection[s];
+            ApprColumnIndex += --StudentIndexNumber;
+            lblCurrentGroupID.Text = StudentGroupTable_ListCollection[ApprColumnIndex];
         }
 
         private void comboBoxChangeGroupID_SelectedValueChanged(object sender, EventArgs e)
         {
-            // start from here...
-            // make the selected group to change for the sutdent for both the Listbox and the Datatable
-            object b = comboBoxChangeGroupID.SelectedItem;
-            object be = comboBoxChangeGroupID.GetItemText(b);
-            labelChangeGroupIDFeedback.Text = "You've selected " + be;
+            if (btnIsStudentChosen)
+            {
+                btnIsStudentChosen = false;
+                // start from here...
+                // make the selected group to change for the sutdent for both the Listbox and the Datatable
+                object b = comboBoxChangeGroupID.SelectedItem;
+                object be = comboBoxChangeGroupID.GetItemText(b);
+                string? NewGroupIDIndex = be.ToString();
+                labelChangeGroupIDFeedback.Text = "You've selected " + be;
+                int GroupID_Column = 5;
+                string? SelectedStudentIndex = listBoxViewStudentGrouping.GetItemText(listBoxViewStudentGrouping.SelectedIndex);
+                var StudentIndexNumber = int.Parse(SelectedStudentIndex);
+                // increment "StudentIndexNumber" to jump to the appropriate column in the row
+                StudentIndexNumber++;
+                // get the appropriate column index in the "StudentGroupTable_ListCollection"
+                ApprColumnIndex = GroupID_Column * StudentIndexNumber;
+                /* 
+                 * get the appropriate column index for each column in the "StudentGroupTable_ListCollection"
+                 * and without this, when you select from the second column in the list it always gets the previous
+                 * value
+                */
+                ApprColumnIndex += --StudentIndexNumber;
+                StudentGroupTable_ListCollection[ApprColumnIndex] = NewGroupIDIndex;
+                lblCurrentGroupID.Text = StudentGroupTable_ListCollection[ApprColumnIndex];
+
+                // prepare "DataTable StudentGroupTable" which will be used as DataSource for "dgvStudentGroupingTable"
+                StudentGroupTable.Clear();  // clear the current "dgvStudentGroupingTable" to make room for new data
+
+
+                // check if "listNewlyAddedStudents" header has been removed else remove the first row of the list
+                CheckTrimedListHeader(TrimedListHeader);
+
+                // variable diclarations
+                var lap = 1;
+                var Index1 = 0;
+                var Index2 = 1;
+                var Index3 = 2;
+                var Index4 = 3;
+                var Index5 = 4;
+                var Index6 = 5;
+
+                // check if "listNewlyAddedStudents" header has been removed else remove the first row of the list
+                CheckTrimedListHeader(TrimedListHeader);
+
+                // loop through each "listNewlyAddedStudents" and add them to DataTable row
+                for (var i = 0; i <= StudentGroupTable_ListCollection.Count; i++)
+                {
+                    // this ensures that four items are added to a row at once. it adds items by batch
+                    if (lap > 6)
+                    {
+                        lap = 1;
+                        // assign each list index to a cell in the row
+                        StudentGroupTable.Rows.Add(
+                            StudentGroupTable_ListCollection[Index1], 
+                            StudentGroupTable_ListCollection[Index2], 
+                            StudentGroupTable_ListCollection[Index3],
+                            StudentGroupTable_ListCollection[Index4],
+                            StudentGroupTable_ListCollection[Index5],
+                            StudentGroupTable_ListCollection[Index6]
+                            );
+                        // go to the next items on the list that needs to be added to Datatable row
+                        Index1 += 6;
+                        Index2 += 6;
+                        Index3 += 6;
+                        Index4 += 6;
+                        Index5 += 6;
+                        Index6 += 6;
+                    }
+                    lap++;
+                }
+                // display the list item in "dataGridViewListItems"
+                dgvStudentGroupingTable.DataSource = StudentGroupTable;
+                listBoxViewStudentGrouping.DataSource = null;
+                listBoxViewStudentGrouping.Items.Clear();
+                ListStudentsGrouping.Clear();
+                // variable diclarations
+                string ListDetails = "";
+
+                // add the "StudentGroupTable" data to list
+                foreach (DataRow dr in StudentGroupTable.Rows)
+                {
+                    foreach (DataColumn col in StudentGroupTable.Columns)
+                    {
+                        ListDetails += dr[col] + " ";
+                    }
+                    ListStudentsGrouping.Add(ListDetails);
+                    ListDetails = "";
+                }
+                // display the list item in "listBoxViewStudentGrouping"
+                listBoxViewStudentGrouping.DataSource = ListStudentsGrouping;
+            }
+            else
+            {
+                MessageBox.Show("Please make sure you follow the following steps:\n\n" +
+                    "(1) Click the 'Import Student Grouping Table' button to initiate manual settings.\n" +
+                    "(2) Click the 'Choose Student' button to select a student from the list above.\n\n" +
+                    "Note: It is okay to do Step (1) only once.", 
+                    "Info"
+                    );
+            }
         }
 
         private void btnApplyChangeGroupID_Click(object sender, EventArgs e)

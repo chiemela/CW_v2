@@ -58,6 +58,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnGroupStudentManually = new System.Windows.Forms.Button();
             this.groupBoxManualSettings = new System.Windows.Forms.GroupBox();
+            this.labelAddOrMinusGroupFeedback = new System.Windows.Forms.Label();
             this.btnMinusGroup = new System.Windows.Forms.Button();
             this.btnAddGroup = new System.Windows.Forms.Button();
             this.btnApplyChangeGroupID = new System.Windows.Forms.Button();
@@ -76,7 +77,6 @@
             this.tabPageViewGroups = new System.Windows.Forms.TabPage();
             this.tabPageManageGroupScore = new System.Windows.Forms.TabPage();
             this.tabPageSavedData = new System.Windows.Forms.TabPage();
-            this.labelAddOrMinusGroupFeedback = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPageManageStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListItems)).BeginInit();
@@ -395,9 +395,18 @@
             this.groupBoxManualSettings.TabStop = false;
             this.groupBoxManualSettings.Text = "Manual Settings";
             // 
+            // labelAddOrMinusGroupFeedback
+            // 
+            this.labelAddOrMinusGroupFeedback.AutoSize = true;
+            this.labelAddOrMinusGroupFeedback.Location = new System.Drawing.Point(1052, 719);
+            this.labelAddOrMinusGroupFeedback.Name = "labelAddOrMinusGroupFeedback";
+            this.labelAddOrMinusGroupFeedback.Size = new System.Drawing.Size(39, 41);
+            this.labelAddOrMinusGroupFeedback.TabIndex = 33;
+            this.labelAddOrMinusGroupFeedback.Text = "...";
+            // 
             // btnMinusGroup
             // 
-            this.btnMinusGroup.Location = new System.Drawing.Point(20, 951);
+            this.btnMinusGroup.Location = new System.Drawing.Point(1032, 840);
             this.btnMinusGroup.Name = "btnMinusGroup";
             this.btnMinusGroup.Size = new System.Drawing.Size(224, 105);
             this.btnMinusGroup.TabIndex = 32;
@@ -407,7 +416,7 @@
             // 
             // btnAddGroup
             // 
-            this.btnAddGroup.Location = new System.Drawing.Point(1052, 840);
+            this.btnAddGroup.Location = new System.Drawing.Point(802, 840);
             this.btnAddGroup.Name = "btnAddGroup";
             this.btnAddGroup.Size = new System.Drawing.Size(224, 105);
             this.btnAddGroup.TabIndex = 31;
@@ -417,7 +426,7 @@
             // 
             // btnApplyChangeGroupID
             // 
-            this.btnApplyChangeGroupID.Location = new System.Drawing.Point(802, 840);
+            this.btnApplyChangeGroupID.Location = new System.Drawing.Point(20, 951);
             this.btnApplyChangeGroupID.Name = "btnApplyChangeGroupID";
             this.btnApplyChangeGroupID.Size = new System.Drawing.Size(246, 105);
             this.btnApplyChangeGroupID.TabIndex = 30;
@@ -566,15 +575,6 @@
             this.tabPageSavedData.TabIndex = 4;
             this.tabPageSavedData.Text = "Saved Data";
             this.tabPageSavedData.UseVisualStyleBackColor = true;
-            // 
-            // labelAddOrMinusGroupFeedback
-            // 
-            this.labelAddOrMinusGroupFeedback.AutoSize = true;
-            this.labelAddOrMinusGroupFeedback.Location = new System.Drawing.Point(1052, 719);
-            this.labelAddOrMinusGroupFeedback.Name = "labelAddOrMinusGroupFeedback";
-            this.labelAddOrMinusGroupFeedback.Size = new System.Drawing.Size(39, 41);
-            this.labelAddOrMinusGroupFeedback.TabIndex = 33;
-            this.labelAddOrMinusGroupFeedback.Text = "...";
             // 
             // Form1
             // 
