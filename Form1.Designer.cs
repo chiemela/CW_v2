@@ -54,14 +54,11 @@
             this.txtStudentIDnumber = new System.Windows.Forms.TextBox();
             this.btnAddStudent = new System.Windows.Forms.Button();
             this.tabPageManageGroups = new System.Windows.Forms.TabPage();
-            this.btnSaveGroupingTable = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnGroupStudentManually = new System.Windows.Forms.Button();
             this.groupBoxManualSettings = new System.Windows.Forms.GroupBox();
             this.labelAddOrMinusGroupFeedback = new System.Windows.Forms.Label();
             this.btnMinusGroup = new System.Windows.Forms.Button();
             this.btnAddGroup = new System.Windows.Forms.Button();
-            this.btnApplyChangeGroupID = new System.Windows.Forms.Button();
             this.labelChangeGroupIDFeedback = new System.Windows.Forms.Label();
             this.comboBoxChangeGroupID = new System.Windows.Forms.ComboBox();
             this.labelChangeGroupID = new System.Windows.Forms.Label();
@@ -77,6 +74,7 @@
             this.tabPageViewGroups = new System.Windows.Forms.TabPage();
             this.tabPageManageGroupScore = new System.Windows.Forms.TabPage();
             this.tabPageSavedData = new System.Windows.Forms.TabPage();
+            this.btnSaveGroups = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPageManageStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListItems)).BeginInit();
@@ -329,9 +327,7 @@
             // 
             // tabPageManageGroups
             // 
-            this.tabPageManageGroups.Controls.Add(this.btnSaveGroupingTable);
             this.tabPageManageGroups.Controls.Add(this.label1);
-            this.tabPageManageGroups.Controls.Add(this.btnGroupStudentManually);
             this.tabPageManageGroups.Controls.Add(this.groupBoxManualSettings);
             this.tabPageManageGroups.Controls.Add(this.groupBoxStudentGroupingTable);
             this.tabPageManageGroups.Location = new System.Drawing.Point(10, 88);
@@ -343,16 +339,6 @@
             this.tabPageManageGroups.UseVisualStyleBackColor = true;
             this.tabPageManageGroups.Click += new System.EventHandler(this.tabPageManageGroups_Click);
             // 
-            // btnSaveGroupingTable
-            // 
-            this.btnSaveGroupingTable.Location = new System.Drawing.Point(22, 945);
-            this.btnSaveGroupingTable.Name = "btnSaveGroupingTable";
-            this.btnSaveGroupingTable.Size = new System.Drawing.Size(514, 105);
-            this.btnSaveGroupingTable.TabIndex = 19;
-            this.btnSaveGroupingTable.Text = "Save Grouping Table";
-            this.btnSaveGroupingTable.UseVisualStyleBackColor = true;
-            this.btnSaveGroupingTable.Click += new System.EventHandler(this.btnSaveGroupingTable_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -363,21 +349,12 @@
             this.label1.TabIndex = 31;
             this.label1.Text = "Manage Groups Page";
             // 
-            // btnGroupStudentManually
-            // 
-            this.btnGroupStudentManually.Location = new System.Drawing.Point(542, 945);
-            this.btnGroupStudentManually.Name = "btnGroupStudentManually";
-            this.btnGroupStudentManually.Size = new System.Drawing.Size(514, 105);
-            this.btnGroupStudentManually.TabIndex = 18;
-            this.btnGroupStudentManually.Text = "Group Student Manually";
-            this.btnGroupStudentManually.UseVisualStyleBackColor = true;
-            // 
             // groupBoxManualSettings
             // 
+            this.groupBoxManualSettings.Controls.Add(this.btnSaveGroups);
             this.groupBoxManualSettings.Controls.Add(this.labelAddOrMinusGroupFeedback);
             this.groupBoxManualSettings.Controls.Add(this.btnMinusGroup);
             this.groupBoxManualSettings.Controls.Add(this.btnAddGroup);
-            this.groupBoxManualSettings.Controls.Add(this.btnApplyChangeGroupID);
             this.groupBoxManualSettings.Controls.Add(this.labelChangeGroupIDFeedback);
             this.groupBoxManualSettings.Controls.Add(this.comboBoxChangeGroupID);
             this.groupBoxManualSettings.Controls.Add(this.labelChangeGroupID);
@@ -423,16 +400,6 @@
             this.btnAddGroup.Text = "Add Group";
             this.btnAddGroup.UseVisualStyleBackColor = true;
             this.btnAddGroup.Click += new System.EventHandler(this.btnAddGroup_Click);
-            // 
-            // btnApplyChangeGroupID
-            // 
-            this.btnApplyChangeGroupID.Location = new System.Drawing.Point(20, 951);
-            this.btnApplyChangeGroupID.Name = "btnApplyChangeGroupID";
-            this.btnApplyChangeGroupID.Size = new System.Drawing.Size(246, 105);
-            this.btnApplyChangeGroupID.TabIndex = 30;
-            this.btnApplyChangeGroupID.Text = "Apply Changes";
-            this.btnApplyChangeGroupID.UseVisualStyleBackColor = true;
-            this.btnApplyChangeGroupID.Click += new System.EventHandler(this.btnApplyChangeGroupID_Click);
             // 
             // labelChangeGroupIDFeedback
             // 
@@ -576,6 +543,16 @@
             this.tabPageSavedData.Text = "Saved Data";
             this.tabPageSavedData.UseVisualStyleBackColor = true;
             // 
+            // btnSaveGroups
+            // 
+            this.btnSaveGroups.Location = new System.Drawing.Point(20, 951);
+            this.btnSaveGroups.Name = "btnSaveGroups";
+            this.btnSaveGroups.Size = new System.Drawing.Size(224, 105);
+            this.btnSaveGroups.TabIndex = 34;
+            this.btnSaveGroups.Text = "Save Groups";
+            this.btnSaveGroups.UseVisualStyleBackColor = true;
+            this.btnSaveGroups.Click += new System.EventHandler(this.btnSaveGroups_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 41F);
@@ -638,8 +615,6 @@
         private DataGridView dgvStudentGroupingTable;
         private Label label1;
         private GroupBox groupBoxManualSettings;
-        private Button btnGroupStudentManually;
-        private Button btnSaveGroupingTable;
         private Button btnImportStudentGroupingTable;
         private ListBox listBoxViewStudentGrouping;
         private Label lblSelectedStudent;
@@ -650,9 +625,9 @@
         private ComboBox comboBoxChangeGroupID;
         private Label labelChangeGroupID;
         private Label labelChangeGroupIDFeedback;
-        private Button btnApplyChangeGroupID;
         private Button btnAddGroup;
         private Button btnMinusGroup;
         private Label labelAddOrMinusGroupFeedback;
+        private Button btnSaveGroups;
     }
 }

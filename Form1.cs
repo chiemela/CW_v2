@@ -355,100 +355,6 @@ namespace CourseWorkManagementSystem
         {
         }
 
-        private void btnSaveGroupingTable_Click(object sender, EventArgs e)
-        {
-            // creating Excel Application  
-            Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
-            // creating new WorkBook within Excel application  
-            Microsoft.Office.Interop.Excel._Workbook workbook = app.Workbooks.Add(Type.Missing);
-            // creating new Excelsheet in workbook  
-            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
-            // see the excel sheet behind the program  
-            app.Visible = false;
-            // get the reference of first sheet. By default its name is Sheet1.  
-            // store its reference to worksheet  
-            worksheet = workbook.Sheets["Sheet1"];
-            worksheet = workbook.ActiveSheet;
-            // changing the name of active sheet  
-            worksheet.Name = "Exported from gridview";
-            // storing header part in Excel  
-            for (int i = 1; i < dgvStudentGroupingTable.Columns.Count + 1; i++)
-            {
-                worksheet.Cells[1, i] = dgvStudentGroupingTable.Columns[i - 1].HeaderText;
-            }
-            // storing Each row and column value to excel sheet  
-            for (int i = 0; i < dgvStudentGroupingTable.Rows.Count - 1; i++)
-            {
-                for (int j = 0; j < dgvStudentGroupingTable.Columns.Count; j++)
-                {
-                    worksheet.Cells[i + 2, j + 1] = dgvStudentGroupingTable.Rows[i].Cells[j].Value.ToString();
-                }
-            }
-            // save as csv file
-            if (dgvStudentGroupingTable.Rows.Count > 0)
-            {
-                SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Filter = "CSV (*.csv)|*.csv";
-                sfd.FileName = "Output.csv";
-                bool fileError = false;
-                if (sfd.ShowDialog() == DialogResult.OK)
-                {
-                    if (File.Exists(sfd.FileName))
-                    {
-                        try
-                        {
-                            File.Delete(sfd.FileName);
-                        }
-                        catch (IOException ex)
-                        {
-                            fileError = true;
-                            MessageBox.Show("It wasn't possible to write the data to the disk." + ex.Message);
-                        }
-                    }
-                    if (!fileError)
-                    {
-                        try
-                        {
-                            int columnCount = dgvStudentGroupingTable.Columns.Count;
-                            string columnNames = "";
-                            string columnNames2 = "";
-                            string[] outputCsv = new string[dgvStudentGroupingTable.Rows.Count + 1];
-                            for (int i = 0; i < columnCount; i++)
-                            {
-                                columnNames += dgvStudentGroupingTable.Columns[i].HeaderText.ToString() + ",";
-                                columnNames2 = dgvStudentGroupingTable.Columns[i].HeaderText.ToString() + ",";
-                                StudentGroupTable_ListCollection.Add(columnNames2);
-                            }
-                            outputCsv[0] += columnNames;
-
-                            for (int i = 1; i < dgvStudentGroupingTable.Rows.Count - 1; i++)
-                            {
-                                for (int j = 0; j < columnCount; j++)
-                                {
-                                    worksheet.Cells[i, j] = dgvStudentGroupingTable.Rows[i - 1].Cells[j].Value.ToString();
-                                    //outputCsv[i] += dgvStudentGroupingTable.Rows[i - 1].Cells[j].Value.ToString() + ",";
-                                    // columnNames2 = worksheet.Cells[i].ToString();
-                                    columnNames2 = worksheet.Cells[i].Cells[j].Value.ToString();
-                                    StudentGroupTable_ListCollection.Add(columnNames2 + ",");
-                                }
-                            }
-
-                            File.WriteAllLines(sfd.FileName, StudentGroupTable_ListCollection, Encoding.UTF8);
-                            MessageBox.Show("Data Exported Successfully !!!", "Info");
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Error :" + ex.Message);
-                        }
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("No Record To Export !!!", "Info");
-            }
-        }
-
         private void btnImportStudentGroupingTable_Click(object sender, EventArgs e)
         {
             // listNewlyAddedStudents, ListStudentsGrouping
@@ -580,11 +486,6 @@ namespace CourseWorkManagementSystem
             }
         }
 
-        private void btnApplyChangeGroupID_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnAddGroup_Click(object sender, EventArgs e)
         {
             StudentGroupTable_GroupID++;
@@ -605,6 +506,129 @@ namespace CourseWorkManagementSystem
                 labelAddOrMinusGroupFeedback.Text = "You have " + StudentGroupTable_GroupID + " Group(s)";
             }
             UpdateComboBoxChangeGroupID();
+        }
+        static int CountOccurrences(int[] arr, int n, int x)
+        {
+            int res = 0;
+
+            for (int i = 0; i < n; i++)
+                if (x == arr[i])
+                    res++;
+
+            return res;
+        }
+        private void btnSaveGroups_Click(object sender, EventArgs e)
+        {
+            // variable diclarations
+            var lap = 1;
+            var Index6 = 5;
+            int NumIndex = 0;
+            string MatchingValueString;
+            int MatchingValueInt;
+            int MatchingValueMax = 0;
+            bool GroupNumberExceeded = false;
+
+            int[] Num = new int[(StudentGroupTable_ListCollection.Count / 6)];
+            int[] count = new int[(StudentGroupTable_ListCollection.Count / 6)];
+
+
+            // loop through each "listNewlyAddedStudents" and add them to DataTable row
+            for (int a = 0; a <= StudentGroupTable_ListCollection.Count; a++)
+            {
+                // this ensures that four items are added to a row at once. it adds items by batch
+                if (lap > 6)
+                {
+                    try
+                    {
+                        lap = 1;
+                        MatchingValueString = StudentGroupTable_ListCollection[Index6];
+                        MatchingValueInt = int.Parse(MatchingValueString);
+                        Num[NumIndex] = int.Parse(MatchingValueString);
+                        // go to the next items on the list that needs to be added to Datatable row
+                        Index6 += 6;
+                        NumIndex++;
+                    }
+                    catch (Exception ex)
+                    {
+                        goto Lap;
+                    }
+                }
+                Lap:
+                lap++;
+            }
+            // sort array
+            Array.Sort(Num);
+            int n = Num.Length;
+            int x;
+            for(int i = 1; i <= StudentGroupTable_GroupID; i++)
+            {
+                x = CountOccurrences(Num, n, i);
+                if (x > 4)
+                {
+                    GroupNumberExceeded = true;
+                    MessageBox.Show("Group " + i + " has exceeded more than 4 students.",
+                    "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning
+                    );
+                    goto IsGroupOK;
+                }
+                if (x < 2)
+                {
+                    GroupNumberExceeded = true;
+                    MessageBox.Show("Group " + i + " has only one student in a group.",
+                    "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning
+                    );
+                    goto IsGroupOK;
+                }
+            }
+            IsGroupOK:
+            if (!GroupNumberExceeded)
+            {
+                MessageBox.Show("Groupds saved without errors",
+                    "Info", MessageBoxButtons.OK, MessageBoxIcon.Information
+                    );
+            }
+            //Array.Clear(Num);
+
+            /*
+            //Loop through num and count the occurances
+            for (int x = 0; x < (StudentGroupTable_ListCollection.Count / 6); x++)
+            {
+                for (int y = 0; y < Num.Length; y++)
+                {
+                    if (Num[y] == x)
+                        count[x]++;
+                }
+            }
+
+            //For displaying output only            
+            for (int x = 0; x < (StudentGroupTable_ListCollection.Count / 6); x++)
+            {
+                MessageBox.Show("Number " + x + " appears " + count[x] + " times",
+                    "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning
+                    );
+            }
+
+            for (int i = 1; i <= StudentGroupTable_GroupID; i++)
+            {
+                
+                // check if "MatchingValueMax" is greater than 4 meaning there are more than 4 students in a group
+                if (MatchingValueMax > 4)
+                {
+                    GroupNumberExceeded = true;
+                    MessageBox.Show("Group " + i + " has exceeded more than 4 students.",
+                    "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning
+                    );
+                    goto IsGroupOK;
+                }
+            }
+            IsGroupOK:
+            if (!GroupNumberExceeded)
+            {
+                MessageBox.Show("Groupds saved without errors",
+                    "Info", MessageBoxButtons.OK, MessageBoxIcon.Information
+                    );
+            }
+            */
         }
     }
 }
