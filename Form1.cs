@@ -30,6 +30,18 @@ namespace CourseWorkManagementSystem
         // create a new list to hold the student details with their new groups
         public List<string> StudentGroupTable_ListCollection = new List<string>();
 
+        // check how many times a groupID appears
+        static int CountOccurrences(int[] arr, int n, int x)
+        {
+            int res = 0;
+
+            for (int i = 0; i < n; i++)
+                if (x == arr[i])
+                    res++;
+
+            return res;
+        }
+
         // update "comboBoxChangeGroupID"
         public void UpdateComboBoxChangeGroupID()
         {
@@ -359,6 +371,25 @@ namespace CourseWorkManagementSystem
         {
             // listNewlyAddedStudents, ListStudentsGrouping
             ImportStudentGroupingTable();
+
+
+            btnIsStudentChosen = true;
+            // lblCurrentGroupID
+            lblSelectedStudent.Text = listBoxViewStudentGrouping.GetItemText(listBoxViewStudentGrouping.SelectedItem);
+            int GroupID_Column = 5;
+            string? SelectedStudentIndex = listBoxViewStudentGrouping.GetItemText(listBoxViewStudentGrouping.SelectedIndex);
+            var StudentIndexNumber = int.Parse(SelectedStudentIndex);
+            // increment "StudentIndexNumber" to jump to the appropriate column in the row
+            StudentIndexNumber++;
+            // get the appropriate column index in the "StudentGroupTable_ListCollection"
+            ApprColumnIndex = GroupID_Column * StudentIndexNumber;
+            /* 
+             * get the appropriate column index for each column in the "StudentGroupTable_ListCollection"
+             * and without this, when you select from the second column in the list it always gets the previous
+             * value
+            */
+            ApprColumnIndex += --StudentIndexNumber;
+            lblCurrentGroupID.Text = StudentGroupTable_ListCollection[ApprColumnIndex];
         }
 
         private void btnChooseStudent_Click(object sender, EventArgs e)
@@ -507,16 +538,7 @@ namespace CourseWorkManagementSystem
             }
             UpdateComboBoxChangeGroupID();
         }
-        static int CountOccurrences(int[] arr, int n, int x)
-        {
-            int res = 0;
 
-            for (int i = 0; i < n; i++)
-                if (x == arr[i])
-                    res++;
-
-            return res;
-        }
         private void btnSaveGroups_Click(object sender, EventArgs e)
         {
             // variable diclarations
@@ -525,11 +547,8 @@ namespace CourseWorkManagementSystem
             int NumIndex = 0;
             string MatchingValueString;
             int MatchingValueInt;
-            int MatchingValueMax = 0;
             bool GroupNumberExceeded = false;
-
             int[] Num = new int[(StudentGroupTable_ListCollection.Count / 6)];
-            int[] count = new int[(StudentGroupTable_ListCollection.Count / 6)];
 
 
             // loop through each "listNewlyAddedStudents" and add them to DataTable row
@@ -558,77 +577,57 @@ namespace CourseWorkManagementSystem
             }
             // sort array
             Array.Sort(Num);
+            // verify if the number of students in a group is less than 5 and more than 1
             int n = Num.Length;
             int x;
-            for(int i = 1; i <= StudentGroupTable_GroupID; i++)
+            for (int i = 1; i <= StudentGroupTable_GroupID; i++)
             {
                 x = CountOccurrences(Num, n, i);
+                // check if number of students is greater than 4
                 if (x > 4)
                 {
                     GroupNumberExceeded = true;
                     MessageBox.Show("Group " + i + " has exceeded more than 4 students.",
                     "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning
                     );
-                    goto IsGroupOK;
                 }
+                // check if number of students is less than 2
                 if (x < 2)
                 {
                     GroupNumberExceeded = true;
                     MessageBox.Show("Group " + i + " has only one student in a group.",
                     "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning
                     );
-                    goto IsGroupOK;
                 }
             }
-            IsGroupOK:
+            // if both grouping conditions are met then display a success message
             if (!GroupNumberExceeded)
             {
-                MessageBox.Show("Groupds saved without errors",
+                MessageBox.Show("Groups saved without errors",
                     "Info", MessageBoxButtons.OK, MessageBoxIcon.Information
                     );
             }
-            //Array.Clear(Num);
+        }
 
-            /*
-            //Loop through num and count the occurances
-            for (int x = 0; x < (StudentGroupTable_ListCollection.Count / 6); x++)
-            {
-                for (int y = 0; y < Num.Length; y++)
-                {
-                    if (Num[y] == x)
-                        count[x]++;
-                }
-            }
-
-            //For displaying output only            
-            for (int x = 0; x < (StudentGroupTable_ListCollection.Count / 6); x++)
-            {
-                MessageBox.Show("Number " + x + " appears " + count[x] + " times",
-                    "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning
-                    );
-            }
-
-            for (int i = 1; i <= StudentGroupTable_GroupID; i++)
-            {
-                
-                // check if "MatchingValueMax" is greater than 4 meaning there are more than 4 students in a group
-                if (MatchingValueMax > 4)
-                {
-                    GroupNumberExceeded = true;
-                    MessageBox.Show("Group " + i + " has exceeded more than 4 students.",
-                    "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning
-                    );
-                    goto IsGroupOK;
-                }
-            }
-            IsGroupOK:
-            if (!GroupNumberExceeded)
-            {
-                MessageBox.Show("Groupds saved without errors",
-                    "Info", MessageBoxButtons.OK, MessageBoxIcon.Information
-                    );
-            }
+        private void listBoxViewStudentGrouping_MouseUp(object sender, MouseEventArgs e)
+        {
+            btnIsStudentChosen = true;
+            // lblCurrentGroupID
+            lblSelectedStudent.Text = listBoxViewStudentGrouping.GetItemText(listBoxViewStudentGrouping.SelectedItem);
+            int GroupID_Column = 5;
+            string? SelectedStudentIndex = listBoxViewStudentGrouping.GetItemText(listBoxViewStudentGrouping.SelectedIndex);
+            var StudentIndexNumber = int.Parse(SelectedStudentIndex);
+            // increment "StudentIndexNumber" to jump to the appropriate column in the row
+            StudentIndexNumber++;
+            // get the appropriate column index in the "StudentGroupTable_ListCollection"
+            ApprColumnIndex = GroupID_Column * StudentIndexNumber;
+            /* 
+             * get the appropriate column index for each column in the "StudentGroupTable_ListCollection"
+             * and without this, when you select from the second column in the list it always gets the previous
+             * value
             */
+            ApprColumnIndex += --StudentIndexNumber;
+            lblCurrentGroupID.Text = StudentGroupTable_ListCollection[ApprColumnIndex];
         }
     }
 }

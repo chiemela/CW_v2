@@ -56,6 +56,7 @@
             this.tabPageManageGroups = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBoxManualSettings = new System.Windows.Forms.GroupBox();
+            this.btnSaveGroups = new System.Windows.Forms.Button();
             this.labelAddOrMinusGroupFeedback = new System.Windows.Forms.Label();
             this.btnMinusGroup = new System.Windows.Forms.Button();
             this.btnAddGroup = new System.Windows.Forms.Button();
@@ -74,7 +75,6 @@
             this.tabPageViewGroups = new System.Windows.Forms.TabPage();
             this.tabPageManageGroupScore = new System.Windows.Forms.TabPage();
             this.tabPageSavedData = new System.Windows.Forms.TabPage();
-            this.btnSaveGroups = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPageManageStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListItems)).BeginInit();
@@ -372,6 +372,16 @@
             this.groupBoxManualSettings.TabStop = false;
             this.groupBoxManualSettings.Text = "Manual Settings";
             // 
+            // btnSaveGroups
+            // 
+            this.btnSaveGroups.Location = new System.Drawing.Point(20, 951);
+            this.btnSaveGroups.Name = "btnSaveGroups";
+            this.btnSaveGroups.Size = new System.Drawing.Size(224, 105);
+            this.btnSaveGroups.TabIndex = 34;
+            this.btnSaveGroups.Text = "Save Groups";
+            this.btnSaveGroups.UseVisualStyleBackColor = true;
+            this.btnSaveGroups.Click += new System.EventHandler(this.btnSaveGroups_Click);
+            // 
             // labelAddOrMinusGroupFeedback
             // 
             this.labelAddOrMinusGroupFeedback.AutoSize = true;
@@ -493,6 +503,7 @@
             this.listBoxViewStudentGrouping.Name = "listBoxViewStudentGrouping";
             this.listBoxViewStudentGrouping.Size = new System.Drawing.Size(1370, 537);
             this.listBoxViewStudentGrouping.TabIndex = 0;
+            this.listBoxViewStudentGrouping.MouseUp += new System.Windows.Forms.MouseEventHandler(this.listBoxViewStudentGrouping_MouseUp);
             // 
             // groupBoxStudentGroupingTable
             // 
@@ -542,16 +553,6 @@
             this.tabPageSavedData.TabIndex = 4;
             this.tabPageSavedData.Text = "Saved Data";
             this.tabPageSavedData.UseVisualStyleBackColor = true;
-            // 
-            // btnSaveGroups
-            // 
-            this.btnSaveGroups.Location = new System.Drawing.Point(20, 951);
-            this.btnSaveGroups.Name = "btnSaveGroups";
-            this.btnSaveGroups.Size = new System.Drawing.Size(224, 105);
-            this.btnSaveGroups.TabIndex = 34;
-            this.btnSaveGroups.Text = "Save Groups";
-            this.btnSaveGroups.UseVisualStyleBackColor = true;
-            this.btnSaveGroups.Click += new System.EventHandler(this.btnSaveGroups_Click);
             // 
             // Form1
             // 
