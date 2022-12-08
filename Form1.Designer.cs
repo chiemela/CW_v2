@@ -75,12 +75,17 @@
             this.label5 = new System.Windows.Forms.Label();
             this.dgvStudentGroupingTable = new System.Windows.Forms.DataGridView();
             this.tabPageViewGroups = new System.Windows.Forms.TabPage();
+            this.comboBoxChooseGroup = new System.Windows.Forms.ComboBox();
+            this.labelChooseGroup = new System.Windows.Forms.Label();
+            this.listBoxViewGroups = new System.Windows.Forms.ListBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.tabPageManageGroupScore = new System.Windows.Forms.TabPage();
             this.tabPageSavedData = new System.Windows.Forms.TabPage();
-            this.label6 = new System.Windows.Forms.Label();
-            this.listBoxViewGroups = new System.Windows.Forms.ListBox();
-            this.labelChooseGroup = new System.Windows.Forms.Label();
-            this.comboBoxChooseGroup = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.labelVG_TotalGroups = new System.Windows.Forms.Label();
+            this.labelVG_GroupSelected = new System.Windows.Forms.Label();
+            this.labelVG_Group = new System.Windows.Forms.Label();
+            this.labelVG_Selected = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPageManageStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListItems)).BeginInit();
@@ -556,6 +561,11 @@
             // 
             // tabPageViewGroups
             // 
+            this.tabPageViewGroups.Controls.Add(this.labelVG_Selected);
+            this.tabPageViewGroups.Controls.Add(this.labelVG_GroupSelected);
+            this.tabPageViewGroups.Controls.Add(this.labelVG_Group);
+            this.tabPageViewGroups.Controls.Add(this.labelVG_TotalGroups);
+            this.tabPageViewGroups.Controls.Add(this.label7);
             this.tabPageViewGroups.Controls.Add(this.comboBoxChooseGroup);
             this.tabPageViewGroups.Controls.Add(this.labelChooseGroup);
             this.tabPageViewGroups.Controls.Add(this.listBoxViewGroups);
@@ -566,6 +576,43 @@
             this.tabPageViewGroups.TabIndex = 2;
             this.tabPageViewGroups.Text = "View Groups";
             this.tabPageViewGroups.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxChooseGroup
+            // 
+            this.comboBoxChooseGroup.FormattingEnabled = true;
+            this.comboBoxChooseGroup.Location = new System.Drawing.Point(1069, 722);
+            this.comboBoxChooseGroup.Name = "comboBoxChooseGroup";
+            this.comboBoxChooseGroup.Size = new System.Drawing.Size(306, 49);
+            this.comboBoxChooseGroup.TabIndex = 36;
+            this.comboBoxChooseGroup.SelectedValueChanged += new System.EventHandler(this.comboBoxChooseGroup_SelectedValueChanged);
+            // 
+            // labelChooseGroup
+            // 
+            this.labelChooseGroup.AutoSize = true;
+            this.labelChooseGroup.Location = new System.Drawing.Point(1120, 666);
+            this.labelChooseGroup.Name = "labelChooseGroup";
+            this.labelChooseGroup.Size = new System.Drawing.Size(211, 41);
+            this.labelChooseGroup.TabIndex = 35;
+            this.labelChooseGroup.Text = "Choose Group";
+            // 
+            // listBoxViewGroups
+            // 
+            this.listBoxViewGroups.FormattingEnabled = true;
+            this.listBoxViewGroups.ItemHeight = 41;
+            this.listBoxViewGroups.Location = new System.Drawing.Point(555, 96);
+            this.listBoxViewGroups.Name = "listBoxViewGroups";
+            this.listBoxViewGroups.Size = new System.Drawing.Size(1370, 537);
+            this.listBoxViewGroups.TabIndex = 33;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(22, 21);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(278, 35);
+            this.label6.TabIndex = 32;
+            this.label6.Text = "View Groups Page";
             // 
             // tabPageManageGroupScore
             // 
@@ -586,42 +633,58 @@
             this.tabPageSavedData.Text = "Saved Data";
             this.tabPageSavedData.UseVisualStyleBackColor = true;
             // 
-            // label6
+            // label7
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(22, 21);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(278, 35);
-            this.label6.TabIndex = 32;
-            this.label6.Text = "View Groups Page";
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(130, 215);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(262, 46);
+            this.label7.TabIndex = 37;
+            this.label7.Text = "Total Groups";
             // 
-            // listBoxViewGroups
+            // labelVG_TotalGroups
             // 
-            this.listBoxViewGroups.FormattingEnabled = true;
-            this.listBoxViewGroups.ItemHeight = 41;
-            this.listBoxViewGroups.Location = new System.Drawing.Point(555, 96);
-            this.listBoxViewGroups.Name = "listBoxViewGroups";
-            this.listBoxViewGroups.Size = new System.Drawing.Size(1370, 537);
-            this.listBoxViewGroups.TabIndex = 33;
+            this.labelVG_TotalGroups.AutoSize = true;
+            this.labelVG_TotalGroups.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelVG_TotalGroups.Location = new System.Drawing.Point(197, 278);
+            this.labelVG_TotalGroups.Name = "labelVG_TotalGroups";
+            this.labelVG_TotalGroups.Size = new System.Drawing.Size(126, 139);
+            this.labelVG_TotalGroups.TabIndex = 39;
+            this.labelVG_TotalGroups.Text = "4";
             // 
-            // labelChooseGroup
+            // labelVG_GroupSelected
             // 
-            this.labelChooseGroup.AutoSize = true;
-            this.labelChooseGroup.Location = new System.Drawing.Point(1120, 666);
-            this.labelChooseGroup.Name = "labelChooseGroup";
-            this.labelChooseGroup.Size = new System.Drawing.Size(211, 41);
-            this.labelChooseGroup.TabIndex = 35;
-            this.labelChooseGroup.Text = "Choose Group";
+            this.labelVG_GroupSelected.AutoSize = true;
+            this.labelVG_GroupSelected.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelVG_GroupSelected.Location = new System.Drawing.Point(2159, 278);
+            this.labelVG_GroupSelected.Name = "labelVG_GroupSelected";
+            this.labelVG_GroupSelected.Size = new System.Drawing.Size(126, 139);
+            this.labelVG_GroupSelected.TabIndex = 41;
+            this.labelVG_GroupSelected.Text = "4";
+            this.labelVG_GroupSelected.Visible = false;
             // 
-            // comboBoxChooseGroup
+            // labelVG_Group
             // 
-            this.comboBoxChooseGroup.FormattingEnabled = true;
-            this.comboBoxChooseGroup.Location = new System.Drawing.Point(1069, 722);
-            this.comboBoxChooseGroup.Name = "comboBoxChooseGroup";
-            this.comboBoxChooseGroup.Size = new System.Drawing.Size(306, 49);
-            this.comboBoxChooseGroup.TabIndex = 36;
-            this.comboBoxChooseGroup.SelectedValueChanged += new System.EventHandler(this.comboBoxChooseGroup_SelectedValueChanged);
+            this.labelVG_Group.AutoSize = true;
+            this.labelVG_Group.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelVG_Group.Location = new System.Drawing.Point(2147, 215);
+            this.labelVG_Group.Name = "labelVG_Group";
+            this.labelVG_Group.Size = new System.Drawing.Size(138, 46);
+            this.labelVG_Group.TabIndex = 40;
+            this.labelVG_Group.Text = "Group";
+            this.labelVG_Group.Visible = false;
+            // 
+            // labelVG_Selected
+            // 
+            this.labelVG_Selected.AutoSize = true;
+            this.labelVG_Selected.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelVG_Selected.Location = new System.Drawing.Point(2128, 436);
+            this.labelVG_Selected.Name = "labelVG_Selected";
+            this.labelVG_Selected.Size = new System.Drawing.Size(183, 46);
+            this.labelVG_Selected.TabIndex = 42;
+            this.labelVG_Selected.Text = "Selected";
+            this.labelVG_Selected.Visible = false;
             // 
             // Form1
             // 
@@ -708,5 +771,10 @@
         private ListBox listBoxViewGroups;
         private Label label6;
         private ComboBox comboBoxChooseGroup;
+        private Label labelVG_Selected;
+        private Label labelVG_GroupSelected;
+        private Label labelVG_Group;
+        private Label labelVG_TotalGroups;
+        private Label label7;
     }
 }

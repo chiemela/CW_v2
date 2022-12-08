@@ -47,6 +47,7 @@ namespace CourseWorkManagementSystem
         public void UpdateComboBoxChangeGroupID()
         {
             comboBoxChangeGroupID.Items.Clear();
+            comboBoxChooseGroup.Items.Clear();
             // Adding elements in the combobox
             for (int i = 1; i <= StudentGroupTable_GroupID; i++)
             {
@@ -593,10 +594,18 @@ namespace CourseWorkManagementSystem
                     );
                 }
                 // check if number of students is less than 2
-                if (x < 2)
+                if (x == 1)
                 {
                     GroupNumberExceeded = true;
                     MessageBox.Show("Group " + i + " has only one student in a group.",
+                    "Warning! Inappropriate Grouping", MessageBoxButtons.OK, MessageBoxIcon.Warning
+                    );
+                }
+                // check if number of students is less than 2
+                if (x < 1)
+                {
+                    GroupNumberExceeded = true;
+                    MessageBox.Show("Group " + i + " has no student assigned to it.",
                     "Warning! Inappropriate Grouping", MessageBoxButtons.OK, MessageBoxIcon.Warning
                     );
                 }
@@ -608,6 +617,8 @@ namespace CourseWorkManagementSystem
                     "Info", MessageBoxButtons.OK, MessageBoxIcon.Information
                     );
             }
+            // set the "labelVG_TotalGroups" to the correct number of groups
+            labelVG_TotalGroups.Text = StudentGroupTable_GroupID.ToString();
         }
 
         private void listBoxViewStudentGrouping_MouseUp(object sender, MouseEventArgs e)
@@ -739,64 +750,56 @@ namespace CourseWorkManagementSystem
         {
             // variable diclarations
             var lap = 1;
+            var Index2 = 1;
+            var Index3 = 2;
+            var Index4 = 3;
             var Index6 = 5;
-            int NumIndex = 0;
-            string MatchingValueString;
-            int MatchingValueInt;
-            int[] Num = new int[(StudentGroupTable_ListCollection.Count / 6)];
+            int SerialNumber = 1;
+            List<string> MatchingValues = new List<string>();
+            listBoxViewGroups.DataSource = null;
+            listBoxViewGroups.Items.Clear();
+            MatchingValues.Clear();
 
 
+
+            /*
+             * get the GroupID selected from "comboBoxChooseGroup" and assign it to "c" to be used to
+             * find all related GroupID in the "StudentGroupTable_ListCollection"
+             */
+            object b = comboBoxChooseGroup.SelectedItem;
+            object be = comboBoxChangeGroupID.GetItemText(b);
+            string? c = be.ToString();
+            // int NewChooseGroupSelectedItem = int.Parse(c);
+            labelVG_GroupSelected.Text = c;
+            labelVG_Group.Visible = true;
+            labelVG_GroupSelected.Visible = true;
+            labelVG_Selected.Visible = true;
             // loop through each "listNewlyAddedStudents" and add them to DataTable row
             for (int a = 0; a <= StudentGroupTable_ListCollection.Count; a++)
             {
+                string test = "";
+                string MatchingValueString = "";
                 // this ensures that four items are added to a row at once. it adds items by batch
                 if (lap > 6)
                 {
-                    try
+                    lap = 1;
+                    MatchingValueString = StudentGroupTable_ListCollection[Index2] + " - " +
+                                        StudentGroupTable_ListCollection[Index3] + " " +
+                                        StudentGroupTable_ListCollection[Index4];
+                    test = StudentGroupTable_ListCollection[Index6];
+                    Index2 += 6;
+                    Index3 += 6;
+                    Index4 += 6;
+                    Index6 += 6;
+                    if (test == c)
                     {
-                        lap = 1;
-                        MatchingValueString = StudentGroupTable_ListCollection[Index6];
-                        MatchingValueInt = int.Parse(MatchingValueString);
-                        Num[NumIndex] = int.Parse(MatchingValueString);
-                        // go to the next items on the list that needs to be added to Datatable row
-                        Index6 += 6;
-                        NumIndex++;
-                    }
-                    catch (Exception ex)
-                    {
-                        goto Lap;
+                        MatchingValues.Add("(" + (SerialNumber.ToString()) + ")     " + MatchingValueString);
+                        SerialNumber++;
                     }
                 }
-                Lap:
                 lap++;
             }
-            // sort array
-            Array.Sort(Num);
-            // verify if the number of students in a group is less than 5 and more than 1
-            int n = Num.Length;
-            int x;
-            object ChooseGroupSelectedItem = comboBoxChooseGroup.SelectedItem;
-            string? c = ChooseGroupSelectedItem.ToString();
-            int NewChooseGroupSelectedItem = int.Parse(c);
-
-            for (int i = 1; i <= StudentGroupTable_GroupID; i++)
-            {
-                x = CountOccurrences(Num, n, i);
-                // check if number of students is greater than 4
-                if (x > 4)
-                {
-                    MessageBox.Show("Group " + i + " has exceeded more than 4 students.",
-                    "Warning! Inappropriate Grouping", MessageBoxButtons.OK, MessageBoxIcon.Warning
-                    );
-                }
-                // check if number of students is less than 2
-                if (x < 2)
-                {
-                    MessageBox.Show("Group " + i + " has only one student in a group.",
-                    "Warning! Inappropriate Grouping", MessageBoxButtons.OK, MessageBoxIcon.Warning
-                    );
-                }
-            }
+            listBoxViewGroups.DataSource = MatchingValues;
         }
     }
 }
