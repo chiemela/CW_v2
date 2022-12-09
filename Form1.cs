@@ -7,9 +7,11 @@ using Microsoft.Office.Interop.Excel;
 using System;
 using System.Data;
 using System.Linq.Dynamic.Core;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using static ClosedXML.Excel.XLPredefinedFormat;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace CourseWorkManagementSystem
 {
@@ -21,7 +23,7 @@ namespace CourseWorkManagementSystem
         }
 
         // global variables
-        int MGS_GetStudentID_Column;
+        int Get_Num_Array_Count;
         int MGS_GetFirstName_Column;
         int MGS_GetLastName_Column;
         bool btnIsStudentChosen = false;
@@ -35,9 +37,12 @@ namespace CourseWorkManagementSystem
         // create a new list to hold the student details with their new groups
         public List<string> StudentGroupTable_ListCollection = new List<string>();
 
+
+
         // this section puts the students into various groups in the Dictionary
-        public static List<string> DeclareDictionary(List<string> list)
+        public static List<string> DeclareDictionary(List<string> list/*, bool pointer, string student_ID*/)
         {
+            /*
             // variable diclarations
             int lap = 1;
             var Index2 = 1;
@@ -46,6 +51,7 @@ namespace CourseWorkManagementSystem
             var Index5 = 4;
             var Index6 = 5;
             int SerialNumber = 1;
+            List<string> listNumber = new List<string>();
 
             // delcare the dictionary to save all groups
             var StudentGrouping = new Dictionary<int, StudentGroups>();
@@ -60,7 +66,7 @@ namespace CourseWorkManagementSystem
                 string LastName = "";
                 string Email = "";
                 string GroupID = "";
-                string Grade = "30%";
+                string Grade = "0%";
                 // this ensures that four items are added to a row at once. it adds items by batch
                 if (lap > 6)
                 {
@@ -100,7 +106,6 @@ namespace CourseWorkManagementSystem
                 Lap:
                 lap++;
             }
-            List<string> listNumber = new List<string>();
             --SerialNumber;
             foreach (var index in Enumerable.Range(1, SerialNumber))
             {
@@ -112,7 +117,24 @@ namespace CourseWorkManagementSystem
                     StudentGrouping[index].Grade;
                 listNumber.Add(s);
             }
-            return listNumber;
+            foreach (var index in Enumerable.Range(1, SerialNumber))
+            {
+                if (StudentGrouping[index].studentID == student_ID)
+                {
+
+                }
+                string s = StudentGrouping[index].studentID + " " +
+                    StudentGrouping[index].FirstName + " " +
+                    StudentGrouping[index].LastName + " " +
+                    StudentGrouping[index].Email + " " +
+                    StudentGrouping[index].GroupID + " " +
+                    StudentGrouping[index].Grade;
+                listNumber.Add(s);
+            }
+            // return pointer ? listNumber : "world";
+            */
+            List<string> dummy_list = new List<string>();
+            return dummy_list;
         }
 
         // check how many times a groupID appears
@@ -635,7 +657,8 @@ namespace CourseWorkManagementSystem
             string MatchingValueString;
             int MatchingValueInt;
             bool GroupNumberExceeded = false;
-            int[] Num = new int[(StudentGroupTable_ListCollection.Count / 6)];
+            Get_Num_Array_Count = (StudentGroupTable_ListCollection.Count / 6);
+            int[] Num = new int[Get_Num_Array_Count];
 
 
             // loop through each "listNewlyAddedStudents" and add them to DataTable row
@@ -705,7 +728,95 @@ namespace CourseWorkManagementSystem
             // set the "labelVG_TotalGroups" to the correct number of groups
             labelVG_TotalGroups.Text = StudentGroupTable_GroupID.ToString();
 
+
+
+
+            // variable diclarations
+            lap = 1;
+            var Index2 = 1;
+            var Index3 = 2;
+            var Index4 = 3;
+            var Index5 = 4;
+            Index6 = 5;
+            int SerialNumber = 1;
+            List<string> listNumber = new List<string>();
+
+            // delcare the dictionary to save all groups
+            var StudentGrouping = new Dictionary<int, StudentGroups>();
+
+            // loop through each "listNewlyAddedStudents" and add them to DataTable row
+            for (int a = 0; a <= StudentGroupTable_ListCollection.Count; a++)
+            {
+                // variable diclarations
+                string test = "";
+                string studentID = "";
+                string FirstName = "";
+                string LastName = "";
+                string Email = "";
+                string GroupID = "";
+                string Grade = "0%";
+                // this ensures that four items are added to a row at once. it adds items by batch
+                if (lap > 6)
+                {
+                    try
+                    {
+                        lap = 1;
+                        studentID = StudentGroupTable_ListCollection[Index2];
+                        FirstName = StudentGroupTable_ListCollection[Index3];
+                        LastName = StudentGroupTable_ListCollection[Index4];
+                        Email = StudentGroupTable_ListCollection[Index5];
+                        GroupID = StudentGroupTable_ListCollection[Index6];
+                        // Grade is not given by the lecturer yet
+                        test = StudentGroupTable_ListCollection[Index6];
+                        Index2 += 6;
+                        Index3 += 6;
+                        Index4 += 6;
+                        Index5 += 6;
+                        Index6 += 6;
+
+                        StudentGrouping.Add(SerialNumber, new StudentGroups
+                        {
+                            studentID = studentID,
+                            FirstName = FirstName,
+                            LastName = LastName,
+                            Email = Email,
+                            GroupID = GroupID,
+                            Grade = Grade
+                        });
+
+                        SerialNumber++;
+                    }
+                    catch (Exception ex)
+                    {
+                        goto Lap;
+                    }
+                }
+                Lap:
+                lap++;
+            }
+            /*
+            --SerialNumber;
+            foreach (var index in Enumerable.Range(1, SerialNumber))
+            {
+                string s = StudentGrouping[index].studentID + " " +
+                    StudentGrouping[index].FirstName + " " +
+                    StudentGrouping[index].LastName + " " +
+                    StudentGrouping[index].Email + " " +
+                    StudentGrouping[index].GroupID + " " +
+                    StudentGrouping[index].Grade;
+                listNumber.Add(s);
+            }
+            listBoxManageGroupScore.DataSource = listNumber;
+            */
+
+
+
+
+
+            bool pointer = true;
+            string student_ID = "";
             // save list into a Dictionary and return the Dictionary as list
+            //DeclareDictionary(StudentGroupTable_ListCollection, pointer, student_ID);
             //listBoxManageGroupScore.DataSource = DeclareDictionary(StudentGroupTable_ListCollection);
         }
 
@@ -859,7 +970,7 @@ namespace CourseWorkManagementSystem
             labelVG_Group.Visible = true;
             labelVG_GroupSelected.Visible = true;
             labelVG_Selected.Visible = true;
-            // loop through each "listNewlyAddedStudents" and add them to DataTable row
+            // loop through each "StudentGroupTable_ListCollection"
             for (int a = 0; a <= StudentGroupTable_ListCollection.Count; a++)
             {
                 string test = "";
@@ -878,7 +989,7 @@ namespace CourseWorkManagementSystem
                     Index6 += 6;
                     if (test == c)
                     {
-                        MatchingValues.Add("(" + (SerialNumber.ToString()) + ")     " + MatchingValueString);
+                        MatchingValues.Add("(" + (SerialNumber.ToString()) + ") " + MatchingValueString);
                         SerialNumber++;
                     }
                 }
@@ -911,7 +1022,7 @@ namespace CourseWorkManagementSystem
             labelMGS_GroupSelected.Text = c;
             labelMGS_GroupSelected.Visible = true;
             labelMGS_Group.Visible = true;
-            // loop through each "listNewlyAddedStudents" and add them to DataTable row
+            // loop through each "StudentGroupTable_ListCollection"
             for (int a = 0; a <= StudentGroupTable_ListCollection.Count; a++)
             {
                 string test = "";
@@ -930,7 +1041,7 @@ namespace CourseWorkManagementSystem
                     Index6 += 6;
                     if (test == c)
                     {
-                        MatchingValues.Add("(" + (SerialNumber.ToString()) + ")     " + MatchingValueString);
+                        MatchingValues.Add("(" + (SerialNumber.ToString()) + ") " + MatchingValueString);
                         SerialNumber++;
                     }
                 }
@@ -942,13 +1053,20 @@ namespace CourseWorkManagementSystem
             lblMGS_NumberOfStudents.Visible = true;
             listBoxManageGroupScore.DataSource = MatchingValues;
 
-
+            /*
             // Student details section on the "Manage Group Score" page
             int GroupStudentID_Column = 1;
             int GroupFirstName_Column = 2;
             int GroupLastName_Column = 3;
             //int GroupID_Column = 5;
-            string? SelectedStudentIndex = listBoxManageGroupScore.GetItemText(listBoxManageGroupScore.SelectedIndex);
+            */
+            // save list into a Dictionary and return the Dictionary as list
+            // DeclareDictionary(StudentGroupTable_ListCollection, pointer, student_ID);
+
+
+
+
+            /*
             var StudentIndexNumber = int.Parse(SelectedStudentIndex);
             // increment "StudentIndexNumber" to jump to the appropriate column in the row
             StudentIndexNumber++;
@@ -957,27 +1075,127 @@ namespace CourseWorkManagementSystem
             MGS_GetStudentID_Column = GroupStudentID_Column * StudentIndexNumber;
             MGS_GetFirstName_Column = GroupFirstName_Column * StudentIndexNumber;
             MGS_GetLastName_Column = GroupLastName_Column * StudentIndexNumber;
+            */
             /* 
              * get the appropriate column index for each column in the "StudentGroupTable_ListCollection"
              * and without this, when you select from the second column in the list it always gets the previous
              * value
             */
+            /*
             //ApprColumnIndex += --StudentIndexNumber;
             MGS_GetStudentID_Column += --StudentIndexNumber;
             MGS_GetFirstName_Column += --StudentIndexNumber;
             MGS_GetLastName_Column += --StudentIndexNumber;
+            */
+            /*
             //lblCurrentGroupID.Text = StudentGroupTable_ListCollection[ApprColumnIndex];
             lblMGS_StudentID.Text = StudentGroupTable_ListCollection[MGS_GetStudentID_Column];
             lblMGS_StudentFullName.Text = StudentGroupTable_ListCollection[MGS_GetFirstName_Column];
             lblMGS_StudentScore.Text = StudentGroupTable_ListCollection[MGS_GetLastName_Column];
+            */
         }
 
         private void listBoxManageGroupScore_MouseUp(object sender, MouseEventArgs e)
         {
-            int GroupStudentID_Column = 1;
-            int GroupFirstName_Column = 2;
-            int GroupLastName_Column = 3;
-            //int GroupID_Column = 5;
+            // get the selected student details from "listBoxManageGroupScore" and substring the "StudentID"
+            string text = listBoxManageGroupScore.GetItemText(listBoxManageGroupScore.SelectedItem);
+            int startIndex = 4;
+            int length = 8;
+            // lblMGS_StudentID.Text = substring;
+            bool pointer = false;
+            String student_ID = text.Substring(startIndex, length);
+            //DeclareDictionary(StudentGroupTable_ListCollection, pointer, student_ID);
+
+
+            // variable diclarations
+            int lap = 1;
+            var Index2 = 1;
+            var Index3 = 2;
+            var Index4 = 3;
+            var Index5 = 4;
+            var Index6 = 5;
+            int SerialNumber = 1;
+            List<string> listNumber = new List<string>();
+
+            // delcare the dictionary to save all groups
+            var StudentGrouping = new Dictionary<int, StudentGroups>();
+
+            // loop through each "listNewlyAddedStudents" and add them to DataTable row
+            for (int a = 0; a <= StudentGroupTable_ListCollection.Count; a++)
+            {
+                // variable diclarations
+                string test = "";
+                string studentID = "";
+                string FirstName = "";
+                string LastName = "";
+                string Email = "";
+                string GroupID = "";
+                string Grade = "0%";
+                // this ensures that four items are added to a row at once. it adds items by batch
+                if (lap > 6)
+                {
+                    try
+                    {
+                        lap = 1;
+                        studentID = StudentGroupTable_ListCollection[Index2];
+                        FirstName = StudentGroupTable_ListCollection[Index3];
+                        LastName = StudentGroupTable_ListCollection[Index4];
+                        Email = StudentGroupTable_ListCollection[Index5];
+                        GroupID = StudentGroupTable_ListCollection[Index6];
+                        // Grade is not given by the lecturer yet
+                        test = StudentGroupTable_ListCollection[Index6];
+                        Index2 += 6;
+                        Index3 += 6;
+                        Index4 += 6;
+                        Index5 += 6;
+                        Index6 += 6;
+
+                        StudentGrouping.Add(SerialNumber, new StudentGroups
+                        {
+                            studentID = studentID,
+                            FirstName = FirstName,
+                            LastName = LastName,
+                            Email = Email,
+                            GroupID = GroupID,
+                            Grade = Grade
+                        });
+
+                        SerialNumber++;
+                    }
+                    catch (Exception ex)
+                    {
+                        goto Lap;
+                    }
+                }
+                Lap:
+                lap++;
+            }
+            --SerialNumber;
+            string? _studentID = "";
+            string? _FirstName = "";
+            string? _LastName = "";
+            string? _Email = "";
+            string? _GroupID = "";
+            string? _Grade = "";
+            foreach (var index in Enumerable.Range(1, SerialNumber))
+            {
+                if (StudentGrouping[index].studentID == student_ID)
+                {
+                    _studentID = StudentGrouping[index].studentID;
+                    _FirstName = StudentGrouping[index].FirstName;
+                    _LastName = StudentGrouping[index].LastName;
+                    _Email = StudentGrouping[index].Email;
+                    _GroupID = StudentGrouping[index].GroupID;
+                    _Grade = StudentGrouping[index].Grade;
+                }
+            }
+            lblMGS_StudentID.Text = _studentID;
+            lblMGS_StudentFullName.Text = _FirstName + " " + _LastName;
+            lblMGS_StudentScore.Text = _Grade;
+
+
+
+            /*
             string? SelectedStudentIndex = listBoxManageGroupScore.GetItemText(listBoxManageGroupScore.SelectedIndex);
             var StudentIndexNumber = int.Parse(SelectedStudentIndex);
             // increment "StudentIndexNumber" to jump to the appropriate column in the row
@@ -987,11 +1205,13 @@ namespace CourseWorkManagementSystem
             MGS_GetStudentID_Column = GroupStudentID_Column * StudentIndexNumber;
             MGS_GetFirstName_Column = GroupFirstName_Column * StudentIndexNumber;
             MGS_GetLastName_Column = GroupLastName_Column * StudentIndexNumber;
+            */
             /* 
              * get the appropriate column index for each column in the "StudentGroupTable_ListCollection"
              * and without this, when you select from the second column in the list it always gets the previous
              * value
             */
+            /*
             //ApprColumnIndex += --StudentIndexNumber;
             MGS_GetStudentID_Column += --StudentIndexNumber;
             MGS_GetFirstName_Column += --StudentIndexNumber;
@@ -1000,6 +1220,7 @@ namespace CourseWorkManagementSystem
             lblMGS_StudentID.Text = StudentGroupTable_ListCollection[MGS_GetStudentID_Column];
             lblMGS_StudentFullName.Text = StudentGroupTable_ListCollection[MGS_GetFirstName_Column];
             lblMGS_StudentScore.Text = StudentGroupTable_ListCollection[MGS_GetLastName_Column];
+            */
         }
     }
 }
