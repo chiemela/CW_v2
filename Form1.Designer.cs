@@ -781,9 +781,9 @@
             this.label15.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label15.Location = new System.Drawing.Point(22, 21);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(321, 35);
+            this.label15.Size = new System.Drawing.Size(396, 35);
             this.label15.TabIndex = 32;
-            this.label15.Text = "Manage Groups Page";
+            this.label15.Text = "Manage Group Score Page";
             // 
             // groupBox2
             // 
