@@ -1,5 +1,6 @@
 using ClosedXML.Excel;
 using CsvHelper;
+using DocumentFormat.OpenXml.Drawing.Charts;
 using DocumentFormat.OpenXml.Spreadsheet;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Microsoft.Office.Interop.Excel;
@@ -34,8 +35,88 @@ namespace CourseWorkManagementSystem
         // create a new list to hold the student details with their new groups
         public List<string> StudentGroupTable_ListCollection = new List<string>();
 
+        // this section puts the students into various groups in the Dictionary
+        public static List<string> DeclareDictionary(List<string> list)
+        {
+            // variable diclarations
+            int lap = 1;
+            var Index2 = 1;
+            var Index3 = 2;
+            var Index4 = 3;
+            var Index5 = 4;
+            var Index6 = 5;
+            int SerialNumber = 1;
+
+            // delcare the dictionary to save all groups
+            var StudentGrouping = new Dictionary<int, StudentGroups>();
+
+            // loop through each "listNewlyAddedStudents" and add them to DataTable row
+            for (int a = 0; a <= list.Count; a++)
+            {
+                // variable diclarations
+                string test = "";
+                string studentID = "";
+                string FirstName = "";
+                string LastName = "";
+                string Email = "";
+                string GroupID = "";
+                string Grade = "30%";
+                // this ensures that four items are added to a row at once. it adds items by batch
+                if (lap > 6)
+                {
+                    try
+                    {
+                        lap = 1;
+                        studentID = list[Index2];
+                        FirstName = list[Index3];
+                        LastName = list[Index4];
+                        Email = list[Index5];
+                        GroupID = list[Index6];
+                        // Grade is not given by the lecturer yet
+                        test = list[Index6];
+                        Index2 += 6;
+                        Index3 += 6;
+                        Index4 += 6;
+                        Index5 += 6;
+                        Index6 += 6;
+
+                        StudentGrouping.Add(SerialNumber, new StudentGroups
+                        {
+                            studentID = studentID,
+                            FirstName = FirstName,
+                            LastName = LastName,
+                            Email = Email,
+                            GroupID = GroupID,
+                            Grade = Grade
+                        });
+
+                        SerialNumber++;
+                    }
+                    catch (Exception ex)
+                    {
+                        goto Lap;
+                    }
+                }
+                Lap:
+                lap++;
+            }
+            List<string> listNumber = new List<string>();
+            --SerialNumber;
+            foreach (var index in Enumerable.Range(1, SerialNumber))
+            {
+                string s = StudentGrouping[index].studentID + " " +
+                    StudentGrouping[index].FirstName + " " +
+                    StudentGrouping[index].LastName + " " +
+                    StudentGrouping[index].Email + " " +
+                    StudentGrouping[index].GroupID + " " +
+                    StudentGrouping[index].Grade;
+                listNumber.Add(s);
+            }
+            return listNumber;
+        }
+
         // check how many times a groupID appears
-        static int CountOccurrences(int[] arr, int n, int x)
+        public static int CountOccurrences(int[] arr, int n, int x)
         {
             int res = 0;
 
@@ -623,6 +704,9 @@ namespace CourseWorkManagementSystem
             }
             // set the "labelVG_TotalGroups" to the correct number of groups
             labelVG_TotalGroups.Text = StudentGroupTable_GroupID.ToString();
+
+            // save list into a Dictionary and return the Dictionary as list
+            //listBoxManageGroupScore.DataSource = DeclareDictionary(StudentGroupTable_ListCollection);
         }
 
         private void listBoxViewStudentGrouping_MouseUp(object sender, MouseEventArgs e)
