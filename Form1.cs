@@ -20,6 +20,9 @@ namespace CourseWorkManagementSystem
         }
 
         // global variables
+        int MGS_GetStudentID_Column;
+        int MGS_GetFirstName_Column;
+        int MGS_GetLastName_Column;
         bool btnIsStudentChosen = false;
         int ApprColumnIndex;
         int Final_StudentGroupTable_GroupID_Value;
@@ -48,11 +51,13 @@ namespace CourseWorkManagementSystem
         {
             comboBoxChangeGroupID.Items.Clear();
             comboBoxChooseGroup.Items.Clear();
+            comboBoxMGS_ChooseGroup.Items.Clear();
             // Adding elements in the combobox
             for (int i = 1; i <= StudentGroupTable_GroupID; i++)
             {
                 comboBoxChangeGroupID.Items.Add(i);
                 comboBoxChooseGroup.Items.Add(i);
+                comboBoxMGS_ChooseGroup.Items.Add(i);
             }
         }
 
@@ -375,9 +380,8 @@ namespace CourseWorkManagementSystem
             // listNewlyAddedStudents, ListStudentsGrouping
             ImportStudentGroupingTable();
 
-
             btnIsStudentChosen = true;
-            // lblCurrentGroupID
+
             lblSelectedStudent.Text = listBoxViewStudentGrouping.GetItemText(listBoxViewStudentGrouping.SelectedItem);
             int GroupID_Column = 5;
             string? SelectedStudentIndex = listBoxViewStudentGrouping.GetItemText(listBoxViewStudentGrouping.SelectedIndex);
@@ -624,7 +628,7 @@ namespace CourseWorkManagementSystem
         private void listBoxViewStudentGrouping_MouseUp(object sender, MouseEventArgs e)
         {
             btnIsStudentChosen = true;
-            // lblCurrentGroupID
+
             lblSelectedStudent.Text = listBoxViewStudentGrouping.GetItemText(listBoxViewStudentGrouping.SelectedItem);
             int GroupID_Column = 5;
             string? SelectedStudentIndex = listBoxViewStudentGrouping.GetItemText(listBoxViewStudentGrouping.SelectedIndex);
@@ -759,17 +763,14 @@ namespace CourseWorkManagementSystem
             listBoxViewGroups.DataSource = null;
             listBoxViewGroups.Items.Clear();
             MatchingValues.Clear();
-
-
-
             /*
              * get the GroupID selected from "comboBoxChooseGroup" and assign it to "c" to be used to
              * find all related GroupID in the "StudentGroupTable_ListCollection"
              */
             object b = comboBoxChooseGroup.SelectedItem;
-            object be = comboBoxChangeGroupID.GetItemText(b);
+            object be = comboBoxChooseGroup.GetItemText(b);
             string? c = be.ToString();
-            // int NewChooseGroupSelectedItem = int.Parse(c);
+
             labelVG_GroupSelected.Text = c;
             labelVG_Group.Visible = true;
             labelVG_GroupSelected.Visible = true;
@@ -800,6 +801,121 @@ namespace CourseWorkManagementSystem
                 lap++;
             }
             listBoxViewGroups.DataSource = MatchingValues;
+        }
+
+        private void comboBoxMGS_ChooseGroup_SelectedValueChanged(object sender, EventArgs e)
+        {
+            // variable diclarations
+            var lap = 1;
+            var Index2 = 1;
+            var Index3 = 2;
+            var Index4 = 3;
+            var Index6 = 5;
+            int SerialNumber = 1;
+            List<string> MatchingValues = new List<string>();
+            listBoxManageGroupScore.DataSource = null;
+            listBoxManageGroupScore.Items.Clear();
+            MatchingValues.Clear();
+            /*
+             * get the GroupID selected from "comboBoxChooseGroup" and assign it to "c" to be used to
+             * find all related GroupID in the "StudentGroupTable_ListCollection"
+             */
+            object b = comboBoxMGS_ChooseGroup.SelectedItem;
+            object be = comboBoxMGS_ChooseGroup.GetItemText(b);
+            string? c = be.ToString();
+
+            labelMGS_GroupSelected.Text = c;
+            labelMGS_GroupSelected.Visible = true;
+            labelMGS_Group.Visible = true;
+            // loop through each "listNewlyAddedStudents" and add them to DataTable row
+            for (int a = 0; a <= StudentGroupTable_ListCollection.Count; a++)
+            {
+                string test = "";
+                string MatchingValueString = "";
+                // this ensures that four items are added to a row at once. it adds items by batch
+                if (lap > 6)
+                {
+                    lap = 1;
+                    MatchingValueString = StudentGroupTable_ListCollection[Index2] + " - " +
+                                        StudentGroupTable_ListCollection[Index3] + " " +
+                                        StudentGroupTable_ListCollection[Index4];
+                    test = StudentGroupTable_ListCollection[Index6];
+                    Index2 += 6;
+                    Index3 += 6;
+                    Index4 += 6;
+                    Index6 += 6;
+                    if (test == c)
+                    {
+                        MatchingValues.Add("(" + (SerialNumber.ToString()) + ")     " + MatchingValueString);
+                        SerialNumber++;
+                    }
+                }
+                lap++;
+            }
+            --SerialNumber;
+            lblMGS_NumberOfStudents.Text = SerialNumber.ToString();
+            labelMGS_NumberOfStudents.Visible = true;
+            lblMGS_NumberOfStudents.Visible = true;
+            listBoxManageGroupScore.DataSource = MatchingValues;
+
+
+            // Student details section on the "Manage Group Score" page
+            int GroupStudentID_Column = 1;
+            int GroupFirstName_Column = 2;
+            int GroupLastName_Column = 3;
+            //int GroupID_Column = 5;
+            string? SelectedStudentIndex = listBoxManageGroupScore.GetItemText(listBoxManageGroupScore.SelectedIndex);
+            var StudentIndexNumber = int.Parse(SelectedStudentIndex);
+            // increment "StudentIndexNumber" to jump to the appropriate column in the row
+            StudentIndexNumber++;
+            // get the appropriate column index in the "StudentGroupTable_ListCollection"
+            //ApprColumnIndex = GroupID_Column * StudentIndexNumber;
+            MGS_GetStudentID_Column = GroupStudentID_Column * StudentIndexNumber;
+            MGS_GetFirstName_Column = GroupFirstName_Column * StudentIndexNumber;
+            MGS_GetLastName_Column = GroupLastName_Column * StudentIndexNumber;
+            /* 
+             * get the appropriate column index for each column in the "StudentGroupTable_ListCollection"
+             * and without this, when you select from the second column in the list it always gets the previous
+             * value
+            */
+            //ApprColumnIndex += --StudentIndexNumber;
+            MGS_GetStudentID_Column += --StudentIndexNumber;
+            MGS_GetFirstName_Column += --StudentIndexNumber;
+            MGS_GetLastName_Column += --StudentIndexNumber;
+            //lblCurrentGroupID.Text = StudentGroupTable_ListCollection[ApprColumnIndex];
+            lblMGS_StudentID.Text = StudentGroupTable_ListCollection[MGS_GetStudentID_Column];
+            lblMGS_StudentFullName.Text = StudentGroupTable_ListCollection[MGS_GetFirstName_Column];
+            lblMGS_StudentScore.Text = StudentGroupTable_ListCollection[MGS_GetLastName_Column];
+        }
+
+        private void listBoxManageGroupScore_MouseUp(object sender, MouseEventArgs e)
+        {
+            int GroupStudentID_Column = 1;
+            int GroupFirstName_Column = 2;
+            int GroupLastName_Column = 3;
+            //int GroupID_Column = 5;
+            string? SelectedStudentIndex = listBoxManageGroupScore.GetItemText(listBoxManageGroupScore.SelectedIndex);
+            var StudentIndexNumber = int.Parse(SelectedStudentIndex);
+            // increment "StudentIndexNumber" to jump to the appropriate column in the row
+            StudentIndexNumber++;
+            // get the appropriate column index in the "StudentGroupTable_ListCollection"
+            //ApprColumnIndex = GroupID_Column * StudentIndexNumber;
+            MGS_GetStudentID_Column = GroupStudentID_Column * StudentIndexNumber;
+            MGS_GetFirstName_Column = GroupFirstName_Column * StudentIndexNumber;
+            MGS_GetLastName_Column = GroupLastName_Column * StudentIndexNumber;
+            /* 
+             * get the appropriate column index for each column in the "StudentGroupTable_ListCollection"
+             * and without this, when you select from the second column in the list it always gets the previous
+             * value
+            */
+            //ApprColumnIndex += --StudentIndexNumber;
+            MGS_GetStudentID_Column += --StudentIndexNumber;
+            MGS_GetFirstName_Column += --StudentIndexNumber;
+            MGS_GetLastName_Column += --StudentIndexNumber;
+            //lblCurrentGroupID.Text = StudentGroupTable_ListCollection[ApprColumnIndex];
+            lblMGS_StudentID.Text = StudentGroupTable_ListCollection[MGS_GetStudentID_Column];
+            lblMGS_StudentFullName.Text = StudentGroupTable_ListCollection[MGS_GetFirstName_Column];
+            lblMGS_StudentScore.Text = StudentGroupTable_ListCollection[MGS_GetLastName_Column];
         }
     }
 }

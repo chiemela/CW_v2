@@ -75,17 +75,40 @@
             this.label5 = new System.Windows.Forms.Label();
             this.dgvStudentGroupingTable = new System.Windows.Forms.DataGridView();
             this.tabPageViewGroups = new System.Windows.Forms.TabPage();
+            this.labelVG_Selected = new System.Windows.Forms.Label();
+            this.labelVG_GroupSelected = new System.Windows.Forms.Label();
+            this.labelVG_Group = new System.Windows.Forms.Label();
+            this.labelVG_TotalGroups = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.comboBoxChooseGroup = new System.Windows.Forms.ComboBox();
             this.labelChooseGroup = new System.Windows.Forms.Label();
             this.listBoxViewGroups = new System.Windows.Forms.ListBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPageManageGroupScore = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.lblMGS_StudentScore = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.lblMGS_StudentID = new System.Windows.Forms.Label();
+            this.lblMGS_StudentFullName = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblMGS_NumberOfStudents = new System.Windows.Forms.Label();
+            this.labelMGS_NumberOfStudents = new System.Windows.Forms.Label();
+            this.labelMGS_GroupSelected = new System.Windows.Forms.Label();
+            this.labelMGS_Group = new System.Windows.Forms.Label();
+            this.comboBoxMGS_ChooseGroup = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.labelMGS_TotalScoreGiven = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.listBoxManageGroupScore = new System.Windows.Forms.ListBox();
             this.tabPageSavedData = new System.Windows.Forms.TabPage();
-            this.label7 = new System.Windows.Forms.Label();
-            this.labelVG_TotalGroups = new System.Windows.Forms.Label();
-            this.labelVG_GroupSelected = new System.Windows.Forms.Label();
-            this.labelVG_Group = new System.Windows.Forms.Label();
-            this.labelVG_Selected = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPageManageStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListItems)).BeginInit();
@@ -97,6 +120,9 @@
             this.groupBoxStudentGroupingTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudentGroupingTable)).BeginInit();
             this.tabPageViewGroups.SuspendLayout();
+            this.tabPageManageGroupScore.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -577,6 +603,59 @@
             this.tabPageViewGroups.Text = "View Groups";
             this.tabPageViewGroups.UseVisualStyleBackColor = true;
             // 
+            // labelVG_Selected
+            // 
+            this.labelVG_Selected.AutoSize = true;
+            this.labelVG_Selected.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelVG_Selected.Location = new System.Drawing.Point(2128, 436);
+            this.labelVG_Selected.Name = "labelVG_Selected";
+            this.labelVG_Selected.Size = new System.Drawing.Size(183, 46);
+            this.labelVG_Selected.TabIndex = 42;
+            this.labelVG_Selected.Text = "Selected";
+            this.labelVG_Selected.Visible = false;
+            // 
+            // labelVG_GroupSelected
+            // 
+            this.labelVG_GroupSelected.AutoSize = true;
+            this.labelVG_GroupSelected.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelVG_GroupSelected.Location = new System.Drawing.Point(2159, 278);
+            this.labelVG_GroupSelected.Name = "labelVG_GroupSelected";
+            this.labelVG_GroupSelected.Size = new System.Drawing.Size(126, 139);
+            this.labelVG_GroupSelected.TabIndex = 41;
+            this.labelVG_GroupSelected.Text = "4";
+            this.labelVG_GroupSelected.Visible = false;
+            // 
+            // labelVG_Group
+            // 
+            this.labelVG_Group.AutoSize = true;
+            this.labelVG_Group.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelVG_Group.Location = new System.Drawing.Point(2147, 215);
+            this.labelVG_Group.Name = "labelVG_Group";
+            this.labelVG_Group.Size = new System.Drawing.Size(138, 46);
+            this.labelVG_Group.TabIndex = 40;
+            this.labelVG_Group.Text = "Group";
+            this.labelVG_Group.Visible = false;
+            // 
+            // labelVG_TotalGroups
+            // 
+            this.labelVG_TotalGroups.AutoSize = true;
+            this.labelVG_TotalGroups.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelVG_TotalGroups.Location = new System.Drawing.Point(197, 278);
+            this.labelVG_TotalGroups.Name = "labelVG_TotalGroups";
+            this.labelVG_TotalGroups.Size = new System.Drawing.Size(126, 139);
+            this.labelVG_TotalGroups.TabIndex = 39;
+            this.labelVG_TotalGroups.Text = "4";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(130, 215);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(262, 46);
+            this.label7.TabIndex = 37;
+            this.label7.Text = "Total Groups";
+            // 
             // comboBoxChooseGroup
             // 
             this.comboBoxChooseGroup.FormattingEnabled = true;
@@ -616,12 +695,256 @@
             // 
             // tabPageManageGroupScore
             // 
+            this.tabPageManageGroupScore.Controls.Add(this.groupBox3);
+            this.tabPageManageGroupScore.Controls.Add(this.label15);
+            this.tabPageManageGroupScore.Controls.Add(this.groupBox2);
+            this.tabPageManageGroupScore.Controls.Add(this.listBoxManageGroupScore);
             this.tabPageManageGroupScore.Location = new System.Drawing.Point(10, 88);
             this.tabPageManageGroupScore.Name = "tabPageManageGroupScore";
             this.tabPageManageGroupScore.Size = new System.Drawing.Size(2512, 1141);
             this.tabPageManageGroupScore.TabIndex = 3;
             this.tabPageManageGroupScore.Text = "Manage Group Score";
             this.tabPageManageGroupScore.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label17);
+            this.groupBox3.Controls.Add(this.lblMGS_StudentScore);
+            this.groupBox3.Controls.Add(this.label16);
+            this.groupBox3.Controls.Add(this.label10);
+            this.groupBox3.Controls.Add(this.lblMGS_StudentID);
+            this.groupBox3.Controls.Add(this.lblMGS_StudentFullName);
+            this.groupBox3.Location = new System.Drawing.Point(45, 688);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(1370, 386);
+            this.groupBox3.TabIndex = 37;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Student details";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(28, 269);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(200, 41);
+            this.label17.TabIndex = 38;
+            this.label17.Text = "Student score";
+            // 
+            // lblMGS_StudentScore
+            // 
+            this.lblMGS_StudentScore.AutoSize = true;
+            this.lblMGS_StudentScore.Location = new System.Drawing.Point(28, 301);
+            this.lblMGS_StudentScore.Name = "lblMGS_StudentScore";
+            this.lblMGS_StudentScore.Size = new System.Drawing.Size(39, 41);
+            this.lblMGS_StudentScore.TabIndex = 37;
+            this.lblMGS_StudentScore.Text = "...";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(28, 62);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(158, 41);
+            this.label16.TabIndex = 33;
+            this.label16.Text = "Student ID";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(28, 170);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(251, 41);
+            this.label10.TabIndex = 36;
+            this.label10.Text = "Student full name";
+            // 
+            // lblMGS_StudentID
+            // 
+            this.lblMGS_StudentID.AutoSize = true;
+            this.lblMGS_StudentID.Location = new System.Drawing.Point(28, 103);
+            this.lblMGS_StudentID.Name = "lblMGS_StudentID";
+            this.lblMGS_StudentID.Size = new System.Drawing.Size(39, 41);
+            this.lblMGS_StudentID.TabIndex = 34;
+            this.lblMGS_StudentID.Text = "...";
+            // 
+            // lblMGS_StudentFullName
+            // 
+            this.lblMGS_StudentFullName.AutoSize = true;
+            this.lblMGS_StudentFullName.Location = new System.Drawing.Point(28, 202);
+            this.lblMGS_StudentFullName.Name = "lblMGS_StudentFullName";
+            this.lblMGS_StudentFullName.Size = new System.Drawing.Size(39, 41);
+            this.lblMGS_StudentFullName.TabIndex = 35;
+            this.lblMGS_StudentFullName.Text = "...";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label15.Location = new System.Drawing.Point(22, 21);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(321, 35);
+            this.label15.TabIndex = 32;
+            this.label15.Text = "Manage Groups Page";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.lblMGS_NumberOfStudents);
+            this.groupBox2.Controls.Add(this.labelMGS_NumberOfStudents);
+            this.groupBox2.Controls.Add(this.labelMGS_GroupSelected);
+            this.groupBox2.Controls.Add(this.labelMGS_Group);
+            this.groupBox2.Controls.Add(this.comboBoxMGS_ChooseGroup);
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.labelMGS_TotalScoreGiven);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.button3);
+            this.groupBox2.Controls.Add(this.button4);
+            this.groupBox2.Location = new System.Drawing.Point(1498, 70);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(965, 1004);
+            this.groupBox2.TabIndex = 17;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Group score details";
+            // 
+            // lblMGS_NumberOfStudents
+            // 
+            this.lblMGS_NumberOfStudents.AutoSize = true;
+            this.lblMGS_NumberOfStudents.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblMGS_NumberOfStudents.Location = new System.Drawing.Point(619, 351);
+            this.lblMGS_NumberOfStudents.Name = "lblMGS_NumberOfStudents";
+            this.lblMGS_NumberOfStudents.Size = new System.Drawing.Size(126, 139);
+            this.lblMGS_NumberOfStudents.TabIndex = 49;
+            this.lblMGS_NumberOfStudents.Text = "4";
+            this.lblMGS_NumberOfStudents.Visible = false;
+            // 
+            // labelMGS_NumberOfStudents
+            // 
+            this.labelMGS_NumberOfStudents.AutoSize = true;
+            this.labelMGS_NumberOfStudents.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelMGS_NumberOfStudents.Location = new System.Drawing.Point(524, 305);
+            this.labelMGS_NumberOfStudents.Name = "labelMGS_NumberOfStudents";
+            this.labelMGS_NumberOfStudents.Size = new System.Drawing.Size(305, 46);
+            this.labelMGS_NumberOfStudents.TabIndex = 48;
+            this.labelMGS_NumberOfStudents.Text = "No. of students";
+            this.labelMGS_NumberOfStudents.Visible = false;
+            // 
+            // labelMGS_GroupSelected
+            // 
+            this.labelMGS_GroupSelected.AutoSize = true;
+            this.labelMGS_GroupSelected.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelMGS_GroupSelected.Location = new System.Drawing.Point(619, 116);
+            this.labelMGS_GroupSelected.Name = "labelMGS_GroupSelected";
+            this.labelMGS_GroupSelected.Size = new System.Drawing.Size(126, 139);
+            this.labelMGS_GroupSelected.TabIndex = 47;
+            this.labelMGS_GroupSelected.Text = "4";
+            this.labelMGS_GroupSelected.Visible = false;
+            // 
+            // labelMGS_Group
+            // 
+            this.labelMGS_Group.AutoSize = true;
+            this.labelMGS_Group.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelMGS_Group.Location = new System.Drawing.Point(607, 70);
+            this.labelMGS_Group.Name = "labelMGS_Group";
+            this.labelMGS_Group.Size = new System.Drawing.Size(138, 46);
+            this.labelMGS_Group.TabIndex = 46;
+            this.labelMGS_Group.Text = "Group";
+            this.labelMGS_Group.Visible = false;
+            // 
+            // comboBoxMGS_ChooseGroup
+            // 
+            this.comboBoxMGS_ChooseGroup.FormattingEnabled = true;
+            this.comboBoxMGS_ChooseGroup.Location = new System.Drawing.Point(102, 601);
+            this.comboBoxMGS_ChooseGroup.Name = "comboBoxMGS_ChooseGroup";
+            this.comboBoxMGS_ChooseGroup.Size = new System.Drawing.Size(306, 49);
+            this.comboBoxMGS_ChooseGroup.TabIndex = 45;
+            this.comboBoxMGS_ChooseGroup.SelectedValueChanged += new System.EventHandler(this.comboBoxMGS_ChooseGroup_SelectedValueChanged);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(153, 545);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(211, 41);
+            this.label12.TabIndex = 44;
+            this.label12.Text = "Choose Group";
+            // 
+            // labelMGS_TotalScoreGiven
+            // 
+            this.labelMGS_TotalScoreGiven.AutoSize = true;
+            this.labelMGS_TotalScoreGiven.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelMGS_TotalScoreGiven.Location = new System.Drawing.Point(102, 351);
+            this.labelMGS_TotalScoreGiven.Name = "labelMGS_TotalScoreGiven";
+            this.labelMGS_TotalScoreGiven.Size = new System.Drawing.Size(299, 139);
+            this.labelMGS_TotalScoreGiven.TabIndex = 43;
+            this.labelMGS_TotalScoreGiven.Text = "90%";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label11.Location = new System.Drawing.Point(69, 305);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(340, 46);
+            this.label11.TabIndex = 42;
+            this.label11.Text = "Total score given";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label8.Location = new System.Drawing.Point(102, 116);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(299, 139);
+            this.label8.TabIndex = 41;
+            this.label8.Text = "90%";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label9.Location = new System.Drawing.Point(69, 70);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(364, 46);
+            this.label9.TabIndex = 40;
+            this.label9.Text = "Max score allotted";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(469, 865);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(224, 105);
+            this.button2.TabIndex = 34;
+            this.button2.Text = "Save Groups";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(241, 865);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(222, 105);
+            this.button3.TabIndex = 32;
+            this.button3.Text = "Minus Group";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(22, 865);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(213, 105);
+            this.button4.TabIndex = 31;
+            this.button4.Text = "Add Group";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // listBoxManageGroupScore
+            // 
+            this.listBoxManageGroupScore.FormattingEnabled = true;
+            this.listBoxManageGroupScore.ItemHeight = 41;
+            this.listBoxManageGroupScore.Location = new System.Drawing.Point(45, 125);
+            this.listBoxManageGroupScore.Name = "listBoxManageGroupScore";
+            this.listBoxManageGroupScore.Size = new System.Drawing.Size(1370, 537);
+            this.listBoxManageGroupScore.TabIndex = 0;
+            this.listBoxManageGroupScore.MouseUp += new System.Windows.Forms.MouseEventHandler(this.listBoxManageGroupScore_MouseUp);
             // 
             // tabPageSavedData
             // 
@@ -632,59 +955,6 @@
             this.tabPageSavedData.TabIndex = 4;
             this.tabPageSavedData.Text = "Saved Data";
             this.tabPageSavedData.UseVisualStyleBackColor = true;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(130, 215);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(262, 46);
-            this.label7.TabIndex = 37;
-            this.label7.Text = "Total Groups";
-            // 
-            // labelVG_TotalGroups
-            // 
-            this.labelVG_TotalGroups.AutoSize = true;
-            this.labelVG_TotalGroups.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelVG_TotalGroups.Location = new System.Drawing.Point(197, 278);
-            this.labelVG_TotalGroups.Name = "labelVG_TotalGroups";
-            this.labelVG_TotalGroups.Size = new System.Drawing.Size(126, 139);
-            this.labelVG_TotalGroups.TabIndex = 39;
-            this.labelVG_TotalGroups.Text = "4";
-            // 
-            // labelVG_GroupSelected
-            // 
-            this.labelVG_GroupSelected.AutoSize = true;
-            this.labelVG_GroupSelected.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelVG_GroupSelected.Location = new System.Drawing.Point(2159, 278);
-            this.labelVG_GroupSelected.Name = "labelVG_GroupSelected";
-            this.labelVG_GroupSelected.Size = new System.Drawing.Size(126, 139);
-            this.labelVG_GroupSelected.TabIndex = 41;
-            this.labelVG_GroupSelected.Text = "4";
-            this.labelVG_GroupSelected.Visible = false;
-            // 
-            // labelVG_Group
-            // 
-            this.labelVG_Group.AutoSize = true;
-            this.labelVG_Group.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelVG_Group.Location = new System.Drawing.Point(2147, 215);
-            this.labelVG_Group.Name = "labelVG_Group";
-            this.labelVG_Group.Size = new System.Drawing.Size(138, 46);
-            this.labelVG_Group.TabIndex = 40;
-            this.labelVG_Group.Text = "Group";
-            this.labelVG_Group.Visible = false;
-            // 
-            // labelVG_Selected
-            // 
-            this.labelVG_Selected.AutoSize = true;
-            this.labelVG_Selected.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelVG_Selected.Location = new System.Drawing.Point(2128, 436);
-            this.labelVG_Selected.Name = "labelVG_Selected";
-            this.labelVG_Selected.Size = new System.Drawing.Size(183, 46);
-            this.labelVG_Selected.TabIndex = 42;
-            this.labelVG_Selected.Text = "Selected";
-            this.labelVG_Selected.Visible = false;
             // 
             // Form1
             // 
@@ -715,6 +985,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudentGroupingTable)).EndInit();
             this.tabPageViewGroups.ResumeLayout(false);
             this.tabPageViewGroups.PerformLayout();
+            this.tabPageManageGroupScore.ResumeLayout(false);
+            this.tabPageManageGroupScore.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -776,5 +1052,28 @@
         private Label labelVG_Group;
         private Label labelVG_TotalGroups;
         private Label label7;
+        private Label label15;
+        private GroupBox groupBox2;
+        private ComboBox comboBoxMGS_ChooseGroup;
+        private Label label12;
+        private Label labelMGS_TotalScoreGiven;
+        private Label label11;
+        private Label label8;
+        private Label label9;
+        private Button button2;
+        private Button button3;
+        private Button button4;
+        private ListBox listBoxManageGroupScore;
+        public Label labelMGS_GroupSelected;
+        public Label labelMGS_Group;
+        private GroupBox groupBox3;
+        private Label label17;
+        private Label lblMGS_StudentScore;
+        private Label label16;
+        private Label label10;
+        private Label lblMGS_StudentID;
+        private Label lblMGS_StudentFullName;
+        public Label lblMGS_NumberOfStudents;
+        public Label labelMGS_NumberOfStudents;
     }
 }
