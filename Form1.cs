@@ -23,6 +23,7 @@ namespace CourseWorkManagementSystem
         }
 
         // global variables
+        int Check_If_Clicked = 0;
         int Get_Num_Array_Count;
         int MGS_GetFirstName_Column;
         int MGS_GetLastName_Column;
@@ -246,9 +247,19 @@ namespace CourseWorkManagementSystem
         }
 
         // this method creates the DataTable columns automatically assigns student to a group
-        public void AutoAssignStudentToGrouping()
+        public void AutoAssignStudentToGrouping(int argument)
         {
             // prepare "DataTable StudentGroupTable" which will be used as DataSource for "dgvStudentGroupingTable"
+            //System.Data.DataTable StudentGroupTable = new System.Data.DataTable();
+            if (argument > 1)
+            {
+                StudentGroupTable.Columns.Remove("S/N");
+                StudentGroupTable.Columns.Remove("Student ID");
+                StudentGroupTable.Columns.Remove("FirstName");
+                StudentGroupTable.Columns.Remove("LastName");
+                StudentGroupTable.Columns.Remove("Email Address");
+                StudentGroupTable.Columns.Remove("Group ID");
+            }
             StudentGroupTable.Clear();  // clear the current data to make room for new data
             StudentGroupTable.Columns.Add("S/N", typeof(string));
             StudentGroupTable.Columns.Add("Student ID", typeof(string));
@@ -364,7 +375,8 @@ namespace CourseWorkManagementSystem
             lblNumberOfStudent.Text = (listNewlyAddedStudents.Count / 4).ToString();
 
             // group students automatically
-            AutoAssignStudentToGrouping();
+            Check_If_Clicked++;
+            AutoAssignStudentToGrouping(Check_If_Clicked);
         }
 
         private void btnResetForm_Click(object sender, EventArgs e)
@@ -397,7 +409,8 @@ namespace CourseWorkManagementSystem
             DataGridUpdate();
 
             // group students automatically
-            AutoAssignStudentToGrouping();
+            Check_If_Clicked++;
+            AutoAssignStudentToGrouping(Check_If_Clicked);
 
             // display the number of students
             lblNumberOfStudent.Text = (listNewlyAddedStudents.Count / 4).ToString();
@@ -1130,7 +1143,7 @@ namespace CourseWorkManagementSystem
                 string LastName = "";
                 string Email = "";
                 string GroupID = "";
-                string Grade = "0%";
+                string Grade = "0";
                 // this ensures that four items are added to a row at once. it adds items by batch
                 if (lap > 6)
                 {
@@ -1191,7 +1204,7 @@ namespace CourseWorkManagementSystem
             }
             lblMGS_StudentID.Text = _studentID;
             lblMGS_StudentFullName.Text = _FirstName + " " + _LastName;
-            lblMGS_StudentScore.Text = _Grade;
+            lblMGS_StudentScore.Text = _Grade+"%";
 
 
 
