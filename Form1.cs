@@ -1466,7 +1466,7 @@ namespace CourseWorkManagementSystem
 
         private void button_MGS_AssignScore_Apply_Click(object sender, EventArgs e)
         {
-            array_StudentGroupTable_Count[fetchedStudentID, 5] = textBox_MGS_AssignScore.Text;
+            array_StudentGroupTable_Count[fetchedStudentID, 6] = textBox_MGS_AssignScore.Text;
             MessageBox.Show(
                 "This is the result" + "\n" +
                 array_StudentGroupTable_Count[fetchedStudentID, 0] + "\n" +

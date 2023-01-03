@@ -585,9 +585,8 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(19, 787);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(977, 164);
+            this.label5.Size = new System.Drawing.Size(0, 41);
             this.label5.TabIndex = 28;
-            this.label5.Text = resources.GetString("label5.Text");
             // 
             // dgvStudentGroupingTable
             // 
