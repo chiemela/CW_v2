@@ -56,6 +56,7 @@
             this.tabPageManageGroups = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBoxManualSettings = new System.Windows.Forms.GroupBox();
+            this.button_MG_ClearListBox = new System.Windows.Forms.Button();
             this.btnChangeGroupID = new System.Windows.Forms.Button();
             this.btnSaveGroups = new System.Windows.Forms.Button();
             this.labelAddOrMinusGroupFeedback = new System.Windows.Forms.Label();
@@ -95,7 +96,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button_MGS_AssignScore_Apply = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox_MGS_AssignScore = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.lblMGS_NumberOfStudents = new System.Windows.Forms.Label();
             this.labelMGS_NumberOfStudents = new System.Windows.Forms.Label();
@@ -112,7 +113,6 @@
             this.button_MGS_UpdateGroup = new System.Windows.Forms.Button();
             this.listBoxManageGroupScore = new System.Windows.Forms.ListBox();
             this.tabPageSavedData = new System.Windows.Forms.TabPage();
-            this.button_MG_ClearListBox = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPageManageStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListItems)).BeginInit();
@@ -415,6 +415,16 @@
             this.groupBoxManualSettings.TabIndex = 16;
             this.groupBoxManualSettings.TabStop = false;
             this.groupBoxManualSettings.Text = "Manual Settings";
+            // 
+            // button_MG_ClearListBox
+            // 
+            this.button_MG_ClearListBox.Location = new System.Drawing.Point(1166, 611);
+            this.button_MG_ClearListBox.Name = "button_MG_ClearListBox";
+            this.button_MG_ClearListBox.Size = new System.Drawing.Size(224, 55);
+            this.button_MG_ClearListBox.TabIndex = 36;
+            this.button_MG_ClearListBox.Text = "Clear ListBox";
+            this.button_MG_ClearListBox.UseVisualStyleBackColor = true;
+            this.button_MG_ClearListBox.Click += new System.EventHandler(this.button_MG_ClearListBox_Click);
             // 
             // btnChangeGroupID
             // 
@@ -794,7 +804,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.button_MGS_AssignScore_Apply);
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.textBox_MGS_AssignScore);
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.lblMGS_NumberOfStudents);
             this.groupBox2.Controls.Add(this.labelMGS_NumberOfStudents);
@@ -826,12 +836,12 @@
             this.button_MGS_AssignScore_Apply.UseVisualStyleBackColor = true;
             this.button_MGS_AssignScore_Apply.Click += new System.EventHandler(this.button_MGS_AssignScore_Apply_Click);
             // 
-            // textBox1
+            // textBox_MGS_AssignScore
             // 
-            this.textBox1.Location = new System.Drawing.Point(340, 609);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(230, 47);
-            this.textBox1.TabIndex = 51;
+            this.textBox_MGS_AssignScore.Location = new System.Drawing.Point(340, 609);
+            this.textBox_MGS_AssignScore.Name = "textBox_MGS_AssignScore";
+            this.textBox_MGS_AssignScore.Size = new System.Drawing.Size(230, 47);
+            this.textBox_MGS_AssignScore.TabIndex = 51;
             // 
             // label13
             // 
@@ -992,16 +1002,6 @@
             this.tabPageSavedData.Text = "Saved Data";
             this.tabPageSavedData.UseVisualStyleBackColor = true;
             // 
-            // button_MG_ClearListBox
-            // 
-            this.button_MG_ClearListBox.Location = new System.Drawing.Point(1166, 611);
-            this.button_MG_ClearListBox.Name = "button_MG_ClearListBox";
-            this.button_MG_ClearListBox.Size = new System.Drawing.Size(224, 55);
-            this.button_MG_ClearListBox.TabIndex = 36;
-            this.button_MG_ClearListBox.Text = "Clear ListBox";
-            this.button_MG_ClearListBox.UseVisualStyleBackColor = true;
-            this.button_MG_ClearListBox.Click += new System.EventHandler(this.button_MG_ClearListBox_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 41F);
@@ -1123,7 +1123,7 @@
         public Label labelMGS_NumberOfStudents;
         private Label label13;
         private Button button_MGS_AssignScore_Apply;
-        private TextBox textBox1;
+        private TextBox textBox_MGS_AssignScore;
         private Button button_MG_ClearListBox;
     }
 }
