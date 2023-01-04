@@ -86,7 +86,9 @@
             this.listBoxViewGroups = new System.Windows.Forms.ListBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPageManageGroupScore = new System.Windows.Forms.TabPage();
+            this.label_MGS_UpdateNotice = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label_MGS_RefreshTotalScoreGiven2 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.lblMGS_StudentScore = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -95,6 +97,7 @@
             this.lblMGS_StudentFullName = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label_MGS_RefreshTotalScoreGiven = new System.Windows.Forms.Label();
             this.button_MGS_AssignScore_Apply = new System.Windows.Forms.Button();
             this.textBox_MGS_AssignScore = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -109,7 +112,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.button_MGS_SaveToExcel = new System.Windows.Forms.Button();
             this.button_MGS_UpdateGroup = new System.Windows.Forms.Button();
             this.listBoxManageGroupScore = new System.Windows.Forms.ListBox();
             this.tabPageSavedData = new System.Windows.Forms.TabPage();
@@ -709,6 +712,7 @@
             // 
             // tabPageManageGroupScore
             // 
+            this.tabPageManageGroupScore.Controls.Add(this.label_MGS_UpdateNotice);
             this.tabPageManageGroupScore.Controls.Add(this.groupBox3);
             this.tabPageManageGroupScore.Controls.Add(this.label15);
             this.tabPageManageGroupScore.Controls.Add(this.groupBox2);
@@ -721,8 +725,18 @@
             this.tabPageManageGroupScore.UseVisualStyleBackColor = true;
             this.tabPageManageGroupScore.Enter += new System.EventHandler(this.tabPageManageGroupScore_Enter);
             // 
+            // label_MGS_UpdateNotice
+            // 
+            this.label_MGS_UpdateNotice.AutoSize = true;
+            this.label_MGS_UpdateNotice.Location = new System.Drawing.Point(1498, 1043);
+            this.label_MGS_UpdateNotice.Name = "label_MGS_UpdateNotice";
+            this.label_MGS_UpdateNotice.Size = new System.Drawing.Size(988, 41);
+            this.label_MGS_UpdateNotice.TabIndex = 53;
+            this.label_MGS_UpdateNotice.Text = "Please click \"Update Group\" button to do an initial update to this section.";
+            // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label_MGS_RefreshTotalScoreGiven2);
             this.groupBox3.Controls.Add(this.label17);
             this.groupBox3.Controls.Add(this.lblMGS_StudentScore);
             this.groupBox3.Controls.Add(this.label16);
@@ -735,6 +749,16 @@
             this.groupBox3.TabIndex = 37;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Student details";
+            // 
+            // label_MGS_RefreshTotalScoreGiven2
+            // 
+            this.label_MGS_RefreshTotalScoreGiven2.AutoSize = true;
+            this.label_MGS_RefreshTotalScoreGiven2.Location = new System.Drawing.Point(765, 161);
+            this.label_MGS_RefreshTotalScoreGiven2.Name = "label_MGS_RefreshTotalScoreGiven2";
+            this.label_MGS_RefreshTotalScoreGiven2.Size = new System.Drawing.Size(390, 82);
+            this.label_MGS_RefreshTotalScoreGiven2.TabIndex = 54;
+            this.label_MGS_RefreshTotalScoreGiven2.Text = "Message!\r\nClick on a student to refresh";
+            this.label_MGS_RefreshTotalScoreGiven2.Visible = false;
             // 
             // label17
             // 
@@ -802,6 +826,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label_MGS_RefreshTotalScoreGiven);
             this.groupBox2.Controls.Add(this.button_MGS_AssignScore_Apply);
             this.groupBox2.Controls.Add(this.textBox_MGS_AssignScore);
             this.groupBox2.Controls.Add(this.label13);
@@ -816,14 +841,24 @@
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.button2);
-            this.groupBox2.Controls.Add(this.button3);
+            this.groupBox2.Controls.Add(this.button_MGS_SaveToExcel);
             this.groupBox2.Controls.Add(this.button_MGS_UpdateGroup);
             this.groupBox2.Location = new System.Drawing.Point(1498, 70);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(965, 1004);
+            this.groupBox2.Size = new System.Drawing.Size(965, 960);
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Group score details";
+            // 
+            // label_MGS_RefreshTotalScoreGiven
+            // 
+            this.label_MGS_RefreshTotalScoreGiven.AutoSize = true;
+            this.label_MGS_RefreshTotalScoreGiven.Location = new System.Drawing.Point(48, 467);
+            this.label_MGS_RefreshTotalScoreGiven.Name = "label_MGS_RefreshTotalScoreGiven";
+            this.label_MGS_RefreshTotalScoreGiven.Size = new System.Drawing.Size(390, 41);
+            this.label_MGS_RefreshTotalScoreGiven.TabIndex = 53;
+            this.label_MGS_RefreshTotalScoreGiven.Text = "Click on a student to refresh";
+            this.label_MGS_RefreshTotalScoreGiven.Visible = false;
             // 
             // button_MGS_AssignScore_Apply
             // 
@@ -919,9 +954,9 @@
             this.labelMGS_TotalScoreGiven.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelMGS_TotalScoreGiven.Location = new System.Drawing.Point(102, 351);
             this.labelMGS_TotalScoreGiven.Name = "labelMGS_TotalScoreGiven";
-            this.labelMGS_TotalScoreGiven.Size = new System.Drawing.Size(299, 139);
+            this.labelMGS_TotalScoreGiven.Size = new System.Drawing.Size(232, 139);
             this.labelMGS_TotalScoreGiven.TabIndex = 43;
-            this.labelMGS_TotalScoreGiven.Text = "90%";
+            this.labelMGS_TotalScoreGiven.Text = "0%";
             // 
             // label11
             // 
@@ -955,25 +990,26 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(483, 865);
+            this.button2.Location = new System.Drawing.Point(483, 844);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(224, 105);
             this.button2.TabIndex = 34;
             this.button2.Text = "Save Groups";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // button_MGS_SaveToExcel
             // 
-            this.button3.Location = new System.Drawing.Point(255, 865);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(222, 105);
-            this.button3.TabIndex = 32;
-            this.button3.Text = "Minus Group";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button_MGS_SaveToExcel.Location = new System.Drawing.Point(255, 844);
+            this.button_MGS_SaveToExcel.Name = "button_MGS_SaveToExcel";
+            this.button_MGS_SaveToExcel.Size = new System.Drawing.Size(222, 105);
+            this.button_MGS_SaveToExcel.TabIndex = 32;
+            this.button_MGS_SaveToExcel.Text = "Save To Excel";
+            this.button_MGS_SaveToExcel.UseVisualStyleBackColor = true;
+            this.button_MGS_SaveToExcel.Click += new System.EventHandler(this.button_MGS_SaveToExcel_Click);
             // 
             // button_MGS_UpdateGroup
             // 
-            this.button_MGS_UpdateGroup.Location = new System.Drawing.Point(22, 865);
+            this.button_MGS_UpdateGroup.Location = new System.Drawing.Point(22, 844);
             this.button_MGS_UpdateGroup.Name = "button_MGS_UpdateGroup";
             this.button_MGS_UpdateGroup.Size = new System.Drawing.Size(226, 105);
             this.button_MGS_UpdateGroup.TabIndex = 31;
@@ -1106,7 +1142,7 @@
         private Label label8;
         private Label label9;
         private Button button2;
-        private Button button3;
+        private Button button_MGS_SaveToExcel;
         private Button button_MGS_UpdateGroup;
         private ListBox listBoxManageGroupScore;
         public Label labelMGS_GroupSelected;
@@ -1124,5 +1160,8 @@
         private Button button_MGS_AssignScore_Apply;
         private TextBox textBox_MGS_AssignScore;
         private Button button_MG_ClearListBox;
+        private Label label_MGS_UpdateNotice;
+        private Label label_MGS_RefreshTotalScoreGiven;
+        private Label label_MGS_RefreshTotalScoreGiven2;
     }
 }

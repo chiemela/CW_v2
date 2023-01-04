@@ -23,6 +23,8 @@ namespace CourseWorkManagementSystem
         }
 
         // global variables
+        bool CheckedResult_TotalScoreGiven = false;
+        int InitialGroupUpdateRecord = 0;
         string? SerialNumber_By_ID = "";
         string? StudentID_By_ID = "";
         string? FirstName_By_ID = "";
@@ -49,7 +51,7 @@ namespace CourseWorkManagementSystem
         public List<string> StudentGroupTable_ListCollection = new List<string>();
         public List<string> ManageScoreStudentList = new List<string>();    // this allows to save students groups with grades
         public string[,] array_StudentGroupTable_Count; // this array will store students data at the "Manage scores" section
-
+        public List<string> ManageGroupScore_SavingList = new List<string>();   // this list will hold the data abot to be saved to Excel
 
         // initial array
         public void InitiateStudentArray()
@@ -57,6 +59,70 @@ namespace CourseWorkManagementSystem
             array_StudentGroupTable_Count = new string[StudentGroupTable_Count, 7];
         }
 
+
+
+        public void CheckTotalScore()
+        {
+            CheckedResult_TotalScoreGiven = false;
+            int count = 1;
+            int CalculateTotalScoreGivenInEachGroup = 0;
+            // this gets the total score for each group and displays it
+            for (int f = 0; f < array_StudentGroupTable_Count.Length; f++)
+            {
+                if (count <= 12)
+                {
+                    if (array_StudentGroupTable_Count[f, 5] == Group_By_ID)
+                    {
+                        string TempGrade = array_StudentGroupTable_Count[f, 6];
+                        try
+                        {
+                            int result = Int32.Parse(TempGrade);
+                            CalculateTotalScoreGivenInEachGroup += result;
+                        }
+                        catch (FormatException)
+                        {
+                            MessageBox.Show($"Unable to parse '{TempGrade}'", "Info");
+                        }
+                    }
+                    ++count;
+                }
+            }
+
+            if (CalculateTotalScoreGivenInEachGroup > 90)
+            {
+                CheckedResult_TotalScoreGiven = true;
+            }
+
+        }
+        // this gets the total score for each group and displays it
+        public void DisplayTotalGiveScore()
+        {
+            int count = 1;
+            int CalculateTotalScoreGivenInEachGroup = 0;
+            // this gets the total score for each group and displays it
+            for (int f = 0; f < array_StudentGroupTable_Count.Length; f++)
+            {
+                if (count <= 12)
+                {
+                    if (array_StudentGroupTable_Count[f, 5] == Group_By_ID)
+                    {
+                        string TempGrade = array_StudentGroupTable_Count[f, 6];
+                        try
+                        {
+                            int result = Int32.Parse(TempGrade);
+                            CalculateTotalScoreGivenInEachGroup += result;
+                        }
+                        catch (FormatException)
+                        {
+                            MessageBox.Show($"Unable to parse '{TempGrade}'", "Info");
+                        }
+                    }
+                    ++count;
+                }
+            }
+
+            labelMGS_TotalScoreGiven.Text = CalculateTotalScoreGivenInEachGroup.ToString() + "%";
+        }
 
         // add student grouping into DataDictionary
         public void SaveGroupInDataDictionary()
@@ -1115,6 +1181,7 @@ namespace CourseWorkManagementSystem
 
         private void comboBoxMGS_ChooseGroup_SelectedValueChanged(object sender, EventArgs e)
         {
+
             // variable diclarations
             var lap = 1;
             var Index2 = 1;
@@ -1126,6 +1193,8 @@ namespace CourseWorkManagementSystem
             listBoxManageGroupScore.DataSource = null;
             listBoxManageGroupScore.Items.Clear();
             MatchingValues.Clear();
+
+
             /*
              * get the GroupID selected from "comboBoxChooseGroup" and assign it to "c" to be used to
              * find all related GroupID in the "StudentGroupTable_ListCollection"
@@ -1133,15 +1202,18 @@ namespace CourseWorkManagementSystem
             object b = comboBoxMGS_ChooseGroup.SelectedItem;
             object be = comboBoxMGS_ChooseGroup.GetItemText(b);
             string? c = be.ToString();
-
             labelMGS_GroupSelected.Text = c;
             labelMGS_GroupSelected.Visible = true;
             labelMGS_Group.Visible = true;
+
+
             // loop through each "StudentGroupTable_ListCollection"
             for (int a = 0; a <= StudentGroupTable_ListCollection.Count; a++)
             {
                 string test = "";
                 string MatchingValueString = "";
+
+
                 // this ensures that four items are added to a row at once. it adds items by batch
                 if (lap > 6)
                 {
@@ -1161,53 +1233,21 @@ namespace CourseWorkManagementSystem
                     }
                 }
                 lap++;
+
+
             }
+
+
             --SerialNumber;
             lblMGS_NumberOfStudents.Text = SerialNumber.ToString();
             labelMGS_NumberOfStudents.Visible = true;
             lblMGS_NumberOfStudents.Visible = true;
             listBoxManageGroupScore.DataSource = MatchingValues;
-
-            /*
-            // Student details section on the "Manage Group Score" page
-            int GroupStudentID_Column = 1;
-            int GroupFirstName_Column = 2;
-            int GroupLastName_Column = 3;
-            //int GroupID_Column = 5;
-            */
-            // save list into a Dictionary and return the Dictionary as list
-            // DeclareDictionary(StudentGroupTable_ListCollection, pointer, student_ID);
+            label_MGS_RefreshTotalScoreGiven.Visible = true;
+            label_MGS_RefreshTotalScoreGiven2.Visible = true;
 
 
 
-
-            /*
-            var StudentIndexNumber = int.Parse(SelectedStudentIndex);
-            // increment "StudentIndexNumber" to jump to the appropriate column in the row
-            StudentIndexNumber++;
-            // get the appropriate column index in the "StudentGroupTable_ListCollection"
-            //ApprColumnIndex = GroupID_Column * StudentIndexNumber;
-            MGS_GetStudentID_Column = GroupStudentID_Column * StudentIndexNumber;
-            MGS_GetFirstName_Column = GroupFirstName_Column * StudentIndexNumber;
-            MGS_GetLastName_Column = GroupLastName_Column * StudentIndexNumber;
-            */
-            /* 
-             * get the appropriate column index for each column in the "StudentGroupTable_ListCollection"
-             * and without this, when you select from the second column in the list it always gets the previous
-             * value
-            */
-            /*
-            //ApprColumnIndex += --StudentIndexNumber;
-            MGS_GetStudentID_Column += --StudentIndexNumber;
-            MGS_GetFirstName_Column += --StudentIndexNumber;
-            MGS_GetLastName_Column += --StudentIndexNumber;
-            */
-            /*
-            //lblCurrentGroupID.Text = StudentGroupTable_ListCollection[ApprColumnIndex];
-            lblMGS_StudentID.Text = StudentGroupTable_ListCollection[MGS_GetStudentID_Column];
-            lblMGS_StudentFullName.Text = StudentGroupTable_ListCollection[MGS_GetFirstName_Column];
-            lblMGS_StudentScore.Text = StudentGroupTable_ListCollection[MGS_GetLastName_Column];
-            */
         }
 
         private void listBoxManageGroupScore_MouseUp(object sender, MouseEventArgs e)
@@ -1236,9 +1276,12 @@ namespace CourseWorkManagementSystem
             // delcare the dictionary to save all groups
             var StudentGrouping = new Dictionary<int, StudentGroups>();
 
+
+
             // loop through each "ManageScoreStudentList" and add them to "StudentGrouping" Dictionary
             for (int a = 0; a <= ManageScoreStudentList.Count; a++)
             {
+
                 // variable diclarations
                 string test = "";
                 string studentID = "";
@@ -1247,6 +1290,7 @@ namespace CourseWorkManagementSystem
                 string Email = "";
                 string GroupID = "";
                 string Grade = "";
+
                 // this ensures that four items are added to a row at once. it adds items by batch
                 if (lap > 7)
                 {
@@ -1287,7 +1331,11 @@ namespace CourseWorkManagementSystem
                 }
                 Lap:
                 lap++;
+
+
             }
+
+
             --SerialNumber;
             string? _studentID = "";
             string? _FirstName = "";
@@ -1295,6 +1343,9 @@ namespace CourseWorkManagementSystem
             string? _Email = "";
             string? _GroupID = "";
             string? _Grade = "";
+            
+
+            // this displays the sturent details below the ListBox in Manage Student Group Section
             foreach (var index in Enumerable.Range(1, SerialNumber))
             {
                 if (StudentGrouping[index].studentID == student_ID)
@@ -1307,13 +1358,16 @@ namespace CourseWorkManagementSystem
                     _Grade = StudentGrouping[index].Grade;
                 }
             }
+
+            /*
             lblMGS_StudentID.Text = _studentID;
             lblMGS_StudentFullName.Text = _FirstName + " " + _LastName;
             lblMGS_StudentScore.Text = _Grade+"%";
+            */
 
 
-            int i = 0;
-            int j = 0;
+            int i = 0;  // this is for the "For loop" below
+            int j = 0;  // this is for the "For loop" below
             bool found = false;
 
             // use the studentID to fetch the student data
@@ -1337,45 +1391,32 @@ namespace CourseWorkManagementSystem
                 }
             }
 
+
+            DisplayTotalGiveScore();
+            lblMGS_StudentID.Text = StudentID_By_ID;
+            lblMGS_StudentFullName.Text = FirstName_By_ID + " " + LastName_By_ID;
+            lblMGS_StudentScore.Text = Grade_By_ID + "%";
+            label_MGS_RefreshTotalScoreGiven.Visible = false;
+            label_MGS_RefreshTotalScoreGiven2.Visible = false;
+
+            /*
             if (found)
-                MessageBox.Show(SerialNumber_By_ID + "\n" +
-                      StudentID_By_ID + "\n" +
-                      FirstName_By_ID + "\n" +
-                      LastName_By_ID + "\n" +
-                      Email_By_ID + "\n" +
-                      Group_By_ID + "\n" +
-                      Grade_By_ID + "\n",
-                      "Info"
-                      );
+            {
+                MessageBox.Show(
+                    SerialNumber_By_ID + "\n" +
+                    StudentID_By_ID + "\n" +
+                    FirstName_By_ID + "\n" +
+                    LastName_By_ID + "\n" +
+                    Email_By_ID + "\n" +
+                    Group_By_ID + "\n" +
+                    Grade_By_ID + "\n",
+                    "Info"
+                );
+            }
             else
+            {
                 MessageBox.Show("There is no *, you cheater. \n", "Info");
-
-
-            /*
-            string? SelectedStudentIndex = listBoxManageGroupScore.GetItemText(listBoxManageGroupScore.SelectedIndex);
-            var StudentIndexNumber = int.Parse(SelectedStudentIndex);
-            // increment "StudentIndexNumber" to jump to the appropriate column in the row
-            StudentIndexNumber++;
-            // get the appropriate column index in the "StudentGroupTable_ListCollection"
-            //ApprColumnIndex = GroupID_Column * StudentIndexNumber;
-            MGS_GetStudentID_Column = GroupStudentID_Column * StudentIndexNumber;
-            MGS_GetFirstName_Column = GroupFirstName_Column * StudentIndexNumber;
-            MGS_GetLastName_Column = GroupLastName_Column * StudentIndexNumber;
-            */
-            /* 
-             * get the appropriate column index for each column in the "StudentGroupTable_ListCollection"
-             * and without this, when you select from the second column in the list it always gets the previous
-             * value
-            */
-            /*
-            //ApprColumnIndex += --StudentIndexNumber;
-            MGS_GetStudentID_Column += --StudentIndexNumber;
-            MGS_GetFirstName_Column += --StudentIndexNumber;
-            MGS_GetLastName_Column += --StudentIndexNumber;
-            //lblCurrentGroupID.Text = StudentGroupTable_ListCollection[ApprColumnIndex];
-            lblMGS_StudentID.Text = StudentGroupTable_ListCollection[MGS_GetStudentID_Column];
-            lblMGS_StudentFullName.Text = StudentGroupTable_ListCollection[MGS_GetFirstName_Column];
-            lblMGS_StudentScore.Text = StudentGroupTable_ListCollection[MGS_GetLastName_Column];
+            }
             */
         }
 
@@ -1396,11 +1437,17 @@ namespace CourseWorkManagementSystem
             var Index6 = 5;
             var Index7 = "0";
 
+
             // check if "listNewlyAddedStudents" header has been removed else remove the first row of the list
             CheckTrimedListHeader(TrimedListHeader);
+
             // get the number of rows to be given to the array
             StudentGroupTable_Count = StudentGroupTable_ListCollection.Count / 6;
+
+            // initiate a 2-dimensional array with the set rows and colume
             InitiateStudentArray();
+
+
             // loop through each "StudentGroupTable_ListCollection" and add them to "ManageScoreStudentList"
             for (var i = 0; i <= StudentGroupTable_ListCollection.Count; i++)
             {
@@ -1430,6 +1477,7 @@ namespace CourseWorkManagementSystem
                     string? _GroupID = StudentGroupTable_ListCollection[Index6];
                     string? _Grade = Index7;
                     
+
                     array_StudentGroupTable_Count[array_index, 0] = _SerialNumber;
                     array_StudentGroupTable_Count[array_index, 1] = _studentID;
                     array_StudentGroupTable_Count[array_index, 2] = _FirstName;
@@ -1449,24 +1497,48 @@ namespace CourseWorkManagementSystem
                     array_index++;  // increment "array_index"
                 }
                 lap++;
+
+
             }
-            /*
-            MessageBox.Show(array_StudentGroupTable_Count[11, 0] + "\n" +
-                  array_StudentGroupTable_Count[11, 1] + "\n" +
-                  array_StudentGroupTable_Count[11, 2] + "\n" +
-                  array_StudentGroupTable_Count[11, 3] + "\n" +
-                  array_StudentGroupTable_Count[11, 4] + "\n" +
-                  array_StudentGroupTable_Count[11, 5] + "\n" +
-                  array_StudentGroupTable_Count[11, 6] + "\n",
-                  "Info"
-                  );
-            
-            */
+            InitialGroupUpdateRecord++;
+            label_MGS_UpdateNotice.Text = "Update commited: " + InitialGroupUpdateRecord +
+                ". \nPlease update whenever you make changes to the group members.";
         }
 
         private void button_MGS_AssignScore_Apply_Click(object sender, EventArgs e)
         {
-            array_StudentGroupTable_Count[fetchedStudentID, 6] = textBox_MGS_AssignScore.Text;
+            // assigns score to the selected student
+            if (textBox_MGS_AssignScore.Text != "")
+            {
+
+                string TempString = array_StudentGroupTable_Count[fetchedStudentID, 6];
+                array_StudentGroupTable_Count[fetchedStudentID, 6] = textBox_MGS_AssignScore.Text;
+
+                // run check if Total Score Given for a group has exceeded 90%
+                CheckTotalScore();
+
+                // if Total Score Given for a group has exceeded 90% then revert back to previous value
+                if (CheckedResult_TotalScoreGiven == true)
+                {
+                    array_StudentGroupTable_Count[fetchedStudentID, 6] = TempString;
+                    MessageBox.Show("The score you entered makes the Total Score alloted to exceeded 90%", "Info");
+                }
+                else
+                {
+                    lblMGS_StudentScore.Text = array_StudentGroupTable_Count[fetchedStudentID, 6] + "%";
+
+                    // this gets the total score for each group and displays it
+                    DisplayTotalGiveScore();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter a valid number", "Info");
+            }
+            label_MGS_RefreshTotalScoreGiven.Visible = false;
+            label_MGS_RefreshTotalScoreGiven2.Visible = false;
+
+            /*
             MessageBox.Show(
                 "This is the result" + "\n" +
                 array_StudentGroupTable_Count[fetchedStudentID, 0] + "\n" +
@@ -1478,6 +1550,7 @@ namespace CourseWorkManagementSystem
                 array_StudentGroupTable_Count[fetchedStudentID, 6] + "\n",
                 "Info"
             );
+            */
         }
 
         private void button_MG_ClearListBox_Click(object sender, EventArgs e)
@@ -1486,6 +1559,61 @@ namespace CourseWorkManagementSystem
             listBoxViewStudentGrouping.Items.Clear();
             StudentGroupTable_ListCollection.Clear();
             ListStudentsGrouping.Clear();
+        }
+
+        private void button_MGS_SaveToExcel_Click(object sender, EventArgs e)
+        {
+
+            // prepare "DataTable dt" which will be used to save data into Excel
+            System.Data.DataTable dt = new System.Data.DataTable();
+            dt.Columns.Add("SerialNumber", typeof(string));
+            dt.Columns.Add("StudentID", typeof(string));
+            dt.Columns.Add("FirstName", typeof(string));
+            dt.Columns.Add("LastName", typeof(string));
+            dt.Columns.Add("Email", typeof(string));
+            dt.Columns.Add("Group", typeof(string));
+            dt.Columns.Add("Grade(%)", typeof(string));
+
+            // assign array_StudentGroupTable_Count array to "ManageGroupScore_SavingList" list 
+            int count = 1;
+            // this gets the total score for each group and displays it
+            for (int f = 0; f < array_StudentGroupTable_Count.Length; f++)  // this stages accesses the row of the array
+            {
+                if (count <= 12)  // this stages accesses the column of the array
+                {
+                    // assign each list index to a cell in the row
+                    dt.Rows.Add(
+                        array_StudentGroupTable_Count[f, 0],
+                        array_StudentGroupTable_Count[f, 1],
+                        array_StudentGroupTable_Count[f, 2],
+                        array_StudentGroupTable_Count[f, 3],
+                        array_StudentGroupTable_Count[f, 4],
+                        array_StudentGroupTable_Count[f, 5],
+                        array_StudentGroupTable_Count[f, 6]
+                    );
+                    ++count;
+                }
+            }
+
+            using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.xlsx" })
+            {
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        using (XLWorkbook workbook = new XLWorkbook())
+                        {
+                            workbook.Worksheets.Add(dt, "Students");
+                            workbook.SaveAs(sfd.FileName);
+                        }
+                        MessageBox.Show("File successfully saved", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
     }
 }
