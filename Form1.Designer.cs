@@ -116,6 +116,7 @@
             this.button_MGS_UpdateGroup = new System.Windows.Forms.Button();
             this.listBoxManageGroupScore = new System.Windows.Forms.ListBox();
             this.tabPageSavedData = new System.Windows.Forms.TabPage();
+            this.button_MG_SaveToExcel = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPageManageStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListItems)).BeginInit();
@@ -180,7 +181,7 @@
             this.btnSaveExcel.Name = "btnSaveExcel";
             this.btnSaveExcel.Size = new System.Drawing.Size(268, 78);
             this.btnSaveExcel.TabIndex = 29;
-            this.btnSaveExcel.Text = "Save to Excel";
+            this.btnSaveExcel.Text = "Save To Excel";
             this.btnSaveExcel.UseVisualStyleBackColor = true;
             this.btnSaveExcel.Click += new System.EventHandler(this.btnSaveExcel_Click);
             // 
@@ -396,6 +397,7 @@
             // 
             // groupBoxManualSettings
             // 
+            this.groupBoxManualSettings.Controls.Add(this.button_MG_SaveToExcel);
             this.groupBoxManualSettings.Controls.Add(this.button_MG_ClearListBox);
             this.groupBoxManualSettings.Controls.Add(this.btnChangeGroupID);
             this.groupBoxManualSettings.Controls.Add(this.btnSaveGroups);
@@ -414,7 +416,7 @@
             this.groupBoxManualSettings.Controls.Add(this.listBoxViewStudentGrouping);
             this.groupBoxManualSettings.Location = new System.Drawing.Point(1073, 93);
             this.groupBoxManualSettings.Name = "groupBoxManualSettings";
-            this.groupBoxManualSettings.Size = new System.Drawing.Size(1410, 1001);
+            this.groupBoxManualSettings.Size = new System.Drawing.Size(1410, 1026);
             this.groupBoxManualSettings.TabIndex = 16;
             this.groupBoxManualSettings.TabStop = false;
             this.groupBoxManualSettings.Text = "Manual Settings";
@@ -441,7 +443,7 @@
             // 
             // btnSaveGroups
             // 
-            this.btnSaveGroups.Location = new System.Drawing.Point(1166, 877);
+            this.btnSaveGroups.Location = new System.Drawing.Point(1166, 904);
             this.btnSaveGroups.Name = "btnSaveGroups";
             this.btnSaveGroups.Size = new System.Drawing.Size(224, 105);
             this.btnSaveGroups.TabIndex = 34;
@@ -460,7 +462,7 @@
             // 
             // btnMinusGroup
             // 
-            this.btnMinusGroup.Location = new System.Drawing.Point(938, 877);
+            this.btnMinusGroup.Location = new System.Drawing.Point(938, 904);
             this.btnMinusGroup.Name = "btnMinusGroup";
             this.btnMinusGroup.Size = new System.Drawing.Size(222, 105);
             this.btnMinusGroup.TabIndex = 32;
@@ -470,7 +472,7 @@
             // 
             // btnAddGroup
             // 
-            this.btnAddGroup.Location = new System.Drawing.Point(719, 877);
+            this.btnAddGroup.Location = new System.Drawing.Point(719, 904);
             this.btnAddGroup.Name = "btnAddGroup";
             this.btnAddGroup.Size = new System.Drawing.Size(213, 105);
             this.btnAddGroup.TabIndex = 31;
@@ -526,7 +528,7 @@
             // 
             // btnChooseStudent
             // 
-            this.btnChooseStudent.Location = new System.Drawing.Point(474, 877);
+            this.btnChooseStudent.Location = new System.Drawing.Point(474, 904);
             this.btnChooseStudent.Name = "btnChooseStudent";
             this.btnChooseStudent.Size = new System.Drawing.Size(239, 105);
             this.btnChooseStudent.TabIndex = 24;
@@ -554,7 +556,7 @@
             // 
             // btnImportStudentGroupingTable
             // 
-            this.btnImportStudentGroupingTable.Location = new System.Drawing.Point(20, 877);
+            this.btnImportStudentGroupingTable.Location = new System.Drawing.Point(20, 904);
             this.btnImportStudentGroupingTable.Name = "btnImportStudentGroupingTable";
             this.btnImportStudentGroupingTable.Size = new System.Drawing.Size(448, 105);
             this.btnImportStudentGroupingTable.TabIndex = 19;
@@ -1037,6 +1039,16 @@
             this.tabPageSavedData.Text = "Saved Data";
             this.tabPageSavedData.UseVisualStyleBackColor = true;
             // 
+            // button_MG_SaveToExcel
+            // 
+            this.button_MG_SaveToExcel.Location = new System.Drawing.Point(1166, 793);
+            this.button_MG_SaveToExcel.Name = "button_MG_SaveToExcel";
+            this.button_MG_SaveToExcel.Size = new System.Drawing.Size(222, 105);
+            this.button_MG_SaveToExcel.TabIndex = 37;
+            this.button_MG_SaveToExcel.Text = "Save To Excel";
+            this.button_MG_SaveToExcel.UseVisualStyleBackColor = true;
+            this.button_MG_SaveToExcel.Click += new System.EventHandler(this.button_MG_SaveToExcel_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 41F);
@@ -1163,5 +1175,6 @@
         private Label label_MGS_UpdateNotice;
         private Label label_MGS_RefreshTotalScoreGiven;
         private Label label_MGS_RefreshTotalScoreGiven2;
+        private Button button_MG_SaveToExcel;
     }
 }

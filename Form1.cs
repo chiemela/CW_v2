@@ -1,4 +1,4 @@
-using ClosedXML.Excel;
+﻿using ClosedXML.Excel;
 using CsvHelper;
 using DocumentFormat.OpenXml.Drawing.Charts;
 using DocumentFormat.OpenXml.Spreadsheet;
@@ -97,12 +97,13 @@ namespace CourseWorkManagementSystem
         // this gets the total score for each group and displays it
         public void DisplayTotalGiveScore()
         {
+            // this gets the total score for each group and displays it
             int count = 1;
             int CalculateTotalScoreGivenInEachGroup = 0;
-            // this gets the total score for each group and displays it
+            int rows = array_StudentGroupTable_Count.GetUpperBound(0) - array_StudentGroupTable_Count.GetLowerBound(0) + 1;
             for (int f = 0; f < array_StudentGroupTable_Count.Length; f++)
             {
-                if (count <= 12)
+                if (count <= rows)
                 {
                     if (array_StudentGroupTable_Count[f, 5] == Group_By_ID)
                     {
@@ -120,7 +121,6 @@ namespace CourseWorkManagementSystem
                     ++count;
                 }
             }
-
             labelMGS_TotalScoreGiven.Text = CalculateTotalScoreGivenInEachGroup.ToString() + "%";
         }
 
@@ -749,7 +749,7 @@ namespace CourseWorkManagementSystem
                 // check if "listNewlyAddedStudents" header has been removed else remove the first row of the list
                 CheckTrimedListHeader(TrimedListHeader);
 
-                // loop through each "listNewlyAddedStudents" and add them to DataTable row
+                // loop through each "StudentGroupTable_ListCollection" and add them to StudentGroupTable row
                 for (var i = 0; i <= StudentGroupTable_ListCollection.Count; i++)
                 {
                     // this ensures that four items are added to a row at once. it adds items by batch
@@ -902,7 +902,9 @@ namespace CourseWorkManagementSystem
             // if both grouping conditions are met then display a success message
             if (!GroupNumberExceeded)
             {
-                MessageBox.Show("Groups saved without errors",
+                MessageBox.Show("Groups saved without errors, \n\n" +
+                    "Please remember to click the 'Save To Excel' button in case you would like to retrieve " +
+                    "saved groups in future. 🙂",
                     "Info", MessageBoxButtons.OK, MessageBoxIcon.Information
                     );
             }
@@ -1369,35 +1371,45 @@ namespace CourseWorkManagementSystem
             int i = 0;  // this is for the "For loop" below
             int j = 0;  // this is for the "For loop" below
             bool found = false;
-
             // use the studentID to fetch the student data
-            for (i = 0; i < array_StudentGroupTable_Count.Length && !found; i++)
+            if (array_StudentGroupTable_Count != null)
             {
-                for (j = 0; j < 7; j++)
+                for (i = 0; i < array_StudentGroupTable_Count.Length && !found; i++)
                 {
-                    if (array_StudentGroupTable_Count[i, j] == _studentID)
+                    for (j = 0; j < 7; j++)
                     {
-                        SerialNumber_By_ID = array_StudentGroupTable_Count[i, 0];
-                        StudentID_By_ID = array_StudentGroupTable_Count[i, 1];
-                        FirstName_By_ID = array_StudentGroupTable_Count[i, 2];
-                        LastName_By_ID = array_StudentGroupTable_Count[i, 3];
-                        Email_By_ID = array_StudentGroupTable_Count[i, 4];
-                        Group_By_ID = array_StudentGroupTable_Count[i, 5];
-                        Grade_By_ID = array_StudentGroupTable_Count[i, 6];
-                        fetchedStudentID = i;
-                        found = true;
-                        break;
+                        if (array_StudentGroupTable_Count[i, j] == _studentID)
+                        {
+                            SerialNumber_By_ID = array_StudentGroupTable_Count[i, 0];
+                            StudentID_By_ID = array_StudentGroupTable_Count[i, 1];
+                            FirstName_By_ID = array_StudentGroupTable_Count[i, 2];
+                            LastName_By_ID = array_StudentGroupTable_Count[i, 3];
+                            Email_By_ID = array_StudentGroupTable_Count[i, 4];
+                            Group_By_ID = array_StudentGroupTable_Count[i, 5];
+                            Grade_By_ID = array_StudentGroupTable_Count[i, 6];
+                            fetchedStudentID = i;
+                            found = true;
+                            break;
+                        }
                     }
                 }
+
+
+                DisplayTotalGiveScore();
+                lblMGS_StudentID.Text = StudentID_By_ID;
+                lblMGS_StudentFullName.Text = FirstName_By_ID + " " + LastName_By_ID;
+                lblMGS_StudentScore.Text = Grade_By_ID + "%";
+                label_MGS_RefreshTotalScoreGiven.Visible = false;
+                label_MGS_RefreshTotalScoreGiven2.Visible = false;
+
             }
-
-
-            DisplayTotalGiveScore();
-            lblMGS_StudentID.Text = StudentID_By_ID;
-            lblMGS_StudentFullName.Text = FirstName_By_ID + " " + LastName_By_ID;
-            lblMGS_StudentScore.Text = Grade_By_ID + "%";
-            label_MGS_RefreshTotalScoreGiven.Visible = false;
-            label_MGS_RefreshTotalScoreGiven2.Visible = false;
+            else
+            {
+                MessageBox.Show(" Invalid operation. CODE:4;001.\n" +
+                    "Please click on 'Update Group' button first before selecting a student.",
+                    "Info"
+                );
+            }
 
             /*
             if (found)
@@ -1594,6 +1606,80 @@ namespace CourseWorkManagementSystem
                     ++count;
                 }
             }
+
+            using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.xlsx" })
+            {
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        using (XLWorkbook workbook = new XLWorkbook())
+                        {
+                            workbook.Worksheets.Add(dt, "Students");
+                            workbook.SaveAs(sfd.FileName);
+                        }
+                        MessageBox.Show("File successfully saved", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void button_MG_SaveToExcel_Click(object sender, EventArgs e)
+        {
+            // prepare "DataTable dt" which will be used to save data into Excel
+            System.Data.DataTable dt = new System.Data.DataTable();
+            dt.Columns.Add("S/N", typeof(string));
+            dt.Columns.Add("Student ID", typeof(string));
+            dt.Columns.Add("FirstName", typeof(string));
+            dt.Columns.Add("LastName", typeof(string));
+            dt.Columns.Add("Email Address", typeof(string));
+            dt.Columns.Add("Group ID", typeof(string));
+            // check if "listNewlyAddedStudents" header has been removed else remove the first row of the list
+            CheckTrimedListHeader(TrimedListHeader);
+
+            // variable diclarations
+            var lap = 1;
+            var Index1 = 0;
+            var Index2 = 1;
+            var Index3 = 2;
+            var Index4 = 3;
+            var Index5 = 4;
+            var Index6 = 5;
+
+            // check if "listNewlyAddedStudents" header has been removed else remove the first row of the list
+            CheckTrimedListHeader(TrimedListHeader);
+
+            // loop through each "StudentGroupTable_ListCollection" and add them to "dt" row
+            for (var i = 0; i <= StudentGroupTable_ListCollection.Count; i++)
+            {
+                // this ensures that four items are added to a row at once. it adds items by batch
+                if (lap > 6)
+                {
+                    lap = 1;
+                    // assign each list index to a cell in the row
+                    dt.Rows.Add(
+                        StudentGroupTable_ListCollection[Index1],
+                        StudentGroupTable_ListCollection[Index2],
+                        StudentGroupTable_ListCollection[Index3],
+                        StudentGroupTable_ListCollection[Index4],
+                        StudentGroupTable_ListCollection[Index5],
+                        StudentGroupTable_ListCollection[Index6]
+                        );
+                    // go to the next items on the list that needs to be added to Datatable row
+                    Index1 += 6;
+                    Index2 += 6;
+                    Index3 += 6;
+                    Index4 += 6;
+                    Index5 += 6;
+                    Index6 += 6;
+                }
+                lap++;
+            }
+
 
             using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.xlsx" })
             {
