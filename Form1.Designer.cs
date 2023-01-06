@@ -56,6 +56,7 @@
             this.tabPageManageGroups = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBoxManualSettings = new System.Windows.Forms.GroupBox();
+            this.button_MG_SaveToExcel = new System.Windows.Forms.Button();
             this.button_MG_ClearListBox = new System.Windows.Forms.Button();
             this.btnChangeGroupID = new System.Windows.Forms.Button();
             this.btnSaveGroups = new System.Windows.Forms.Button();
@@ -111,12 +112,26 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.button_MGS_SaveToExcel = new System.Windows.Forms.Button();
             this.button_MGS_UpdateGroup = new System.Windows.Forms.Button();
             this.listBoxManageGroupScore = new System.Windows.Forms.ListBox();
             this.tabPageSavedData = new System.Windows.Forms.TabPage();
-            this.button_MG_SaveToExcel = new System.Windows.Forms.Button();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label22 = new System.Windows.Forms.Label();
+            this.button_SD_ImportStudentsfile = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label19 = new System.Windows.Forms.Label();
+            this.button_SD_ImportManageGroupScorefile = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.button_SD_ImportManageGroupsFile = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPageManageStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListItems)).BeginInit();
@@ -131,6 +146,12 @@
             this.tabPageManageGroupScore.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.tabPageSavedData.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -420,6 +441,16 @@
             this.groupBoxManualSettings.TabIndex = 16;
             this.groupBoxManualSettings.TabStop = false;
             this.groupBoxManualSettings.Text = "Manual Settings";
+            // 
+            // button_MG_SaveToExcel
+            // 
+            this.button_MG_SaveToExcel.Location = new System.Drawing.Point(1166, 793);
+            this.button_MG_SaveToExcel.Name = "button_MG_SaveToExcel";
+            this.button_MG_SaveToExcel.Size = new System.Drawing.Size(222, 105);
+            this.button_MG_SaveToExcel.TabIndex = 37;
+            this.button_MG_SaveToExcel.Text = "Save To Excel";
+            this.button_MG_SaveToExcel.UseVisualStyleBackColor = true;
+            this.button_MG_SaveToExcel.Click += new System.EventHandler(this.button_MG_SaveToExcel_Click);
             // 
             // button_MG_ClearListBox
             // 
@@ -842,7 +873,6 @@
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.button_MGS_SaveToExcel);
             this.groupBox2.Controls.Add(this.button_MGS_UpdateGroup);
             this.groupBox2.Location = new System.Drawing.Point(1498, 70);
@@ -939,6 +969,7 @@
             this.comboBoxMGS_ChooseGroup.Name = "comboBoxMGS_ChooseGroup";
             this.comboBoxMGS_ChooseGroup.Size = new System.Drawing.Size(211, 49);
             this.comboBoxMGS_ChooseGroup.TabIndex = 45;
+            this.comboBoxMGS_ChooseGroup.Visible = false;
             this.comboBoxMGS_ChooseGroup.SelectedValueChanged += new System.EventHandler(this.comboBoxMGS_ChooseGroup_SelectedValueChanged);
             // 
             // label12
@@ -990,15 +1021,6 @@
             this.label9.TabIndex = 40;
             this.label9.Text = "Max score allotted";
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(483, 844);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(224, 105);
-            this.button2.TabIndex = 34;
-            this.button2.Text = "Save Groups";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // button_MGS_SaveToExcel
             // 
             this.button_MGS_SaveToExcel.Location = new System.Drawing.Point(255, 844);
@@ -1031,6 +1053,10 @@
             // 
             // tabPageSavedData
             // 
+            this.tabPageSavedData.Controls.Add(this.groupBox7);
+            this.tabPageSavedData.Controls.Add(this.groupBox5);
+            this.tabPageSavedData.Controls.Add(this.groupBox4);
+            this.tabPageSavedData.Controls.Add(this.label14);
             this.tabPageSavedData.Location = new System.Drawing.Point(10, 88);
             this.tabPageSavedData.Name = "tabPageSavedData";
             this.tabPageSavedData.Padding = new System.Windows.Forms.Padding(3);
@@ -1039,15 +1065,168 @@
             this.tabPageSavedData.Text = "Saved Data";
             this.tabPageSavedData.UseVisualStyleBackColor = true;
             // 
-            // button_MG_SaveToExcel
+            // groupBox7
             // 
-            this.button_MG_SaveToExcel.Location = new System.Drawing.Point(1166, 793);
-            this.button_MG_SaveToExcel.Name = "button_MG_SaveToExcel";
-            this.button_MG_SaveToExcel.Size = new System.Drawing.Size(222, 105);
-            this.button_MG_SaveToExcel.TabIndex = 37;
-            this.button_MG_SaveToExcel.Text = "Save To Excel";
-            this.button_MG_SaveToExcel.UseVisualStyleBackColor = true;
-            this.button_MG_SaveToExcel.Click += new System.EventHandler(this.button_MG_SaveToExcel_Click);
+            this.groupBox7.Controls.Add(this.groupBox8);
+            this.groupBox7.Controls.Add(this.label22);
+            this.groupBox7.Controls.Add(this.button_SD_ImportStudentsfile);
+            this.groupBox7.Location = new System.Drawing.Point(36, 799);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(2441, 303);
+            this.groupBox7.TabIndex = 35;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Import For Manage Students";
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.label21);
+            this.groupBox8.Controls.Add(this.button4);
+            this.groupBox8.Location = new System.Drawing.Point(0, 325);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(2441, 342);
+            this.groupBox8.TabIndex = 34;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Import For Manage Group Score";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label21.Location = new System.Drawing.Point(27, 104);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(2140, 70);
+            this.label21.TabIndex = 19;
+            this.label21.Text = resources.GetString("label21.Text");
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(27, 203);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(514, 105);
+            this.button4.TabIndex = 18;
+            this.button4.Text = "Import Manage Group Score file";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label22.Location = new System.Drawing.Point(27, 80);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(2390, 70);
+            this.label22.TabIndex = 19;
+            this.label22.Text = resources.GetString("label22.Text");
+            // 
+            // button_SD_ImportStudentsfile
+            // 
+            this.button_SD_ImportStudentsfile.Location = new System.Drawing.Point(27, 171);
+            this.button_SD_ImportStudentsfile.Name = "button_SD_ImportStudentsfile";
+            this.button_SD_ImportStudentsfile.Size = new System.Drawing.Size(514, 105);
+            this.button_SD_ImportStudentsfile.TabIndex = 18;
+            this.button_SD_ImportStudentsfile.Text = "Import Students file";
+            this.button_SD_ImportStudentsfile.UseVisualStyleBackColor = true;
+            this.button_SD_ImportStudentsfile.Click += new System.EventHandler(this.button_SD_ImportStudentsfile_Click);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.groupBox6);
+            this.groupBox5.Controls.Add(this.label19);
+            this.groupBox5.Controls.Add(this.button_SD_ImportManageGroupScorefile);
+            this.groupBox5.Location = new System.Drawing.Point(36, 428);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(2441, 303);
+            this.groupBox5.TabIndex = 33;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Import For Manage Group Score";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.label20);
+            this.groupBox6.Controls.Add(this.button3);
+            this.groupBox6.Location = new System.Drawing.Point(0, 325);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(2441, 342);
+            this.groupBox6.TabIndex = 34;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Import For Manage Group Score";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label20.Location = new System.Drawing.Point(27, 104);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(2140, 70);
+            this.label20.TabIndex = 19;
+            this.label20.Text = resources.GetString("label20.Text");
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(27, 203);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(514, 105);
+            this.button3.TabIndex = 18;
+            this.button3.Text = "Import Manage Group Score file";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label19.Location = new System.Drawing.Point(27, 80);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(2140, 70);
+            this.label19.TabIndex = 19;
+            this.label19.Text = resources.GetString("label19.Text");
+            // 
+            // button_SD_ImportManageGroupScorefile
+            // 
+            this.button_SD_ImportManageGroupScorefile.Location = new System.Drawing.Point(27, 171);
+            this.button_SD_ImportManageGroupScorefile.Name = "button_SD_ImportManageGroupScorefile";
+            this.button_SD_ImportManageGroupScorefile.Size = new System.Drawing.Size(514, 105);
+            this.button_SD_ImportManageGroupScorefile.TabIndex = 18;
+            this.button_SD_ImportManageGroupScorefile.Text = "Import Manage Group Score file";
+            this.button_SD_ImportManageGroupScorefile.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label18);
+            this.groupBox4.Controls.Add(this.button_SD_ImportManageGroupsFile);
+            this.groupBox4.Location = new System.Drawing.Point(36, 68);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(2441, 303);
+            this.groupBox4.TabIndex = 32;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Import For Manage Groups";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label18.Location = new System.Drawing.Point(27, 80);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(2373, 70);
+            this.label18.TabIndex = 19;
+            this.label18.Text = resources.GetString("label18.Text");
+            // 
+            // button_SD_ImportManageGroupsFile
+            // 
+            this.button_SD_ImportManageGroupsFile.Location = new System.Drawing.Point(27, 171);
+            this.button_SD_ImportManageGroupsFile.Name = "button_SD_ImportManageGroupsFile";
+            this.button_SD_ImportManageGroupsFile.Size = new System.Drawing.Size(514, 105);
+            this.button_SD_ImportManageGroupsFile.TabIndex = 18;
+            this.button_SD_ImportManageGroupsFile.Text = "Import Manage Groups File";
+            this.button_SD_ImportManageGroupsFile.UseVisualStyleBackColor = true;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label14.Location = new System.Drawing.Point(22, 21);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(258, 35);
+            this.label14.TabIndex = 31;
+            this.label14.Text = "Saved Data Page";
             // 
             // Form1
             // 
@@ -1084,6 +1263,18 @@
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.tabPageSavedData.ResumeLayout(false);
+            this.tabPageSavedData.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1153,7 +1344,6 @@
         private Label label11;
         private Label label8;
         private Label label9;
-        private Button button2;
         private Button button_MGS_SaveToExcel;
         private Button button_MGS_UpdateGroup;
         private ListBox listBoxManageGroupScore;
@@ -1176,5 +1366,21 @@
         private Label label_MGS_RefreshTotalScoreGiven;
         private Label label_MGS_RefreshTotalScoreGiven2;
         private Button button_MG_SaveToExcel;
+        private GroupBox groupBox4;
+        private Button button_SD_ImportManageGroupsFile;
+        private Label label14;
+        private GroupBox groupBox5;
+        private Label label19;
+        private Button button_SD_ImportManageGroupScorefile;
+        private Label label18;
+        private GroupBox groupBox7;
+        private GroupBox groupBox8;
+        private Label label21;
+        private Button button4;
+        private Label label22;
+        private Button button_SD_ImportStudentsfile;
+        private GroupBox groupBox6;
+        private Label label20;
+        private Button button3;
     }
 }

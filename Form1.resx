@@ -63,6 +63,26 @@
   <metadata name="comboBoxChangeGroupID.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="label21.Text" xml:space="preserve">
+    <value>Retrieve saved data for "Manage Group Score" section. If you have saved data to excel containing both the Group ID and Individual Scores, then click
+the "Import Manage Group Score file" button below to import data after that navigate to "Manage Group Score" tab to re-assign individual scores.</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>Retrieve saved data for "Manage Students" section. If you have just added students to the list and have saved data to excel, then click the "Import Students file" button
+below to import data after that navigate to "Manage Students" tab to add more students.</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>Retrieve saved data for "Manage Group Score" section. If you have saved data to excel containing both the Group ID and Individual Scores, then click
+the "Import Manage Group Score file" button below to import data after that navigate to "Manage Group Score" tab to re-assign individual scores.</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Retrieve saved data for "Manage Group Score" section. If you have saved data to excel containing both the Group ID and Individual Scores, then click
+the "Import Manage Group Score file" button below to import data after that navigate to "Manage Group Score" tab to re-assign individual scores.</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Retrieve saved data for "Manage Groups" section. If you have saved data to excel containing the Group ID then click the "Import Manage Groups File" button below to
+import data after that navigate to "Manage Groups" tab to re-assign groups</value>
+  </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>76</value>
   </metadata>
