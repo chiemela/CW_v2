@@ -1187,6 +1187,7 @@
             this.button_SD_ImportManageGroupScorefile.TabIndex = 18;
             this.button_SD_ImportManageGroupScorefile.Text = "Import Manage Group Score file";
             this.button_SD_ImportManageGroupScorefile.UseVisualStyleBackColor = true;
+            this.button_SD_ImportManageGroupScorefile.Click += new System.EventHandler(this.button_SD_ImportManageGroupScorefile_Click);
             // 
             // groupBox4
             // 
@@ -1217,6 +1218,7 @@
             this.button_SD_ImportManageGroupsFile.TabIndex = 18;
             this.button_SD_ImportManageGroupsFile.Text = "Import Manage Groups File";
             this.button_SD_ImportManageGroupsFile.UseVisualStyleBackColor = true;
+            this.button_SD_ImportManageGroupsFile.Click += new System.EventHandler(this.button_SD_ImportManageGroupsFile_Click);
             // 
             // label14
             // 

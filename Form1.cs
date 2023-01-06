@@ -1708,6 +1708,7 @@ namespace CourseWorkManagementSystem
 
         private void button_SD_ImportStudentsfile_Click(object sender, EventArgs e)
         {
+            Check_If_Clicked = 0; // make "Check_If_Clicked" to be zero so that user can import new csv file if they want
             // switch the to the relevant DataGridView
             dataGridViewListItems.Visible = true;
             dgvCsvImport.Visible = false;
@@ -1804,6 +1805,231 @@ namespace CourseWorkManagementSystem
                         }
                         // display the list item in "dataGridViewListItems"
                         dataGridViewListItems.DataSource = dt;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("File doesn't exist", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void button_SD_ImportManageGroupScorefile_Click(object sender, EventArgs e)
+        {
+            // switch the to the relevant DataGridView
+            dataGridViewListItems.Visible = true;
+            dgvCsvImport.Visible = false;
+            dataGridViewListItems.DataSource = null;
+            TrimedListHeader = true;
+            // check if "listNewlyAddedStudents" header has been removed else remove the first row of the list
+            CheckTrimedListHeader(TrimedListHeader);
+
+            // open the file dialog and choose the .csv file
+            using (OpenFileDialog openFileDialog = new OpenFileDialog() { Filter = "Excel Workbook|*.xlsx", ValidateNames = true })
+            {
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = Path.GetFullPath(openFileDialog.FileName);
+
+                    // display the filepath above datagGidView
+                    lblFilePath.Text = filePath;
+
+                    var workbook = new XLWorkbook(filePath);
+                    var WorkSheet = workbook.Worksheet(1);
+                    bool ColumnEmpty = false;
+                    bool CheckRowEmpty = false;
+
+
+                    var RowCount = WorkSheet.RangeUsed().RowsUsed().Skip(1);    // get the used rows from excel
+                    int newcount = 0;   // intialize a new counter
+                    foreach (var row in RowCount)   // access each data in the used rows
+                    {
+                        newcount++; // increment counter to be used to loop through each row and get all the non-empty cells
+                        CheckRowEmpty = true;   // used to know if "listNewlyAddedStudents" should be cleared or not 
+                    }
+
+                    if (CheckRowEmpty)  // check if row is empty before clearing the contents of "listNewlyAddedStudents"
+                    {
+                        listNewlyAddedStudents.Clear(); // clear this list only if there is one or more data from excel file
+
+                        for (int i = 2; i <= newcount; i++) // this loops through each row and will not exceed the number of used rows
+                        {
+                            var row = WorkSheet.Row(i); // this selects the row from the second row skipping the first row
+
+                            for (int j = 1; j < 5; j++) // loop through each cell
+                            {
+                                var cell = row.Cell(j);
+                                ColumnEmpty = cell.IsEmpty();
+
+                                if (!ColumnEmpty) // check if cell is empty
+                                {
+                                    string value = cell.GetValue<string>(); // assign cell value to variable
+                                    listNewlyAddedStudents.Add(value);  // add new item to the list "listNewlyAddedStudents"
+                                }
+
+                            }
+
+                            //MessageBox.Show("Value is: " + value + ". Empty is: " + empty, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        }
+                        // display the number of students
+                        lblNumberOfStudent.Text = (listNewlyAddedStudents.Count / 4).ToString();
+
+                        // prepare "DataTable dt" which will be used as DataSource for "dataGridViewListItems"
+                        System.Data.DataTable dt = new System.Data.DataTable();
+                        dt.Columns.Add("studentIDnumber", typeof(string));
+                        dt.Columns.Add("firstName", typeof(string));
+                        dt.Columns.Add("lastName", typeof(string));
+                        dt.Columns.Add("emailAddress", typeof(string));
+
+                        // variable diclarations
+                        var lap = 1;
+                        var Index1 = 0;
+                        var Index2 = 1;
+                        var Index3 = 2;
+                        var Index4 = 3;
+
+                        // loop through each "listNewlyAddedStudents" and add them to DataTable row
+                        for (var i = 0; i <= listNewlyAddedStudents.Count; i++)
+                        {
+                            // this ensures that four items are added to a row at once. it adds items by batch
+                            if (lap > 4)
+                            {
+                                lap = 1;
+                                // assign each list index to a cell in the row
+                                dt.Rows.Add(listNewlyAddedStudents[Index1],
+                                    listNewlyAddedStudents[Index2],
+                                    listNewlyAddedStudents[Index3],
+                                    listNewlyAddedStudents[Index4]
+                                );
+                                // go to the next items on the list that needs to be added to Datatable row
+                                Index1 += 4;
+                                Index2 += 4;
+                                Index3 += 4;
+                                Index4 += 4;
+                            }
+                            lap++;
+                        }
+                        // display the list item in "dataGridViewListItems"
+                        dataGridViewListItems.DataSource = dt;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("File doesn't exist", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void button_SD_ImportManageGroupsFile_Click(object sender, EventArgs e)
+        {
+            TrimedListHeader = true;
+            // check if "listNewlyAddedStudents" header has been removed else remove the first row of the list
+            CheckTrimedListHeader(TrimedListHeader);
+
+            // open the file dialog and choose the .csv file
+            using (OpenFileDialog openFileDialog = new OpenFileDialog() { Filter = "Excel Workbook|*.xlsx", ValidateNames = true })
+            {
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = Path.GetFullPath(openFileDialog.FileName);
+
+                    // display the filepath above datagGidView
+                    lblFilePath.Text = filePath;
+
+                    var workbook = new XLWorkbook(filePath);
+                    var WorkSheet = workbook.Worksheet(1);
+                    bool ColumnEmpty = false;
+                    bool CheckRowEmpty = false;
+
+
+                    var RowCount = WorkSheet.RangeUsed().RowsUsed().Skip(1);    // get the used rows from excel
+                    int newcount = 0;   // intialize a new counter
+                    foreach (var row in RowCount)   // access each data in the used rows
+                    {
+                        newcount++; // increment counter to be used to loop through each row and get all the non-empty cells
+                        CheckRowEmpty = true;   // used to know if "listNewlyAddedStudents" should be cleared or not 
+                    }
+
+                    if (CheckRowEmpty)  // check if row is empty before clearing the contents of "listNewlyAddedStudents"
+                    {
+                        listNewlyAddedStudents.Clear(); // clear this list only if there is one or more data from excel file
+
+                        for (int i = 2; i <= newcount; i++) // this loops through each row and will not exceed the number of used rows
+                        {
+                            var row = WorkSheet.Row(i); // this selects the row from the second row skipping the first row
+
+                            for (int j = 1; j < 7; j++) // loop through each cell
+                            {
+                                var cell = row.Cell(j);
+                                ColumnEmpty = cell.IsEmpty();
+
+                                if (!ColumnEmpty) // check if cell is empty
+                                {
+                                    string value = cell.GetValue<string>(); // assign cell value to variable
+                                    listNewlyAddedStudents.Add(value);  // add new item to the list "listNewlyAddedStudents"
+                                }
+
+                            }
+
+                            //MessageBox.Show("Value is: " + value + ". Empty is: " + empty, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        }
+                        // display the number of students
+                        lblNumberOfStudent.Text = (listNewlyAddedStudents.Count / 6).ToString();
+
+                        StudentGroupTable.Clear();  // clear the current data to make room for new data
+                        StudentGroupTable.Columns.Add("S/N", typeof(string));
+                        StudentGroupTable.Columns.Add("Student ID", typeof(string));
+                        StudentGroupTable.Columns.Add("FirstName", typeof(string));
+                        StudentGroupTable.Columns.Add("LastName", typeof(string));
+                        StudentGroupTable.Columns.Add("Email Address", typeof(string));
+                        StudentGroupTable.Columns.Add("Group ID", typeof(string));
+
+                        // variable diclarations
+                        var lap = 1;
+                        var Index1 = 0;
+                        var Index2 = 1;
+                        var Index3 = 2;
+                        var Index4 = 3;
+                        var Index5 = 4;
+                        var Index6 = 5;
+
+                        // loop through each "listNewlyAddedStudents" and add them to DataTable row
+                        for (var i = 0; i <= listNewlyAddedStudents.Count; i++)
+                        {
+
+                            // this ensures that four items are added to a row at once. it adds items by batch
+                            if (lap > 6)
+                            {
+                                lap = 1;
+                                // assign each list index to a cell in the row
+                                StudentGroupTable.Rows.Add(
+                                    listNewlyAddedStudents[Index1],
+                                    listNewlyAddedStudents[Index2],
+                                    listNewlyAddedStudents[Index3],
+                                    listNewlyAddedStudents[Index4],
+                                    listNewlyAddedStudents[Index5],
+                                    listNewlyAddedStudents[Index6]
+                                    );
+                                // go to the next items on the list that needs to be added to Datatable row
+                                Index1 += 6;
+                                Index2 += 6;
+                                Index3 += 6;
+                                Index4 += 6;
+                                Index5 += 6;
+                                Index6 += 6;
+
+                            }
+                            lap++;
+                        }
+                        // this is the base "StudentGroupTable_GroupID" value
+                        Final_StudentGroupTable_GroupID_Value = StudentGroupTable_GroupID;
+                        // Adding elements in the combobox
+                        UpdateComboBoxChangeGroupID();
+                        // display the list item in "dataGridViewListItems"
+                        dgvStudentGroupingTable.DataSource = StudentGroupTable;
+
                     }
                 }
                 else
