@@ -985,7 +985,7 @@
             // 
             this.labelMGS_TotalScoreGiven.AutoSize = true;
             this.labelMGS_TotalScoreGiven.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelMGS_TotalScoreGiven.Location = new System.Drawing.Point(102, 351);
+            this.labelMGS_TotalScoreGiven.Location = new System.Drawing.Point(72, 351);
             this.labelMGS_TotalScoreGiven.Name = "labelMGS_TotalScoreGiven";
             this.labelMGS_TotalScoreGiven.Size = new System.Drawing.Size(232, 139);
             this.labelMGS_TotalScoreGiven.TabIndex = 43;
@@ -1005,11 +1005,11 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(102, 116);
+            this.label8.Location = new System.Drawing.Point(72, 116);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(299, 139);
+            this.label8.Size = new System.Drawing.Size(366, 139);
             this.label8.TabIndex = 41;
-            this.label8.Text = "90%";
+            this.label8.Text = "100%";
             this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // label9

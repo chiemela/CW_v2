@@ -106,7 +106,7 @@ namespace CourseWorkManagementSystem
 
             }
 
-            if (CalculateTotalScoreGivenInEachGroup > 90)
+            if (CalculateTotalScoreGivenInEachGroup > 100)
             {
 
                 CheckedResult_TotalScoreGiven = true;
@@ -1665,7 +1665,7 @@ namespace CourseWorkManagementSystem
                 {
 
                     array_StudentGroupTable_Count[fetchedStudentID, 6] = TempString;
-                    MessageBox.Show("The score you entered makes the Total Score alloted to exceeded 90%", "Info");
+                    MessageBox.Show("The score you entered makes the Total Score alloted to exceeded 100%", "Info");
 
                 }
                 else
