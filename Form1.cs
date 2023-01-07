@@ -127,180 +127,7 @@ namespace CourseWorkManagementSystem
             labelMGS_TotalScoreGiven.Text = CalculateTotalScoreGivenInEachGroup.ToString() + "%";
         }
 
-        // add student grouping into DataDictionary
-        public void SaveGroupInDataDictionary()
-        {
-            // get the selected student details from "listBoxManageGroupScore" and substring the "StudentID"
-            string text = listBoxManageGroupScore.GetItemText(listBoxManageGroupScore.SelectedItem);
-            int startIndex = 4;
-            int length = 8;
-            // lblMGS_StudentID.Text = substring;
-            bool pointer = false;
-            String student_ID = text.Substring(startIndex, length);
-            //DeclareDictionary(StudentGroupTable_ListCollection, pointer, student_ID);
-
-
-            // variable diclarations
-            int lap = 1;
-            var Index2 = 1;
-            var Index3 = 2;
-            var Index4 = 3;
-            var Index5 = 4;
-            var Index6 = 5;
-            SerialNumber = 1;
-
-            // delcare the dictionary to save all groups
-            var StudentGrouping = new Dictionary<int, StudentGroups>();
-
-            // loop through each "StudentGroupTable_ListCollection" and add them to "StudentGrouping" Dictionary
-            for (int a = 0; a <= StudentGroupTable_ListCollection.Count; a++)
-            {
-                // variable diclarations
-                string test = "";
-                string studentID = "";
-                string FirstName = "";
-                string LastName = "";
-                string Email = "";
-                string GroupID = "";
-                string Grade = "0";
-                // this ensures that four items are added to a row at once. it adds items by batch
-                if (lap > 6)
-                {
-                    try
-                    {
-                        lap = 1;
-                        studentID = StudentGroupTable_ListCollection[Index2];
-                        FirstName = StudentGroupTable_ListCollection[Index3];
-                        LastName = StudentGroupTable_ListCollection[Index4];
-                        Email = StudentGroupTable_ListCollection[Index5];
-                        GroupID = StudentGroupTable_ListCollection[Index6];
-                        // Grade is not given by the lecturer yet
-                        test = StudentGroupTable_ListCollection[Index6];
-                        Index2 += 6;
-                        Index3 += 6;
-                        Index4 += 6;
-                        Index5 += 6;
-                        Index6 += 6;
-
-                        StudentGrouping.Add(SerialNumber, new StudentGroups
-                        {
-                            studentID = studentID,
-                            FirstName = FirstName,
-                            LastName = LastName,
-                            Email = Email,
-                            GroupID = GroupID,
-                            Grade = Grade
-                        });
-
-                        SerialNumber++;
-                    }
-                    catch (Exception ex)
-                    {
-                        goto Lap;
-                    }
-                }
-                Lap:
-                lap++;
-            }
-        }
-
-        // this section puts the students into various groups in the Dictionary
-        public static List<string> DeclareDictionary(List<string> list/*, bool pointer, string student_ID*/)
-        {
-            /*
-            // variable diclarations
-            int lap = 1;
-            var Index2 = 1;
-            var Index3 = 2;
-            var Index4 = 3;
-            var Index5 = 4;
-            var Index6 = 5;
-            int SerialNumber = 1;
-            List<string> listNumber = new List<string>();
-
-            // delcare the dictionary to save all groups
-            var StudentGrouping = new Dictionary<int, StudentGroups>();
-
-            // loop through each "listNewlyAddedStudents" and add them to DataTable row
-            for (int a = 0; a <= list.Count; a++)
-            {
-                // variable diclarations
-                string test = "";
-                string studentID = "";
-                string FirstName = "";
-                string LastName = "";
-                string Email = "";
-                string GroupID = "";
-                string Grade = "0%";
-                // this ensures that four items are added to a row at once. it adds items by batch
-                if (lap > 6)
-                {
-                    try
-                    {
-                        lap = 1;
-                        studentID = list[Index2];
-                        FirstName = list[Index3];
-                        LastName = list[Index4];
-                        Email = list[Index5];
-                        GroupID = list[Index6];
-                        // Grade is not given by the lecturer yet
-                        test = list[Index6];
-                        Index2 += 6;
-                        Index3 += 6;
-                        Index4 += 6;
-                        Index5 += 6;
-                        Index6 += 6;
-
-                        StudentGrouping.Add(SerialNumber, new StudentGroups
-                        {
-                            studentID = studentID,
-                            FirstName = FirstName,
-                            LastName = LastName,
-                            Email = Email,
-                            GroupID = GroupID,
-                            Grade = Grade
-                        });
-
-                        SerialNumber++;
-                    }
-                    catch (Exception ex)
-                    {
-                        goto Lap;
-                    }
-                }
-                Lap:
-                lap++;
-            }
-            --SerialNumber;
-            foreach (var index in Enumerable.Range(1, SerialNumber))
-            {
-                string s = StudentGrouping[index].studentID + " " +
-                    StudentGrouping[index].FirstName + " " +
-                    StudentGrouping[index].LastName + " " +
-                    StudentGrouping[index].Email + " " +
-                    StudentGrouping[index].GroupID + " " +
-                    StudentGrouping[index].Grade;
-                listNumber.Add(s);
-            }
-            foreach (var index in Enumerable.Range(1, SerialNumber))
-            {
-                if (StudentGrouping[index].studentID == student_ID)
-                {
-
-                }
-                string s = StudentGrouping[index].studentID + " " +
-                    StudentGrouping[index].FirstName + " " +
-                    StudentGrouping[index].LastName + " " +
-                    StudentGrouping[index].Email + " " +
-                    StudentGrouping[index].GroupID + " " +
-                    StudentGrouping[index].Grade;
-                listNumber.Add(s);
-            }
-            // return pointer ? listNumber : "world";
-            */
-            List<string> dummy_list = new List<string>();
-            return dummy_list;
-        }
+        
 
         // check how many times a groupID appears
         public static int CountOccurrences(int[] arr, int n, int x)
@@ -343,7 +170,10 @@ namespace CourseWorkManagementSystem
             }
         }
 
-        // this method  the "dataGridViewListItems"
+        /* 
+         * this method imports the "dataGridViewListItems" to "listBoxViewStudentGrouping" and adds student details to list
+         * "StudentGroupTable_ListCollection"
+        */
         public void ImportStudentGroupingTable()
         {
             // variable diclarations
@@ -352,7 +182,7 @@ namespace CourseWorkManagementSystem
             // check if "listNewlyAddedStudents" header has been removed else remove the first row of the list
             CheckTrimedListHeader(TrimedListHeader);
 
-            // add the "StudentGroupTable" data to list
+            // add the "StudentGroupTable" data to list "StudentGroupTable_ListCollection"
             foreach (DataRow dr in StudentGroupTable.Rows)
             {
                 foreach (DataColumn col in StudentGroupTable.Columns)
@@ -845,7 +675,7 @@ namespace CourseWorkManagementSystem
             int[] Num = new int[Get_Num_Array_Count];
 
 
-            // loop through each "listNewlyAddedStudents" and add them to DataTable row
+            // loop through each "StudentGroupTable_ListCollection" and add them to DataTable row
             for (int a = 0; a <= StudentGroupTable_ListCollection.Count; a++)
             {
                 // this ensures that four items are added to a row at once. it adds items by batch
@@ -930,7 +760,7 @@ namespace CourseWorkManagementSystem
             // delcare the dictionary to save all groups
             var StudentGrouping = new Dictionary<int, StudentGroups>();
 
-            // loop through each "listNewlyAddedStudents" and add them to DataTable row
+            // loop through each "StudentGroupTable_ListCollection" and add them to "StudentGrouping" Dictionary
             for (int a = 0; a <= StudentGroupTable_ListCollection.Count; a++)
             {
                 // variable diclarations
@@ -1831,6 +1661,7 @@ namespace CourseWorkManagementSystem
                     var WorkSheet = workbook.Worksheet(1);
                     bool ColumnEmpty = false;
                     bool CheckRowEmpty = false;
+                    int checkcount = 0;
 
 
                     var RowCount = WorkSheet.RangeUsed().RowsUsed().Skip(1);    // get the used rows from excel
@@ -1838,12 +1669,12 @@ namespace CourseWorkManagementSystem
                     foreach (var row in RowCount)   // access each data in the used rows
                     {
                         newcount++; // increment counter to be used to loop through each row and get all the non-empty cells
-                        CheckRowEmpty = true;   // used to know if "listNewlyAddedStudents" should be cleared or not 
+                        CheckRowEmpty = true;   // used to know if "StudentGroupTable_ListCollection" should be cleared or not 
                     }
 
-                    if (CheckRowEmpty)  // check if row is empty before clearing the contents of "listNewlyAddedStudents"
+                    if (CheckRowEmpty)  // check if row is empty before clearing the contents of "StudentGroupTable_ListCollection"
                     {
-                        listNewlyAddedStudents.Clear(); // clear this list only if there is one or more data from excel file
+                        StudentGroupTable_ListCollection.Clear(); // clear this list only if there is one or more data from excel file
 
                         for (int i = 2; i <= newcount; i++) // this loops through each row and will not exceed the number of used rows
                         {
@@ -1856,62 +1687,133 @@ namespace CourseWorkManagementSystem
 
                                 if (!ColumnEmpty) // check if cell is empty
                                 {
+                                    checkcount++;
                                     string value = cell.GetValue<string>(); // assign cell value to variable
-                                    listNewlyAddedStudents.Add(value);  // add new item to the list "listNewlyAddedStudents"
+                                    StudentGroupTable_ListCollection.Add(value);  // add new item to the list "StudentGroupTable_ListCollection"
                                 }
 
                             }
 
-                            //MessageBox.Show("Value is: " + value + ". Empty is: " + empty, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                         }
-                        // display the number of students
-                        lblNumberOfStudent.Text = (listNewlyAddedStudents.Count / 4).ToString();
-
-                        // prepare "DataTable dt" which will be used as DataSource for "dataGridViewListItems"
-                        System.Data.DataTable dt = new System.Data.DataTable();
-                        dt.Columns.Add("studentIDnumber", typeof(string));
-                        dt.Columns.Add("firstName", typeof(string));
-                        dt.Columns.Add("lastName", typeof(string));
-                        dt.Columns.Add("emailAddress", typeof(string));
-                        // "SerialNumber"
-                        // "StudentID"
-                        // "FirstName"
-                        // "LastName"
-                        // "Email"
-                        // "Group"
-                        // "Grade(%)"
 
                         // variable diclarations
                         var lap = 1;
+                        var array_index = 0;
                         var Index1 = 0;
                         var Index2 = 1;
                         var Index3 = 2;
                         var Index4 = 3;
+                        var Index5 = 4;
+                        var Index6 = 5;
+                        var Index7 = 6;   // note: this is what makes it different from the "Update Group" button because now there is a variable for grade
 
-                        // loop through each "listNewlyAddedStudents" and add them to DataTable row
-                        for (var i = 0; i <= listNewlyAddedStudents.Count; i++)
+
+                        // get the number of rows to be given to the array
+                        StudentGroupTable_Count = StudentGroupTable_ListCollection.Count / 7;
+
+                        // initiate a 2-dimensional array with the set rows and colume
+                        InitiateStudentArray();
+
+
+                        // loop through each "StudentGroupTable_ListCollection" and add them to "ManageScoreStudentList"
+                        for (var i = 0; i <= StudentGroupTable_ListCollection.Count; i++)
                         {
                             // this ensures that four items are added to a row at once. it adds items by batch
-                            if (lap > 4)
+                            if (lap > 7)
                             {
                                 lap = 1;
-                                // assign each list index to a cell in the row
-                                dt.Rows.Add(listNewlyAddedStudents[Index1],
-                                    listNewlyAddedStudents[Index2],
-                                    listNewlyAddedStudents[Index3],
-                                    listNewlyAddedStudents[Index4]
-                                );
+
+                                /*
+                                 * get all items in "StudentGroupTable_ListCollection" and add them to "ManageScoreStudentList"
+                                 * including temporary Grade of zero(0)
+                                */
+                                ManageScoreStudentList.Add(StudentGroupTable_ListCollection[Index1]);   // S/N
+                                ManageScoreStudentList.Add(StudentGroupTable_ListCollection[Index2]);   // Student_ID
+                                ManageScoreStudentList.Add(StudentGroupTable_ListCollection[Index3]);   // First name
+                                ManageScoreStudentList.Add(StudentGroupTable_ListCollection[Index4]);   // Last name
+                                ManageScoreStudentList.Add(StudentGroupTable_ListCollection[Index5]);   // Email
+                                ManageScoreStudentList.Add(StudentGroupTable_ListCollection[Index6]);   // Group_ID
+                                ManageScoreStudentList.Add(StudentGroupTable_ListCollection[Index7]);   // Grade
+
+
+                                string? _SerialNumber = StudentGroupTable_ListCollection[Index1];
+                                string? _studentID = StudentGroupTable_ListCollection[Index2];
+                                string? _FirstName = StudentGroupTable_ListCollection[Index3];
+                                string? _LastName = StudentGroupTable_ListCollection[Index4];
+                                string? _Email = StudentGroupTable_ListCollection[Index5];
+                                string? _GroupID = StudentGroupTable_ListCollection[Index6];
+                                string? _Grade = StudentGroupTable_ListCollection[Index7];
+
+
+                                array_StudentGroupTable_Count[array_index, 0] = _SerialNumber;
+                                array_StudentGroupTable_Count[array_index, 1] = _studentID;
+                                array_StudentGroupTable_Count[array_index, 2] = _FirstName;
+                                array_StudentGroupTable_Count[array_index, 3] = _LastName;
+                                array_StudentGroupTable_Count[array_index, 4] = _Email;
+                                array_StudentGroupTable_Count[array_index, 5] = _GroupID;
+                                array_StudentGroupTable_Count[array_index, 6] = _Grade;
+
+
                                 // go to the next items on the list that needs to be added to Datatable row
-                                Index1 += 4;
-                                Index2 += 4;
-                                Index3 += 4;
-                                Index4 += 4;
+                                Index1 += 7;  // increment "Index1" by 7
+                                Index2 += 7;  // increment "Index2" by 7
+                                Index3 += 7;  // increment "Index3" by 7
+                                Index4 += 7;  // increment "Index4" by 7
+                                Index5 += 7;  // increment "Index5" by 7
+                                Index6 += 7;  // increment "Index6" by 7
+                                Index7 += 7;  // increment "Index7" by 7. Note: this is an addition compared to "Update Goupe" button
+                                array_index++;  // increment "array_index"
                             }
                             lap++;
+
+
                         }
-                        // display the list item in "dataGridViewListItems"
-                        dataGridViewListItems.DataSource = dt;
+
+                        // get the number of groups
+                        // variable diclarations
+                        lap = 1;
+                        Index6 = 5;
+                        int NumIndex = 0;
+                        string MatchingValueString;
+                        int MatchingValueInt;
+                        Get_Num_Array_Count = (StudentGroupTable_ListCollection.Count / 7);
+                        int[] Num = new int[Get_Num_Array_Count];
+
+
+                        // loop through each "StudentGroupTable_ListCollection" and add them to DataTable row
+                        for (int a = 0; a <= StudentGroupTable_ListCollection.Count; a++)
+                        {
+                            // this ensures that four items are added to a row at once. it adds items by batch
+                            if (lap > 7)
+                            {
+                                try
+                                {
+                                    lap = 1;
+                                    MatchingValueString = StudentGroupTable_ListCollection[Index6];
+                                    MatchingValueInt = int.Parse(MatchingValueString);
+                                    Num[NumIndex] = int.Parse(MatchingValueString);
+                                    // go to the next items on the list that needs to be added to Datatable row
+                                    Index6 += 7;
+                                    NumIndex++;
+                                }
+                                catch (Exception ex)
+                                {
+                                    goto Lap;
+                                }
+                            }
+                            Lap:
+                            lap++;
+                        }
+                        // sort array
+                        Array.Sort(Num);
+                        MessageBox.Show("row count is: " + checkcount, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        InitialGroupUpdateRecord++;
+                        comboBoxMGS_ChooseGroup.Visible = true;
+                        label_MGS_UpdateNotice.Text = "Update commited: " + InitialGroupUpdateRecord +
+                            ". \nPlease update whenever you make changes to the group members.";
+                        listBoxManageGroupScore.DataSource = null;
+                        listBoxManageGroupScore.Items.Clear();
+                        listBoxManageGroupScore.DataSource = StudentGroupTable_ListCollection;
                     }
                 }
                 else
