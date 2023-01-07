@@ -1005,7 +1005,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(67, 116);
+            this.label8.Location = new System.Drawing.Point(102, 116);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(299, 139);
             this.label8.TabIndex = 41;

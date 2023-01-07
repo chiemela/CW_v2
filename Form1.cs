@@ -26,6 +26,7 @@ namespace CourseWorkManagementSystem
         }
 
         // global variables
+        bool IsImportGroupScore_Clicked = false;
         bool CheckedResult_TotalScoreGiven = false;
         int InitialGroupUpdateRecord = 0;
         string? SerialNumber_By_ID = "";
@@ -810,30 +811,9 @@ namespace CourseWorkManagementSystem
                 Lap:
                 lap++;
             }
-            /*
-            --SerialNumber;
-            foreach (var index in Enumerable.Range(1, SerialNumber))
-            {
-                string s = StudentGrouping[index].studentID + " " +
-                    StudentGrouping[index].FirstName + " " +
-                    StudentGrouping[index].LastName + " " +
-                    StudentGrouping[index].Email + " " +
-                    StudentGrouping[index].GroupID + " " +
-                    StudentGrouping[index].Grade;
-                listNumber.Add(s);
-            }
-            listBoxManageGroupScore.DataSource = listNumber;
-            */
 
+            button_MGS_UpdateGroup.Visible = true;
 
-
-
-
-            bool pointer = true;
-            string student_ID = "";
-            // save list into a Dictionary and return the Dictionary as list
-            //DeclareDictionary(StudentGroupTable_ListCollection, pointer, student_ID);
-            //listBoxManageGroupScore.DataSource = DeclareDictionary(StudentGroupTable_ListCollection);
         }
 
         private void listBoxViewStudentGrouping_MouseUp(object sender, MouseEventArgs e)
@@ -1016,72 +996,140 @@ namespace CourseWorkManagementSystem
 
         private void comboBoxMGS_ChooseGroup_SelectedValueChanged(object sender, EventArgs e)
         {
-
-            // variable diclarations
-            var lap = 1;
-            var Index2 = 1;
-            var Index3 = 2;
-            var Index4 = 3;
-            var Index6 = 5;
-            int SerialNumber = 1;
-            List<string> MatchingValues = new List<string>();
-            listBoxManageGroupScore.DataSource = null;
-            listBoxManageGroupScore.Items.Clear();
-            MatchingValues.Clear();
-
-
-            /*
-             * get the GroupID selected from "comboBoxChooseGroup" and assign it to "c" to be used to
-             * find all related GroupID in the "StudentGroupTable_ListCollection"
-             */
-            object b = comboBoxMGS_ChooseGroup.SelectedItem;
-            object be = comboBoxMGS_ChooseGroup.GetItemText(b);
-            string? c = be.ToString();
-            labelMGS_GroupSelected.Text = c;
-            labelMGS_GroupSelected.Visible = true;
-            labelMGS_Group.Visible = true;
-
-
-            // loop through each "StudentGroupTable_ListCollection"
-            for (int a = 0; a <= StudentGroupTable_ListCollection.Count; a++)
+            if (IsImportGroupScore_Clicked)
             {
-                string test = "";
-                string MatchingValueString = "";
+                // variable diclarations
+                var lap = 1;
+                var Index1 = 0;
+                var Index2 = 1;
+                var Index3 = 2;
+                var Index4 = 3;
+                var Index6 = 5;
+                int SerialNumber = 1;
+                List<string> MatchingValues = new List<string>();
+                listBoxManageGroupScore.DataSource = null;
+                listBoxManageGroupScore.Items.Clear();
+                MatchingValues.Clear();
 
 
-                // this ensures that four items are added to a row at once. it adds items by batch
-                if (lap > 6)
+                /*
+                 * get the GroupID selected from "comboBoxChooseGroup" and assign it to "c" to be used to
+                 * find all related GroupID in the "StudentGroupTable_ListCollection"
+                 */
+                object b = comboBoxMGS_ChooseGroup.SelectedItem;
+                object be = comboBoxMGS_ChooseGroup.GetItemText(b);
+                string? c = be.ToString();
+                labelMGS_GroupSelected.Text = c;
+                labelMGS_GroupSelected.Visible = true;
+                labelMGS_Group.Visible = true;
+
+
+                // loop through each "StudentGroupTable_ListCollection"
+                for (int a = 0; a <= StudentGroupTable_ListCollection.Count; a++)
                 {
-                    lap = 1;
-                    MatchingValueString = StudentGroupTable_ListCollection[Index2] + " - " +
-                                        StudentGroupTable_ListCollection[Index3] + " " +
-                                        StudentGroupTable_ListCollection[Index4];
-                    test = StudentGroupTable_ListCollection[Index6];
-                    Index2 += 6;
-                    Index3 += 6;
-                    Index4 += 6;
-                    Index6 += 6;
-                    if (test == c)
+                    string test = "";
+                    string MatchingValueString = "";
+
+
+                    // this ensures that four items are added to a row at once. it adds items by batch
+                    if (lap > 7)
                     {
-                        MatchingValues.Add("(" + (SerialNumber.ToString()) + ") " + MatchingValueString);
-                        SerialNumber++;
+                        lap = 1;
+                        MatchingValueString = "(" + StudentGroupTable_ListCollection[Index1] + ") " +
+                                            StudentGroupTable_ListCollection[Index2] + " - " +
+                                            StudentGroupTable_ListCollection[Index3] + " " +
+                                            StudentGroupTable_ListCollection[Index4];
+                        test = StudentGroupTable_ListCollection[Index6];
+                        Index2 += 7;
+                        Index3 += 7;
+                        Index4 += 7;
+                        Index6 += 7;
+                        if (test == c)
+                        {
+                            MatchingValues.Add(MatchingValueString);
+                            SerialNumber++;
+                        }
                     }
+                    lap++;
+
+
                 }
-                lap++;
 
 
+                --SerialNumber;
+                lblMGS_NumberOfStudents.Text = SerialNumber.ToString();
+                labelMGS_NumberOfStudents.Visible = true;
+                lblMGS_NumberOfStudents.Visible = true;
+                listBoxManageGroupScore.DataSource = MatchingValues;
+                label_MGS_RefreshTotalScoreGiven.Visible = true;
+                label_MGS_RefreshTotalScoreGiven2.Visible = true;
             }
+            else
+            {
+                // variable diclarations
+                var lap = 1;
+                var Index2 = 1;
+                var Index3 = 2;
+                var Index4 = 3;
+                var Index6 = 5;
+                int SerialNumber = 1;
+                List<string> MatchingValues = new List<string>();
+                listBoxManageGroupScore.DataSource = null;
+                listBoxManageGroupScore.Items.Clear();
+                MatchingValues.Clear();
 
 
-            --SerialNumber;
-            lblMGS_NumberOfStudents.Text = SerialNumber.ToString();
-            labelMGS_NumberOfStudents.Visible = true;
-            lblMGS_NumberOfStudents.Visible = true;
-            listBoxManageGroupScore.DataSource = MatchingValues;
-            label_MGS_RefreshTotalScoreGiven.Visible = true;
-            label_MGS_RefreshTotalScoreGiven2.Visible = true;
+                /*
+                 * get the GroupID selected from "comboBoxChooseGroup" and assign it to "c" to be used to
+                 * find all related GroupID in the "StudentGroupTable_ListCollection"
+                 */
+                object b = comboBoxMGS_ChooseGroup.SelectedItem;
+                object be = comboBoxMGS_ChooseGroup.GetItemText(b);
+                string? c = be.ToString();
+                labelMGS_GroupSelected.Text = c;
+                labelMGS_GroupSelected.Visible = true;
+                labelMGS_Group.Visible = true;
 
 
+                // loop through each "StudentGroupTable_ListCollection"
+                for (int a = 0; a <= StudentGroupTable_ListCollection.Count; a++)
+                {
+                    string test = "";
+                    string MatchingValueString = "";
+
+
+                    // this ensures that four items are added to a row at once. it adds items by batch
+                    if (lap > 6)
+                    {
+                        lap = 1;
+                        MatchingValueString = StudentGroupTable_ListCollection[Index2] + " - " +
+                                            StudentGroupTable_ListCollection[Index3] + " " +
+                                            StudentGroupTable_ListCollection[Index4];
+                        test = StudentGroupTable_ListCollection[Index6];
+                        Index2 += 6;
+                        Index3 += 6;
+                        Index4 += 6;
+                        Index6 += 6;
+                        if (test == c)
+                        {
+                            MatchingValues.Add("(" + (SerialNumber.ToString()) + ") " + MatchingValueString);
+                            SerialNumber++;
+                        }
+                    }
+                    lap++;
+
+
+                }
+
+
+                --SerialNumber;
+                lblMGS_NumberOfStudents.Text = SerialNumber.ToString();
+                labelMGS_NumberOfStudents.Visible = true;
+                lblMGS_NumberOfStudents.Visible = true;
+                listBoxManageGroupScore.DataSource = MatchingValues;
+                label_MGS_RefreshTotalScoreGiven.Visible = true;
+                label_MGS_RefreshTotalScoreGiven2.Visible = true;
+            }
 
         }
 
@@ -1661,10 +1709,9 @@ namespace CourseWorkManagementSystem
                     var WorkSheet = workbook.Worksheet(1);
                     bool ColumnEmpty = false;
                     bool CheckRowEmpty = false;
-                    int checkcount = 0;
 
 
-                    var RowCount = WorkSheet.RangeUsed().RowsUsed().Skip(1);    // get the used rows from excel
+                    var RowCount = WorkSheet.RangeUsed().RowsUsed();    // get the used rows from excel
                     int newcount = 0;   // intialize a new counter
                     foreach (var row in RowCount)   // access each data in the used rows
                     {
@@ -1687,7 +1734,6 @@ namespace CourseWorkManagementSystem
 
                                 if (!ColumnEmpty) // check if cell is empty
                                 {
-                                    checkcount++;
                                     string value = cell.GetValue<string>(); // assign cell value to variable
                                     StudentGroupTable_ListCollection.Add(value);  // add new item to the list "StudentGroupTable_ListCollection"
                                 }
@@ -1806,15 +1852,34 @@ namespace CourseWorkManagementSystem
                         }
                         // sort array
                         Array.Sort(Num);
-                        MessageBox.Show("row count is: " + checkcount, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        int TempArrayValue = Num[0];
+                        // check how many groups there are
+                        foreach (var x in Num)
+                        {
+                            if (TempArrayValue != x)
+                            {
+                                TempArrayValue = x;
+                            }
+                        }
+
+                        // this is the base "StudentGroupTable_GroupID" value
+                        StudentGroupTable_GroupID = TempArrayValue;
+                        Final_StudentGroupTable_GroupID_Value = StudentGroupTable_GroupID;
+                        UpdateComboBoxChangeGroupID();
+
+
+                        // MessageBox.Show("number of groups are: " + TempArrayValue, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         InitialGroupUpdateRecord++;
                         comboBoxMGS_ChooseGroup.Visible = true;
                         label_MGS_UpdateNotice.Text = "Update commited: " + InitialGroupUpdateRecord +
                             ". \nPlease update whenever you make changes to the group members.";
-                        listBoxManageGroupScore.DataSource = null;
-                        listBoxManageGroupScore.Items.Clear();
-                        listBoxManageGroupScore.DataSource = StudentGroupTable_ListCollection;
+                        // listBoxManageGroupScore.DataSource = null;
+                        // listBoxManageGroupScore.Items.Clear();
+                        // listBoxManageGroupScore.DataSource = Num;
                     }
+                    // this changes how list "MatchingValues" poupulates "listBoxManageGroupScore" with data
+                    IsImportGroupScore_Clicked = true;
+                    button_MGS_UpdateGroup.Visible = false;
                 }
                 else
                 {
