@@ -1816,13 +1816,6 @@ namespace CourseWorkManagementSystem
 
         private void button_SD_ImportManageGroupScorefile_Click(object sender, EventArgs e)
         {
-            // switch the to the relevant DataGridView
-            dataGridViewListItems.Visible = true;
-            dgvCsvImport.Visible = false;
-            dataGridViewListItems.DataSource = null;
-            TrimedListHeader = true;
-            // check if "listNewlyAddedStudents" header has been removed else remove the first row of the list
-            CheckTrimedListHeader(TrimedListHeader);
 
             // open the file dialog and choose the .csv file
             using (OpenFileDialog openFileDialog = new OpenFileDialog() { Filter = "Excel Workbook|*.xlsx", ValidateNames = true })
@@ -1856,7 +1849,7 @@ namespace CourseWorkManagementSystem
                         {
                             var row = WorkSheet.Row(i); // this selects the row from the second row skipping the first row
 
-                            for (int j = 1; j < 5; j++) // loop through each cell
+                            for (int j = 1; j < 8; j++) // loop through each cell
                             {
                                 var cell = row.Cell(j);
                                 ColumnEmpty = cell.IsEmpty();
@@ -1881,6 +1874,13 @@ namespace CourseWorkManagementSystem
                         dt.Columns.Add("firstName", typeof(string));
                         dt.Columns.Add("lastName", typeof(string));
                         dt.Columns.Add("emailAddress", typeof(string));
+                        // "SerialNumber"
+                        // "StudentID"
+                        // "FirstName"
+                        // "LastName"
+                        // "Email"
+                        // "Group"
+                        // "Grade(%)"
 
                         // variable diclarations
                         var lap = 1;
@@ -2037,6 +2037,11 @@ namespace CourseWorkManagementSystem
                     MessageBox.Show("File doesn't exist", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
