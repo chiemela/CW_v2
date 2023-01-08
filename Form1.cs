@@ -2662,5 +2662,28 @@ namespace CourseWorkManagementSystem
         {
 
         }
+
+        // this asks the user if they really want to exit the application
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
+            DialogResult dialog = new DialogResult();
+            // this makes sure the user remeber's to save any unsaved data
+            dialog = MessageBox.Show("Do you want to exit this application?\n\n" +
+                "Note: All unsaved data will be lost. " +
+                "Please make sure you save your data before closing.\n", 
+                "Alert!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (dialog == DialogResult.Yes)
+            {
+                // The user wants to exit the application. Close everything down.
+                System.Environment.Exit(1);
+            }
+            else if (dialog == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+
+        }
     }
 }
