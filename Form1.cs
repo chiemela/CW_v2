@@ -80,7 +80,7 @@ namespace CourseWorkManagementSystem
         static Regex validate_emailaddress = email_validation();
 
 
-        // this is resposible for stoping user from exceeding the 90% score for each group
+        // this is responsible for stopping user from exceeding the 90% score for each group
         public void CheckTotalScore()
         {
 
