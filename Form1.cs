@@ -65,6 +65,21 @@ namespace CourseWorkManagementSystem
         }
 
 
+        // this regular expression checks the characters in the email field to know if it matches the email format
+        private static Regex email_validation()
+        {
+            string pattern = @"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|"
+                + @"([-a-z0-9!#$%&'*+/=?^_`{|}~]|(?<!\.)\.)*)(?<!\.)"
+                + @"@[a-z0-9][\w\.-]*[a-z0-9]\.[a-z][a-z\.]*[a-z]$";
+
+            return new Regex(pattern, RegexOptions.IgnoreCase);
+        }
+
+
+        // this initializes the regular expression method email_validation()
+        static Regex validate_emailaddress = email_validation();
+
+
         // this is resposible for stoping user from exceeding the 90% score for each group
         public void CheckTotalScore()
         {
@@ -553,30 +568,81 @@ namespace CourseWorkManagementSystem
         private void btnAddStudent_Click(object sender, EventArgs e)
         {
 
-            // switch the to the relevant DataGridView
-            dataGridViewListItems.Visible = true;
-            dgvCsvImport.Visible = false;
-            // get all form data and put them into a variable
-            var StudentIDnumber = txtStudentIDnumber.Text;
-            var FirstName = txtFirstName.Text;
-            var LastName = txtLastName.Text;
-            var EmailAddress = txtEmailAddress.Text;
+            // check if "txtStudentIDnumber.text" is = 8 characters
+            if (txtStudentIDnumber.Text.Length == 8)
+            {
 
-            // add item to list
-            listNewlyAddedStudents.Add(StudentIDnumber);
-            listNewlyAddedStudents.Add(FirstName);
-            listNewlyAddedStudents.Add(LastName);
-            listNewlyAddedStudents.Add(EmailAddress);
+                // check if user entered the first name
+                if (txtFirstName.Text != "")
+                {
 
-            // update the DataGridView
-            DataGridUpdate();
+                    //  check if user entered the last name
+                    if (txtLastName.Text != "")
+                    {
 
-            // group students automatically
-            Check_If_Clicked++;
-            AutoAssignStudentToGrouping(Check_If_Clicked);
+                        // this validates the email format
+                        if (validate_emailaddress.IsMatch(txtEmailAddress.Text) != true)
+                        {
+                            MessageBox.Show("Invalid Email Address!", "Invalid", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            txtEmailAddress.Focus();
+                            return;
+                        }
+                        else
+                        {
 
-            // display the number of students
-            lblNumberOfStudent.Text = (listNewlyAddedStudents.Count / 4).ToString();
+                            // switch the to the relevant DataGridView
+                            dataGridViewListItems.Visible = true;
+                            dgvCsvImport.Visible = false;
+                            // get all form data and put them into a variable
+                            var StudentIDnumber = txtStudentIDnumber.Text;
+                            var FirstName = txtFirstName.Text;
+                            var LastName = txtLastName.Text;
+                            var EmailAddress = txtEmailAddress.Text;
+
+                            // add item to list
+                            listNewlyAddedStudents.Add(StudentIDnumber);
+                            listNewlyAddedStudents.Add(FirstName);
+                            listNewlyAddedStudents.Add(LastName);
+                            listNewlyAddedStudents.Add(EmailAddress);
+
+                            // update the DataGridView
+                            DataGridUpdate();
+
+                            // group students automatically
+                            Check_If_Clicked++;
+                            AutoAssignStudentToGrouping(Check_If_Clicked);
+
+                            // display the number of students
+                            lblNumberOfStudent.Text = (listNewlyAddedStudents.Count / 4).ToString();
+
+                        }
+
+                    }
+                    else
+                    {
+
+                        MessageBox.Show("Invalid Last Name!", "Invalid", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        txtLastName.Focus();
+
+                    }
+
+                }
+                else
+                {
+
+                    MessageBox.Show("Invalid First Name!", "Invalid", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    txtFirstName.Focus();
+
+                }
+
+            }
+            else
+            {
+
+                MessageBox.Show("Invalid Student ID!", "Invalid", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtStudentIDnumber.Focus();
+
+            }
 
         }
 
@@ -2666,22 +2732,34 @@ namespace CourseWorkManagementSystem
         // this asks the user if they really want to exit the application
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
-            DialogResult dialog = new DialogResult();
-            // this makes sure the user remeber's to save any unsaved data
-            dialog = MessageBox.Show("Do you want to exit this application?\n\n" +
-                "Note: All unsaved data will be lost. " +
-                "Please make sure you save your data before closing.\n", 
-                "Alert!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-            if (dialog == DialogResult.Yes)
+            try
             {
-                // The user wants to exit the application. Close everything down.
-                System.Environment.Exit(1);
+
+                DialogResult dialog = new DialogResult();
+                // this makes sure the user remeber's to save any unsaved data
+                dialog = MessageBox.Show("Do you want to exit this application?\n\n" +
+                    "Note: All unsaved data will be lost. " +
+                    "Please make sure you save your data before closing.\n",
+                    "Alert!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (dialog == DialogResult.Yes)
+                {
+                    // The user wants to exit the application. Close everything down.
+                    System.Environment.Exit(1);
+                }
+                else if (dialog == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+
             }
-            else if (dialog == DialogResult.No)
+            catch (Exception ex)
             {
-                e.Cancel = true;
+
+                MessageBox.Show("Invalid operation. Please try to close the application again.\n\n" + ex,
+                    "Alert!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
             }
 
         }
