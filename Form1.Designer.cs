@@ -132,6 +132,8 @@
             this.label18 = new System.Windows.Forms.Label();
             this.button_SD_ImportManageGroupsFile = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
+            this.tabPageMIT_License = new System.Windows.Forms.TabPage();
+            this.label23 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPageManageStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListItems)).BeginInit();
@@ -152,6 +154,7 @@
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.tabPageMIT_License.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -161,6 +164,7 @@
             this.tabControl.Controls.Add(this.tabPageViewGroups);
             this.tabControl.Controls.Add(this.tabPageManageGroupScore);
             this.tabControl.Controls.Add(this.tabPageSavedData);
+            this.tabControl.Controls.Add(this.tabPageMIT_License);
             this.tabControl.Location = new System.Drawing.Point(1, 4);
             this.tabControl.Name = "tabControl";
             this.tabControl.Padding = new System.Drawing.Point(60, 20);
@@ -1231,6 +1235,26 @@
             this.label14.TabIndex = 31;
             this.label14.Text = "Saved Data Page";
             // 
+            // tabPageMIT_License
+            // 
+            this.tabPageMIT_License.Controls.Add(this.label23);
+            this.tabPageMIT_License.Location = new System.Drawing.Point(10, 88);
+            this.tabPageMIT_License.Name = "tabPageMIT_License";
+            this.tabPageMIT_License.Size = new System.Drawing.Size(2512, 1141);
+            this.tabPageMIT_License.TabIndex = 5;
+            this.tabPageMIT_License.Text = "MIT License";
+            this.tabPageMIT_License.UseVisualStyleBackColor = true;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(447, 113);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(1573, 738);
+            this.label23.TabIndex = 0;
+            this.label23.Text = resources.GetString("label23.Text");
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 41F);
@@ -1279,6 +1303,8 @@
             this.groupBox6.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.tabPageMIT_License.ResumeLayout(false);
+            this.tabPageMIT_License.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1386,5 +1412,7 @@
         private GroupBox groupBox6;
         private Label label20;
         private Button button3;
+        private TabPage tabPageMIT_License;
+        private Label label23;
     }
 }
