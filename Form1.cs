@@ -2191,7 +2191,7 @@ namespace CourseWorkManagementSystem
                         bool CheckRowEmpty = false;
 
 
-                        var RowCount = WorkSheet.RangeUsed().RowsUsed().Skip(1);    // get the used rows from excel
+                        var RowCount = WorkSheet.RangeUsed().RowsUsed();    // get the used rows from excel
                         int newcount = 0;   // intialize a new counter
 
                         foreach (var row in RowCount)   // access each data in the used rows
@@ -2234,13 +2234,19 @@ namespace CourseWorkManagementSystem
                             // display the number of students
                             lblNumberOfStudent.Text = (listNewlyAddedStudents.Count / 4).ToString();
 
-                            // this fixes the error that comes up when user tries to import saved Students data after importing CSV file
-                            StudentGroupTable.Columns.Remove("S/N");
-                            StudentGroupTable.Columns.Remove("Student ID");
-                            StudentGroupTable.Columns.Remove("FirstName");
-                            StudentGroupTable.Columns.Remove("LastName");
-                            StudentGroupTable.Columns.Remove("Email Address");
-                            StudentGroupTable.Columns.Remove("Group ID");
+                            // check if the "StudentGroupTable.Columns" have already been created
+                            if (StudentGroupTable.Columns.Count > 0)
+                            {
+
+                                // this fixes the error that comes up when user tries to import saved Students data after importing CSV file
+                                StudentGroupTable.Columns.Remove("S/N");
+                                StudentGroupTable.Columns.Remove("Student ID");
+                                StudentGroupTable.Columns.Remove("FirstName");
+                                StudentGroupTable.Columns.Remove("LastName");
+                                StudentGroupTable.Columns.Remove("Email Address");
+                                StudentGroupTable.Columns.Remove("Group ID");
+
+                            }
 
                             // prepare "DataTable dt" which will be used as DataSource for "dataGridViewListItems"
                             System.Data.DataTable dt = new System.Data.DataTable();
@@ -2582,7 +2588,7 @@ namespace CourseWorkManagementSystem
                         bool ColumnEmpty = false;
                         bool CheckRowEmpty = false;
 
-                        var RowCount = WorkSheet.RangeUsed().RowsUsed().Skip(1);    // get the used rows from excel
+                        var RowCount = WorkSheet.RangeUsed().RowsUsed();    // get the used rows from excel
                         int newcount = 0;   // intialize a new counter
 
                         foreach (var row in RowCount)   // access each data in the used rows

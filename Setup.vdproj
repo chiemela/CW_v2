@@ -15,19 +15,13 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_23C1EA12B3CA4AD7BF773086C191CA38"
+        "MsmKey" = "8:_6393823ED36042D6B7495F7927230B62"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_49B2AD7193B840F5B39669D569592567"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E91D858585E140F78DC21684394BD314"
+        "MsmKey" = "8:_7E8A8D55A56D4518A2DBAD331F96DCB5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -39,7 +33,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\Setup.msi"
+        "OutputFilename" = "8:..\\Setup\\Debug\\Setup.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -56,6 +50,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -63,7 +65,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\Setup.msi"
+        "OutputFilename" = "8:..\\Setup\\Release\\Setup.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -80,6 +82,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -112,7 +122,7 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_49B2AD7193B840F5B39669D569592567"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6393823ED36042D6B7495F7927230B62"
             {
             "SourcePath" = "8:D:\\Pictures\\software engineering\\favicon.ico"
             "TargetName" = "8:favicon.ico"
@@ -189,7 +199,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Setup"
         "ProductCode" = "8:{4F2A5968-4534-4CDA-B989-87813DAC6A93}"
-        "PackageCode" = "8:{65C89F05-9587-4AD2-9B6E-A6E84D62AD03}"
+        "PackageCode" = "8:{7C2E6DEB-C666-428D-B03C-C8472EDF713D}"
         "UpgradeCode" = "8:{557E2E65-B734-46DF-B501-425BF5E19E42}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -309,7 +319,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_53AA721150CF4636AF85B5D8E75B3271"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_95967BB9199B4AB892C895AA94294C10"
             {
             "Name" = "8:CourseWorkManagementSystem"
             "Arguments" = "8:"
@@ -317,10 +327,10 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_23C1EA12B3CA4AD7BF773086C191CA38"
+            "Target" = "8:_7E8A8D55A56D4518A2DBAD331F96DCB5"
             "Folder" = "8:_580E3B93F0AF48BF91BFEC65B90FF6DC"
             "WorkingFolder" = "8:_64912906CB414CBFB3131138D9EB7C89"
-            "Icon" = "8:_49B2AD7193B840F5B39669D569592567"
+            "Icon" = "8:_6393823ED36042D6B7495F7927230B62"
             "Feature" = "8:"
             }
         }
@@ -722,37 +732,9 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_23C1EA12B3CA4AD7BF773086C191CA38"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_7E8A8D55A56D4518A2DBAD331F96DCB5"
             {
-            "SourcePath" = "8:..\\CW_v2\\obj\\Debug\\net6.0-windows\\apphost.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_AA663B3AEB4F4453BEBD0C83572A5B04"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:PublishItems"
-            "OutputProjectGuid" = "8:{6B798B43-9D11-4899-8A86-AA1CC5DCEB75}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E91D858585E140F78DC21684394BD314"
-            {
-            "SourcePath" = "8:..\\CW_v2\\obj\\Debug\\net6.0-windows\\apphost.exe"
+            "SourcePath" = "8:obj\\Debug\\net6.0-windows\\apphost.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_64912906CB414CBFB3131138D9EB7C89"
